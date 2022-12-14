@@ -1,0 +1,185 @@
+---
+sidebar: sidebar 
+permalink: vcp_task_create_manage_access_groups.html 
+summary: Es posible crear y gestionar grupos de acceso de volúmenes mediante el plugin. 
+keywords: netapp, storage, access groups, vcp, vcenter, element 
+---
+= Permite crear y gestionar grupos de acceso de volúmenes
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+A. link:https://docs.netapp.com/us-en/hci/docs/concept_hci_volume_access_groups.html["grupo de acceso de volúmenes"^] Es una colección de volúmenes a la que los usuarios pueden acceder mediante iniciadores de iSCSI o iniciadores de FC.
+
+Los grupos de acceso se pueden crear asignando IQN de iniciadores de iSCSI o WWPN de FC en una colección de volúmenes. Cada IQN que se añade a un grupo de acceso puede acceder a cada volumen del grupo sin necesidad de contar con autenticación CHAP. Cada WWPN que se añade a un grupo de acceso habilita el acceso de red de FC a los volúmenes del grupo de acceso.
+
+.Opciones
+* <<Cree un grupo de acceso>>
+* <<Edite un grupo de acceso>>
+* <<Añada volúmenes a un grupo de acceso>>
+* <<Quite volúmenes de un grupo de acceso>>
+* <<Eliminar un grupo de acceso>>
+
+
+
+
+== Cree un grupo de acceso
+
+Se pueden crear grupos de acceso de volúmenes con un iniciador o varios. La asignación de iniciadores de cliente iSCSI (IQN) o Fibre Channel (WWPN) a los volúmenes en un grupo de acceso de volúmenes permite realizar operaciones de I/o de datos seguras entre una red y un volumen.
+
+.Pasos
+. En vSphere Web Client, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subpestaña *grupos de acceso*.
+. Seleccione *Crear grupo de acceso*.
+. Introduzca un nombre para el grupo de acceso de volúmenes.
++
+
+TIP: Utilice prácticas recomendadas de nomenclatura descriptiva. Esto es especialmente importante si se utilizan varios clústeres o instancias de vCenter Server en el entorno.
+
+. Seleccione un IQN o WWPN sin asignar de la lista desplegable *Seleccione un iniciador* y haga clic en *Agregar iniciador*.
++
+
+NOTE: Es posible añadir o eliminar iniciadores después de que se crea el grupo de acceso de volúmenes.
+
+. Haga clic en *Aceptar* para crear el grupo de acceso.
+
+
+
+
+== Edite un grupo de acceso
+
+Es posible editar los nombres de los grupos de acceso de volúmenes, o bien añadir o quitar iniciadores desde el punto de extensión del plugin.
+
+.Pasos
+. En vSphere Web Client, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subpestaña *grupos de acceso*.
+. Seleccione la casilla de comprobación del grupo de acceso de volúmenes que desea editar.
+. Seleccione *acciones*.
+. En el menú que se abre, seleccione *Editar*.
+. Cambie los siguientes valores según sea necesario:
++
+.. Modifique el nombre del grupo de acceso.
+.. Añada o quite iniciadores.
++
+
+NOTE: Si desea quitar un iniciador, haga clic en el icono de papelera para quitarlo. Cuando se quita el iniciador, este ya no puede volver a acceder a los volúmenes de ese grupo de acceso de volúmenes. El acceso normal de cuenta al volumen no se interrumpe.
+
+
+
+. Seleccione *OK*.
+
+
+
+
+== Añada volúmenes a un grupo de acceso
+
+Es posible añadir volúmenes a un grupo de acceso de volúmenes. Cada volumen puede pertenecer a más de un grupo de acceso de volúmenes. Es posible ver los grupos a los que pertenece cada volumen en la vista de volúmenes activos Active.
+
+.Lo que necesitará
+* Debe haber al menos un clúster añadido y en ejecución.
+* Al menos existe un grupo de acceso.
+* Al menos existe un volumen activo.
+
+
+.Pasos
+. En vSphere Web Client, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subficha *Volumes*.
+. Seleccione la casilla de comprobación de cada volumen que desea añadir al grupo de acceso.
+. Seleccione *acciones*.
+. Seleccione *Agregar a grupo de acceso*.
+. Confirme los detalles y seleccione un grupo de acceso de volúmenes en la lista.
+. Seleccione *OK*.
+
+
+
+
+== Quite volúmenes de un grupo de acceso
+
+Es posible quitar volúmenes de un grupo de acceso.
+
+Cuando se quita un volumen de un grupo de acceso, el grupo ya no puede acceder a dicho volumen.
+
+
+IMPORTANT: Al quitar un volumen de un grupo de acceso, se puede interrumpir el acceso de host al volumen.
+
+. En vSphere Web Client, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subficha *Volumes*.
+. Seleccione la casilla de comprobación de cada volumen que desea quitar del grupo de acceso.
+. Seleccione *acciones*.
+. Seleccione *Quitar de Access Group*.
+. Confirme los detalles y seleccione el grupo de acceso de volúmenes que ya no desea que acceda a cada volumen seleccionado.
+. Seleccione *OK*.
+
+
+
+
+== Eliminar un grupo de acceso
+
+Es posible eliminar grupos de acceso de volúmenes mediante el punto de extensión del plugin. No es necesario eliminar los ID de iniciador ni desasociar los volúmenes del grupo de acceso de volúmenes antes de eliminar el grupo. Una vez que se elimine el grupo de acceso, se interrumpirá el acceso del grupo al volumen.
+
+.Pasos
+. En vSphere Web Client, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subpestaña *grupos de acceso*.
+. Seleccione la casilla de comprobación del grupo de acceso que desea eliminar.
+. Seleccione *acciones*.
+. En el menú que se abre, seleccione *Eliminar*.
+. Confirme la acción.
+
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
+* https://www.netapp.com/data-storage/solidfire/documentation["Página SolidFire y Element Resources"^]
+

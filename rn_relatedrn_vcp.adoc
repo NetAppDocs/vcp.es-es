@@ -1,0 +1,92 @@
+---
+sidebar: sidebar 
+permalink: rn_relatedrn_vcp.html 
+summary: Obtenga enlaces a notas de la versión de productos o componentes que forman parte de un entorno de cabina all-flash NetApp HCI o SolidFire. 
+keywords: netapp, hci, element, vcp, vcenter plugin, storage, management services, compute firmware 
+---
+= Información adicional sobre la versión
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible encontrar enlaces a las notas de la versión más reciente y anteriores para varios componentes del entorno de almacenamiento de NetApp HCI y Element.
+
+
+NOTE: Se le pedirá que inicie sesión con sus credenciales del sitio de soporte de NetApp.
+
+
+
+== NetApp HCI
+
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2882194["Notas de la versión de NetApp HCI 1.10"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2879274["Notas de la versión de NetApp HCI 1.9P1"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2876591["Notas de la versión de NetApp HCI 1.9"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2873790["Notas de la versión de NetApp HCI 1.8P1"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2865021["Notas de la versión de NetApp HCI 1.8"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2861226["Notas de la versión de NetApp HCI 1.7P1"^]
+
+
+
+
+== Software NetApp Element
+
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2884468["Notas de la versión del software NetApp Element 12.7"^] _NEW_
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2882193["Notas de la versión del software NetApp Element 12.5"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2881056["Notas de la versión del software NetApp Element 12.3.2"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2878089["Notas de la versión del software NetApp Element 12.3.1"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2876498["Notas de la versión del software NetApp Element 12.3"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2873789["Notas de la versión del software NetApp Element 12.2"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2865022["Notas de la versión del software NetApp Element 12.0"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2864256["Notas de la versión del software NetApp Element 11.8"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2861225["Notas de la versión del software NetApp Element 11.7"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2863854["Notas de la versión del software NetApp Element 11.5.1"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2859857["Notas de la versión del software NetApp Element 11.3P1"^]
+
+
+
+
+== Servicios de gestión
+
+* https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Management_services_for_Element_Software_and_NetApp_HCI/Management_Services_Release_Notes["Notas de la versión de los servicios de gestión KB"^]
+
+
+
+
+== Complemento de NetApp Element para VMware vCenter Server
+
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2884992["Notas de la versión del plugin de vCenter 5.0"^] _NEW_
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2884458["Notas de la versión del plugin de vCenter 4.10"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2881904["Notas de la versión del plugin de vCenter 4.9"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2879296["Notas de la versión del plugin de vCenter 4.8"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2876748["Notas de la versión del plugin de vCenter 4.7"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2874631["Notas de la versión del plugin de vCenter 4.6"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2873396["Notas de la versión del plugin de vCenter 4.5"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2866569["Notas de la versión del plugin de vCenter 4.4"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2856119["Notas de la versión del plugin de vCenter 4.3"^]
+
+
+
+
+== Firmware de computación
+
+* https://docs.netapp.com/us-en/hci/docs/rn_compute_firmware_2.146.html["Notas de la versión de Compute firmware Bundle 2.146"^]
+* https://docs.netapp.com/us-en/hci/docs/rn_compute_firmware_2.76.html["Notas de la versión de Compute firmware Bundle 2.76"^]
+* https://docs.netapp.com/us-en/hci/docs/rn_compute_firmware_2.27.html["Notas de la versión de Compute firmware Bundle 2.27"^]
+* https://docs.netapp.com/us-en/hci/docs/rn_firmware_12.2.109.html["Notas de la versión de Compute firmware Bundle 12.2.109"^]
+
+
+
+
+== Firmware de almacenamiento
+
+* https://docs.netapp.com/us-en/hci/docs/rn_storage_firmware_2.146.html["Notas de la versión del paquete de firmware de almacenamiento 2.146"^]
+* https://docs.netapp.com/us-en/hci/docs/rn_storage_firmware_2.99.2.html["Notas de la versión del paquete de firmware de almacenamiento 2.99.2"^]
+* https://docs.netapp.com/us-en/hci/docs/rn_storage_firmware_2.76.html["Notas de la versión del paquete de firmware de almacenamiento 2.76"^]
+* https://docs.netapp.com/us-en/hci/docs/rn_storage_firmware_2.27.html["Notas de la versión del paquete de firmware de almacenamiento 2.27"^]
+* https://docs.netapp.com/us-en/hci/docs/rn_H610S_BMC_3.84.07.html["Notas de la versión de H610S BMC 3.84.07"^]
+

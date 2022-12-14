@@ -1,0 +1,204 @@
+---
+sidebar: sidebar 
+permalink: vcp_task_protect_snapshots_schedules.html 
+summary: Cree una programación de Snapshot con el plugin. 
+keywords: netapp, hci, vcp, vcenter, element, protect, snapshots, schedule 
+---
+= Crear programaciones de snapshots
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se puede programar la ejecución automática de una copia de Snapshot de un volumen en intervalos de fecha y hora concretos. Se pueden programar las copias de Snapshot de un solo volumen o las copias de Snapshot de grupo para que se ejecuten automáticamente.
+
+Cuando se crean programaciones de snapshots, las snapshots resultantes se pueden almacenar en un sistema de almacenamiento de NetApp Element remoto si el volumen se está replicando.
+
+
+NOTE: Las programaciones se crean con la hora UTC+0. Es posible que tenga que ajustar la hora real en la que se ejecutará una copia de Snapshot en función de su zona horaria.
+
+* <<Crear una programación de Snapshot>>
+* <<Ver detalles de la programación Snapshot>>
+* <<Editar una programación de Snapshot>>
+* <<Copiar una programación de Snapshot>>
+* <<Eliminar una programación de Snapshot>>
+
+
+
+
+== Crear una programación de Snapshot
+
+Se puede programar la ejecución automática de una copia de Snapshot de un volumen o de varios volúmenes en intervalos concretos.
+
+Cuando se configura una programación de Snapshot, se puede elegir entre intervalos de tiempo basados en los días de la semana o los días del mes. También es posible especificar los días, las horas y los minutos antes de que se produzca la siguiente copia de Snapshot.
+
+Si se programa la ejecución de una copia de Snapshot en un período que no sea divisible entre 5 minutos, la copia de Snapshot se ejecutará en el siguiente período que lo sea 5. Por ejemplo, si se programa la ejecución de una copia de Snapshot a las 12:42:00 UTC, se realizará a las 12:45:00 UTC. No se podrá programar la ejecución de una copia de Snapshot en intervalos inferiores a 5 minutos.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subpestaña *programaciones*.
+. Seleccione *Crear programación*.
+. En el campo *ID de volumen CSV*, introduzca un ID de volumen único o una lista separada por comas con los ID de volumen que desea incluir en la operación de programación de instantánea.
+. Introduzca un nombre para la programación.
+. Seleccione un tipo de programación y configure los detalles.
+. (Opcional) para repetir el programa indefinidamente, marque *Programa recurrente*.
+. (Opcional) en el campo New Snapshot Name, escriba un nombre para la nueva snapshot.
++
+
+NOTE: Si no introduce un nombre, el sistema creará un nombre de Snapshot predeterminado con la fecha y la hora en que se creó la copia de Snapshot.
+
+. (Opcional) marque *incluir instantánea en la replicación cuando se empareje* para asegurarse de que la instantánea se replica cuando el volumen primario está emparejado.
+. Seleccione una de las siguientes opciones como el período de retención de la copia de Snapshot:
++
+** *Keep forever*: Retiene la instantánea en el sistema indefinidamente.
+** *Establecer período de retención*: Determinar el tiempo (días, horas o minutos) que el sistema debe conservar la instantánea.
++
+
+NOTE: Cuando se establece un período de retención, se puede seleccionar un período que comience en ese mismo momento. (La retención no se calcula a partir del momento de creación de la snapshot).
+
+
+
+. Seleccione *OK*.
+
+
+
+
+== Ver detalles de la programación Snapshot
+
+Puede verificar los detalles de la programación de Snapshot.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea ver debe estar seleccionado en la barra de navegación.
+
+. Seleccione la página *programaciones*.
+. Compruebe los detalles de la programación.
+
+
+
+
+== Editar una programación de Snapshot
+
+Puede modificar las programaciones de Snapshot que ya tenga. Después de modificarlas, la próxima vez que se ejecute la programación, se utilizarán los atributos actualizados. Las copias de Snapshot que se crean con la programación original siguen en el sistema de almacenamiento.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Haga clic en la subpestaña *programaciones*.
+. Seleccione la casilla de comprobación de la programación de Snapshot que desee editar.
+. Haga clic en *acciones*.
+. En el menú que se abre, seleccione *Editar*.
+. En el campo *ID de volumen CSV*, modifique el ID de volumen único o la lista separada por comas de los ID de volumen actualmente incluidos en la operación de instantánea.
+. (Opcional) para pausar una programación activa o reanudar una programación en pausa, active la casilla de verificación *Pausa manual*.
+. (Opcional) Introduzca un nombre diferente para la programación en el campo *Nuevo nombre de programación*.
+. (Opcional) cambie el tipo de programación actual por uno de los siguientes:
++
+.. *Días de la semana*: Seleccione uno o más días de la semana y una hora del día para crear una instantánea.
+.. *Días del mes*: Seleccione uno o más días del mes y una hora del día para crear una instantánea.
+.. *Intervalo de tiempo*: Seleccione un intervalo para que se ejecute el programa en función del número de días, horas y minutos entre instantáneas.
+
+
+. (Opcional) Seleccione *Recurrent Schedule* para repetir la programación de instantáneas de forma indefinida.
+. (Opcional) Escriba o modifique el nombre de las instantáneas definidas por la programación en el campo *Nuevo nombre de instantánea*.
++
+
+NOTE: Si se deja el campo vacío, el sistema usará como nombre la hora y la fecha de la creación de la copia de Snapshot.
+
+. (Opcional) Active la casilla de verificación *incluir instantáneas en la replicación cuando se empareja* para asegurarse de que las instantáneas se capturan en la replicación cuando el volumen principal está emparejado.
+. (Opcional) Seleccione una de las siguientes opciones como el período de retención de la snapshot:
++
+** *Keep forever*: Retiene la instantánea en el sistema indefinidamente.
+** *Establecer período de retención*: Determinar el tiempo (días, horas o minutos) que el sistema debe conservar la instantánea.
++
+
+NOTE: Cuando se establece un período de retención, se puede seleccionar un período que comience en ese mismo momento (la retención no se calcula a partir del momento de creación de la copia de Snapshot).
+
+
+
+. Haga clic en *Aceptar*.
+
+
+
+
+== Copiar una programación de Snapshot
+
+Es posible realizar una copia de una programación de Snapshot y asignarla a volúmenes nuevos o usarla para otros fines.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Haga clic en la subpestaña *programaciones*.
+. Seleccione la casilla de comprobación de la programación de Snapshot que desea copiar.
+. Haga clic en *acciones*.
+. En el menú que se abre, haga clic en *Copiar*. Se abre el cuadro de diálogo Copy Snapshot, en el cual ya se encuentran los atributos actuales de la programación.
+. (Opcional) Escriba un nombre y actualice los atributos para la copia de la programación.
+. Haga clic en *Aceptar*.
+
+
+
+
+== Eliminar una programación de Snapshot
+
+Es posible eliminar programaciones de Snapshot. Después de eliminar una programación, no se ejecutan las siguientes copias de Snapshot programadas. Las copias de Snapshot creadas con la programación permanecen en el sistema de almacenamiento.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Haga clic en la subpestaña *programaciones*.
+. Seleccione la casilla de comprobación de la programación de Snapshot que desea eliminar.
+. Haga clic en *acciones*.
+. En el menú que se abre, haga clic en *Eliminar*.
+. Confirme la acción.
+
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
+* https://www.netapp.com/data-storage/solidfire/documentation["Página SolidFire y Element Resources"^]
+

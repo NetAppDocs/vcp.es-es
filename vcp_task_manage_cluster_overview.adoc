@@ -1,0 +1,23 @@
+---
+sidebar: sidebar 
+permalink: vcp_task_manage_cluster_overview.html 
+summary: Es posible gestionar el clúster de almacenamiento mediante los puntos de extensión del plugin de vCenter. 
+keywords: netapp, VLANs, drives, nodes, cluster, manage create, delete, view vcp, vcenter, element 
+---
+= Información general sobre el hardware de los clústeres de gestión y las redes virtuales
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+En la pestaña Cluster del punto de extensión del plugin, es posible ver y modificar los ajustes de todo el clúster, y ejecutar tareas específicas del clúster para unidades, nodos y VLAN.
+
+.Opciones
+* link:vcp_task_add_manage_drive.html["Añadir y gestionar unidades"]
+* link:vcp_task_add_manage_nodes.html["Permite añadir y gestionar nodos"]
+* link:vcp_task_create_manage_vlans.html["Crear y gestionar redes virtuales"]
+

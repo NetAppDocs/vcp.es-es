@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: vcp_concept_qossioc.html 
+summary:  
+keywords: netapp, quality of service, volume performance, sioc, storage I/O control, vcp 
+---
+= QoSSIOC
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+El plugin de NetApp Element para VMware vCenter Server habilita, como ajuste opcional, la calidad de servicio automática (https://docs.netapp.com/us-en/hci/docs/concept_hci_performance.html["Calidad de servicio"^]) Basado en el control de E/S de almacenamiento (https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.resmgmt.doc/GUID-7686FEC3-1FAC-4DA7-B698-B808C44E5E96.html["SIOC"^]) Configuración de todas las máquinas virtuales en un almacén de datos estándar. La integración de QoS y SIOC (QoSSIOC), que se puede habilitar para cualquier almacén de datos estándar, ejecuta un análisis de toda la configuración de SIOC en todas las máquinas virtuales asociadas.
+
+QoSSIOC ajusta los valores de calidad de servicio en los volúmenes Element estándar cuando se producen eventos de máquina virtual, como eventos de encendido o apagado, reinicios o apagados invitados, o actividades de reconfiguración. El servicio QoSSIOC utiliza la suma de todas las reservas o recursos compartidos de SIOC y la suma de límites de IOPS para determinar la calidad de servicio mínima y máxima para el volumen subyacente de cada almacén de datos. También está disponible un factor de ráfaga configurable.
+
+Debe tener en cuenta los siguientes elementos antes de usar la automatización de QoSSIOC:
+
+* Automatización de QoSSIOC y. https://docs.netapp.com/us-en/hci/docs/concept_hci_performance.html#qos-policies["Políticas de calidad de servicio"^] no debe usarse juntos. Si utiliza políticas de calidad de servicio, no habilite QoSSIOC. QoSSIOC anulará y ajustará los valores de calidad de servicio de los volúmenes.
+* QoSSIOC es la mejor opción para equipos virtuales de uso ligero, como escritorios virtuales o equipos virtuales especializados de tipo quiosco, que pueden reiniciarse, encenderse o apagarse a diario o varias veces al día.
+* QoSSIOC es menos adecuado para entornos de servicio, por ejemplo, con servidores de bases de datos, aplicaciones o infraestructura que rara vez se reinician y necesitan igual acceso constante al almacenamiento. Las políticas de calidad de servicio se adaptan mejor a estos entornos.
+* QoSSIOC solo está disponible con almacenes de datos estándar. No funciona con volúmenes virtuales (VVol).
+
+
+
+NOTE: Cuando la configuración de SIOC para un VMDK se encuentra en el nivel predeterminado de recursos compartidos normal y el límite de IOPS predeterminado Unlimited, los valores de recursos compartidos y límite de IOPS contribuyen en la calidad de servicio total del volumen subyacente. Si la configuración de SIOC para el VMDK no se encuentra en los niveles predeterminados, los recursos compartidos de SIOC contribuyen a la calidad de servicio mínima, mientras que los valores de límite de IOPS de SIOC contribuyen a la calidad de servicio máxima del volumen subyacente.
+
+
+TIP: Es posible establecer un valor de reserva a través de la API de vSphere. Si se establece un valor de reserva para un VMDK, se ignoran los recursos compartidos y se utiliza el valor de reserva en su lugar.
+
+
+TIP: https://activeiq.solidfire.com["SolidFire Active IQ"^] Tiene una página de recomendaciones de calidad de servicio que ofrece asesoramiento sobre la configuración óptima y la configuración de las opciones de calidad de servicio.
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
+* https://www.netapp.com/data-storage/solidfire/documentation["Página SolidFire y Element Resources"^]
+

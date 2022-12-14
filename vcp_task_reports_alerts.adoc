@@ -1,0 +1,68 @@
+---
+sidebar: sidebar 
+permalink: vcp_task_reports_alerts.html 
+summary: Las alertas de supervisión, que proporcionan información, advertencias o errores que indican cómo se ejecuta el clúster mediante las páginas Reporting del plugin de NetApp Element para VMware vCenter Server. 
+keywords: netapp, hci, vcp, vcenter, element, monitor, report, alert, cluster, performance 
+---
+= Supervise las alertas del sistema
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede supervisar las alertas, que son información, advertencias o errores que indican el funcionamiento del clúster.
+
+Las alertas son fallas o errores del clúster, que se informan cuando se producen. La mayoría de errores se resuelven automáticamente por sí mismos; sin embargo, puede que algunos requieran intervención manual. El sistema informa de códigos de error de alertas con cada alerta en la página Alerts. los códigos de error ayudan a determinar en qué componente del sistema se generó la alerta y por qué se generó. Consulte link:vcp_reference_reports_alert_errors.html["Lista de alertas del sistema"] para obtener descripciones y pasos de resolución.
+
+Después de resolver el problema, el sistema se sondea a sí mismo e identifica el problema como resuelto. Luego, toda la información sobre la alerta, incluida la fecha en la que se solucionó, se traslada a la vista Resolved.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
+. Seleccione *Informes* > *Alertas*.
+. Supervise la siguiente información de alertas del clúster:
++
+** *ID*: ID exclusivo para una alerta de clúster.
+** *Gravedad*
++
+*** *Advertencia*: Un problema menor que podría requerir atención pronto. Las actualizaciones del sistema todavía se permiten en este nivel de gravedad.
+*** *Error*: Un fallo que puede causar la degradación del rendimiento o la pérdida de alta disponibilidad (ha). En general, los errores no deben afectar el servicio de otro modo.
+*** *Crítico*: Un fallo grave que afecta al servicio. El sistema no es capaz de atender las solicitudes de I/o de la API o el cliente. El funcionamiento en este estado podría provocar la pérdida potencial de datos.
+*** *BestPractice*: No se utiliza una práctica recomendada de configuración del sistema.
+
+
+** *Tipo*
++
+*** *Nodo*: Fallo que afecta a un nodo entero.
+*** *Unidad*: Fallo que afecta a una unidad individual.
+*** *Cluster*: Fallo que afecta a todo el cluster.
+*** *Service*: Fallo que afecta a un servicio del cluster.
+*** *VOLUME*: Fallo que afecta a un volumen del grupo.
+
+
+** *Node*: ID de nodo para el nodo al que hace referencia este fallo. Se incluye para los errores de nodo y de unidad; de lo contrario se establece como - (guion).
+** *ID de unidad*: ID de unidad de la unidad a la que hace referencia este error. Se incluye para los errores drive; de lo contrario se establece como - (guion).
+** *Código de error*: Código descriptivo que indica cuál fue la causa del error.
+** *Detalles*: Descripción detallada del fallo.
+** *Time*: Este encabezado sólo está visible en la vista Active filter. La fecha y la hora en la que se registró el error.
+** *Fecha de resolución*: Este encabezado sólo está visible en la vista filtro resuelto. La fecha y la hora en la que se resolvió el error.
+
+
+. Para validar que el problema se ha resuelto, buscarlo en la vista solucionado.
+
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
+* https://www.netapp.com/data-storage/solidfire/documentation["Página SolidFire y Element Resources"^]
+

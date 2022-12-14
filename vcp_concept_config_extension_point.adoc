@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: vcp_concept_config_extension_point.html 
+summary:  
+keywords: netapp, vcp, element, plugin, plug-in, config, extension point 
+---
+= Punto de extensión NetApp Element Configuration
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+El punto de extensión NetApp Element Configuration permite añadir y gestionar clústeres, asignar clústeres de almacenamiento a instancias de vCenter Server para Linked Mode y configurar los ajustes del nodo de gestión para QoSSIOC.
+
+
+NOTE: Usar el plugin de NetApp Element para VMware vCenter Server para gestionar recursos de clústeres desde otras instancias de vCenter Server que utilizan link:vcp_concept_linkedmode.html["VCenter Linked Mode"] solo se limita a clústeres de almacenamiento local.
+
+
+NOTE: Su instancia de vSphere Web Client puede diferir levemente de lo que se muestra en la siguiente imagen según la versión de vSphere instalada.
+
+image::vcp_config_extension_point.png[punto de extensión de configuración]
+
+En el punto de extensión NetApp Element Configuration, se encuentran disponibles las siguientes pestañas:
+
+* *Introducción*: Introduce los puntos de extensión para el plug-in y las acciones que se pueden realizar. Puede ocultar las páginas Introducción desde cada página o restaurarlas desde la ficha *Acerca de* del punto de extensión Configuración de NetApp Element.
+* *Clusters*: Gestiona los clústeres NetApp Element controlados por el plug-in. Permite habilitar, deshabilitar o configurar funciones específicas de cada clúster.
+* *Configuración de QoSSIOC*: Configura las credenciales del servicio QoSSIOC en el nodo de gestión para comunicarse con vCenter.
+* *Eventos de QoSSIOC*: Muestra información sobre todos los eventos de QoSSIOC detectados.
+* *Acerca de*: Muestra la información de la versión del plug-in y proporciona una opción de descarga del paquete de servicios.
+
+
+
+
+== Obtenga más información
+
+* link:vcp_concept_management_extension_point["Punto de extensión NetApp Element Management"]
+* link:concept_vcp_product_overview.html["Información general sobre el plugin de NetApp Element para VMware vCenter Server"]
+* https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
+* https://www.netapp.com/data-storage/solidfire/documentation["Página SolidFire y Element Resources"^]
+

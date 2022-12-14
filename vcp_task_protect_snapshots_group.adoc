@@ -1,0 +1,216 @@
+---
+sidebar: sidebar 
+permalink: vcp_task_protect_snapshots_group.html 
+summary: Cree una copia de Snapshot de grupo de un conjunto de volúmenes para conservar una copia de un momento específico de los metadatos de cada volumen. 
+keywords: netapp, hci, vcp, vcenter, element, protect, snapshots, clone, backup, amazon, s3, openstack, swift 
+---
+= Permite crear y gestionar copias de Snapshot de grupo en vCenter Server
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se puede crear una copia de Snapshot de grupo de un conjunto relacionado de volúmenes para conservar una copia de un momento específico de los metadatos de cada volumen. La snapshot de grupo se puede usar como un backup o una reversión para restaurar el estado del grupo de volúmenes en un momento concreto del tiempo.
+
+.Opciones
+* <<Crear una copia de Snapshot de grupo>>
+* <<Ver detalles de la copia de Snapshot de grupo>>
+* <<Clonar volúmenes a partir de una copia de Snapshot de grupo>>
+* <<Revertir volúmenes a una copia de Snapshot de grupo>>
+* <<Eliminar una copia de Snapshot de grupo>>
+
+
+
+
+== Crear una copia de Snapshot de grupo
+
+Es posible crear una copia de Snapshot de un grupo de volúmenes inmediatamente o crear una programación para automatizar copias de Snapshot del grupo de volúmenes en el futuro. Una copia de Snapshot de grupo puede realizar copias de forma constante de hasta 32 volúmenes a la vez.
+
+Posteriormente, es posible cambiar la configuración de replicación o el período de retención de una copia de Snapshot de grupo. El período de retención que se especifica comienza cuando se introduce el nuevo intervalo. Cuando se establece un período de retención, se puede seleccionar un período que comience en ese mismo momento (la retención no se calcula a partir del momento de creación de la copia de Snapshot). Los intervalos se pueden especificar en minutos, horas y días.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar debe estar seleccionado en la barra de navegación.
+
+. Haga clic en la subpestaña *Volumes*.
+. En la vista *Active*, seleccione la casilla de verificación del volumen que se va a utilizar para la instantánea.
+. Haga clic en *acciones*.
+. En el menú que se abre, seleccione *Crear instantánea de grupo*.
+. (Opcional) en el cuadro de diálogo Create Group Snapshot, introduzca un nombre para la snapshot.
++
+
+TIP: Utilice prácticas recomendadas de nomenclatura descriptiva. Esto es especialmente importante si se utilizan varios clústeres o instancias de vCenter Server en el entorno. Si no introduce un nombre, el sistema creará un nombre predeterminado de Snapshot de grupo con la fecha y la hora en que se creó la copia de Snapshot.
+
+. (Opcional) Active la casilla de verificación *incluir instantánea en la replicación cuando se empareja* para asegurarse de que la instantánea se replica cuando el volumen primario está emparejado.
+. Seleccione una de las siguientes opciones como el período de retención de la copia de Snapshot:
++
+** *Keep forever*: Retiene la instantánea en el sistema indefinidamente.
+** *Establecer período de retención*: Determinar el tiempo (días, horas o minutos) que el sistema debe conservar la instantánea.
++
+
+NOTE: Cuando se establece un período de retención, se puede seleccionar un período que comience en ese mismo momento. (La retención no se calcula a partir del momento de creación de la snapshot).
+
+
+
+. Para tomar una única instantánea inmediata, seleccione *tomar instantánea de grupo ahora*.
+. Para programar que la copia de Snapshot se ejecute en el futuro, complete los siguientes pasos:
++
+.. Seleccione *Crear programación de instantáneas*.
+.. Introduzca un nombre para la programación.
+.. Seleccione un tipo de programación y configure los detalles de la programación.
+.. (Opcional) Active la casilla de verificación *Programación recurrente* para repetir periódicamente la instantánea programada.
+
+
+. Haga clic en *Aceptar*.
+
+
+
+
+== Ver detalles de la copia de Snapshot de grupo
+
+Puede que desee verificar que la snapshot se haya añadido.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar debe estar seleccionado en la barra de navegación.
+
+. Haga clic en la subpestaña *instantáneas de grupo*.
+. Compruebe los detalles de la snapshot:
++
+** *Fecha de creación*: Fecha y hora en que se creó la instantánea de grupo.
+** *Estado*: Muestra el estado de la instantánea en el clúster remoto que ejecuta el software NetApp Element:
++
+*** *Preparing*: La instantánea se está preparando para su uso y aún no se puede escribir.
+*** *Hecho*: Esta instantánea ha terminado de prepararse y ahora se puede utilizar.
+*** *Activo*: La instantánea es la rama activa.
+
+
+** *Número de volúmenes*: Número de volúmenes en la instantánea de grupo.
+
+
+
+
+
+
+== Clonar volúmenes a partir de una copia de Snapshot de grupo
+
+Es posible clonar un grupo de volúmenes desde una copia de Snapshot de grupo específica. Después de crear los volúmenes, es posible usarlos como cualquier otro volumen del sistema.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar debe estar seleccionado en la barra de navegación.
+
+. Haga clic en la subpestaña *instantáneas de grupo*.
+. Seleccione la casilla de comprobación para la copia de Snapshot de grupo que se utilizará para los clones de volúmenes.
+. Haga clic en *acciones*.
+. En el menú que se abre, seleccione *Clonar volúmenes desde Group Snapshot*.
+. (Opcional) Introduzca un prefijo de nombre de volumen nuevo, que se aplicará a todos los volúmenes que se creen a partir de la snapshot de grupo.
+. (Opcional) Seleccione otra cuenta a la que pertenecerá el clon. Si no selecciona ninguna cuenta, el sistema asignará los nuevos volúmenes a la cuenta de volumen actual.
+. Seleccione un método de acceso diferente para los volúmenes del clon. Si no selecciona ninguno, el sistema usará el acceso de volumen actual:
++
+** *Sólo lectura*: Sólo se permiten operaciones de lectura.
+** *Leer/escribir*: Todas las operaciones de lectura y escritura son aceptadas.
+** *Bloqueado*: Sólo se permite el acceso de administrador.
+** *Destino de replicación*: Designado como volumen de destino en un par de volúmenes replicado.
+
+
+. Haga clic en *Aceptar*.
++
+
+NOTE: El tamaño del volumen y la carga del clúster actual influirán en el tiempo que se necesite para completar una operación de clonado.
+
+
+
+
+
+== Revertir volúmenes a una copia de Snapshot de grupo
+
+Es posible revertir un grupo de volúmenes activos a una copia de Snapshot de grupo. Esto restaura todos los volúmenes asociados de una copia de Snapshot de grupo a su estado en el momento en que se creó la copia de Snapshot de grupo. Este procedimiento también restaura el tamaño que los volúmenes tenían registrado en la snapshot original. Si el sistema ha purgado un volumen, todas las copias de Snapshot de dicho volumen se eliminan durante la purga. Por ello, el sistema no restaura ninguna de las copias de Snapshot de volumen eliminadas.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar debe estar seleccionado en la barra de navegación.
+
+. Haga clic en la subpestaña *instantáneas de grupo*.
+. Seleccione la casilla de comprobación de la copia de Snapshot de grupo que desee usar para revertir un volumen.
+. Haga clic en *acciones*.
+. En el menú que se abre, seleccione *revertir volúmenes a Group Snapshot*.
+. (Opcional) para guardar el estado actual de los volúmenes antes de revertir a la snapshot, realice lo siguiente:
++
+.. En el cuadro de diálogo *revertir a instantánea*, seleccione *Guardar volúmenes' Estado actual como una instantánea de grupo*.
+.. Escriba un nombre para la snapshot nueva.
+
+
+. Haga clic en *Aceptar*.
+
+
+
+
+== Eliminar una copia de Snapshot de grupo
+
+Es posible eliminar una copia de Snapshot de grupo del sistema. Cuando se elimina la copia de Snapshot de grupo, se puede elegir si se eliminarán todas las copias de Snapshot asociadas al grupo o si se retendrán como copias de Snapshot individuales.
+
+Si elimina un volumen o una copia de Snapshot que forma parte de una copia de Snapshot de grupo, no se puede revertir a la copia de Snapshot de grupo. Sin embargo, se puede revertir a cada volumen de forma individual.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar debe estar seleccionado en la barra de navegación.
+
+. Seleccione la casilla de comprobación de la copia de Snapshot de grupo que desea eliminar.
+. Haga clic en *acciones*.
+. En el menú que se abre, seleccione *Eliminar*.
+. Seleccione una de las siguientes opciones:
++
+** *Eliminar instantánea de grupo y miembros*: Elimina la instantánea de grupo y todas las instantáneas de miembro.
+** *Retener miembros*: Elimina la instantánea de grupo pero mantiene todas las instantáneas de miembro.
+
+
+. Confirme la acción.
+
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
+* https://www.netapp.com/data-storage/solidfire/documentation["Página SolidFire y Element Resources"^]
+

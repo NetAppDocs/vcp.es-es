@@ -1,0 +1,74 @@
+---
+sidebar: sidebar 
+permalink: vcp_concept_vvols.html 
+summary:  
+keywords: netapp, vvol, virtual volume, storage container, protocol endpoint, vcp, vcenter, element 
+---
+= Volúmenes virtuales (vVols)
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Los volúmenes virtuales de vSphere son un paradigma de almacenamiento para VMware que mueve gran parte de la gestión de almacenamiento de vSphere del sistema de almacenamiento a VMware vCenter. Con Virtual Volumes (vVols), puede asignar almacenamiento de acuerdo con los requisitos de cada equipo virtual.
+
+
+
+== Vinculaciones
+
+El clúster de NetApp Element elige un extremo de protocolo adecuado, crea una vinculación que asocia el host ESXi y el volumen virtual con el extremo del protocolo, y devuelve la vinculación al host ESXi. Una vez enlazados, el host ESXi puede llevar a cabo operaciones de I/o con el volumen virtual vinculado.
+
+
+
+== Extremos de protocolo
+
+Los hosts ESXi de VMware utilizan proxies lógicos de I/o, que se conocen como extremos de protocolo, para comunicarse con los volúmenes virtuales. Los hosts ESXi enlazan volúmenes virtuales con extremos de protocolo para realizar operaciones de I/O. Cuando una máquina virtual en el host realiza una operación de I/o, el extremo de protocolo asociado dirige el I/o al volumen virtual con el que está enlazado.
+
+Los extremos de protocolo de un clúster de NetApp Element funcionan como unidades lógicas administrativas SCSI. El clúster crea automáticamente cada extremo de protocolo. Para cada nodo de un clúster, se crea un extremo de protocolo correspondiente. Por ejemplo, un clúster de cuatro nodos tendrá cuatro extremos de protocolo.
+
+ISCSI es el único protocolo compatible con el software NetApp Element. No se admite el protocolo Fibre Channel. Los usuarios no pueden eliminar ni modificar los extremos de protocolo. Tampoco se pueden asociar con una cuenta ni se pueden añadir a un grupo de acceso de volúmenes. Es posible revisar la información de los extremos de protocolo mediante el punto de extensión del plugin:
+
+* A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > VVols > Protocol Endpoints*.
+* Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > VVols > Protocol Endpoints*.
+
+
+
+
+== Contenedores de almacenamiento
+
+Los contenedores de almacenamiento son construcciones lógicas que se asignan a cuentas de NetApp Element y se usan para crear informes y asignar recursos. Estos aprovechan la capacidad de almacenamiento sin configurar o añaden capacidades de almacenamiento que el sistema de almacenamiento puede ofrecer a los volúmenes virtuales. Un almacén de datos VVol que se crea en vSphere se asigna a un contenedor de almacenamiento individual. De forma predeterminada, un único contenedor de almacenamiento contiene todos los recursos disponibles del clúster de NetApp Element. Sin embargo, si se precisa una gestión granular para el multi-tenancy, se pueden crear varios contenedores.
+
+Los contenedores de almacenamiento funcionan como cuentas tradicionales, y pueden contener volúmenes virtuales y volúmenes tradicionales a la vez. Se permite un máximo de cuatro contenedores de almacenamiento por clúster. Se requiere un mínimo de un contenedor de almacenamiento para habilitar la funcionalidad de VVol. Puede crear, eliminar y ver detalles sobre los contenedores de almacenamiento mediante el punto de extensión de plugin:
+
+* A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > VVols > Storage Containers*.
+* Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > VVols > Storage Containers*.
+
+
+Durante la creación de VVol, también se pueden detectar contenedores de almacenamiento en vCenter.
+
+
+
+== Proveedor de VASA
+
+Para que vSphere esté al tanto de la función VVol en el clúster de NetApp Element, el administrador de vSphere debe registrar el proveedor VASA de NetApp Element en vCenter. El proveedor de VASA es la ruta de control fuera de banda entre vSphere y el clúster de Element. Es responsable de ejecutar solicitudes en el clúster de Element en nombre de vSphere, como la creación de máquinas virtuales, la puesta a disposición de vSphere de máquinas virtuales y la publicidad de funcionalidades de almacenamiento para vSphere.
+
+El proveedor de VASA se ejecuta como parte del maestro de clústeres en el software Element. El maestro de clústeres es un servicio de alta disponibilidad que se conmuta por error a cualquier nodo del clúster según sea necesario. Si el maestro del clúster se conmuta al nodo de respaldo, el proveedor de VASA se mueve con él, garantizando que el proveedor de VASA tiene una alta disponibilidad. Todas las tareas de aprovisionamiento y gestión de almacenamiento utilizan el proveedor VASA, que gestiona los cambios necesarios en el clúster de Element.
+
+
+NOTE: En el software Element 12.5 y versiones anteriores, no se deben registrar más de un proveedor de VASA de NetApp Element en una sola instancia de vCenter. Cuando se añade un segundo proveedor de VASA NetApp Element, esto hace que no se pueda acceder a todos los almacenes de datos DE VVOL.
+
+
+NOTE: La compatibilidad CON VASA de hasta 10 vCenter está disponible como revisión de actualización si ya se registró un proveedor de VASA en el para vCenter. Para instalar, siga las instrucciones del manifiesto VASA39 y descargue el archivo .tar.gz desde el link:https://mysupport.netapp.com/site/products/all/details/element-software/downloads-tab/download/62654/vasa39["Descargas de software de NetApp"^] sitio. El proveedor VASA de NetApp Element utiliza un certificado de NetApp. Con este parche, vCenter utiliza el certificado sin modificar para admitir varias instancias de vCenter para que usen VASA y VVol. No modifique el certificado. VASA no admite los certificados SSL personalizados.
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
+* http://mysupport.netapp.com/hci/resources["Recursos de NetApp HCI"^]
+* https://www.netapp.com/data-storage/solidfire/documentation["Página SolidFire y Element Resources"^]
+

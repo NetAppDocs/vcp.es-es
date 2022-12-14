@@ -1,0 +1,186 @@
+---
+sidebar: sidebar 
+permalink: vcp_task_qos_policies.html 
+summary: Puede configurar y modificar las políticas de calidad de servicio para aplicarlas a volúmenes en el clúster de almacenamiento. 
+keywords: netapp, qos policy, quality of service, qos policies, vcp, vcenter, element 
+---
+= Cree y gestione políticas de calidad de servicio de volúmenes
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Una política de calidad de servicio (QoS) permite crear y guardar un ajuste de calidad de servicio estandarizado que se puede aplicar a muchos volúmenes. El clúster seleccionado debe ser Element 10.0 o posterior para usar políticas de calidad de servicio; de lo contrario, las funciones de las políticas de calidad de servicio no estarán disponibles.
+
+Mediante el punto de extensión del plugin, es posible configurar y gestionar QoSSIOC completando las siguientes tareas:
+
+* <<Cree una política de calidad de servicio>>
+* <<Aplique una política de calidad de servicio en los volúmenes>>
+* <<Cambie la asociación de políticas de calidad de servicio de un volumen>>
+* <<Edite una política de calidad de servicio>>
+* <<Elimine una política de calidad de servicio>>
+
+
+
+
+== Cree una política de calidad de servicio
+
+Puede crear políticas de calidad de servicio y aplicarlas a volúmenes que tengan un rendimiento equivalente.
+
+
+NOTE: Las políticas de automatización y calidad de servicio de QoSSIOC no se deben utilizar juntas. Si utiliza políticas de calidad de servicio, no habilite QoSSIOC. QoSSIOC anulará y ajustará los valores de calidad de servicio de los volúmenes.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Haga clic en la subpestaña *Directivas de QoS*.
+. Haga clic en *Crear directiva QoS*.
+. Introduzca el *Nombre de la directiva*.
++
+
+TIP: Utilice prácticas recomendadas de nomenclatura descriptiva. Esto es especialmente importante si se utilizan varios clústeres o instancias de vCenter Server en el entorno.
+
+. Introduzca los valores mínimos de IOPS, máximo de IOPS y de IOPS de ráfaga.
+. Haga clic en *Aceptar*.
+
+
+
+
+== Aplique una política de calidad de servicio en los volúmenes
+
+Puede aplicar una política de calidad de servicio existente en varios volúmenes. Use este proceso cuando quiera aplicar de forma masiva una política a uno o varios volúmenes.
+
+.Lo que necesitará
+Ha sido la política de calidad de servicio que desea aplicar de forma masiva <<Cree una política de calidad de servicio,creado>>.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Haga clic en la subpestaña *Volumes*.
+. Seleccione la casilla de comprobación de cada volumen donde desee aplicar una política de calidad de servicio.
+. Haga clic en *acciones*.
+. En el menú que aparece, seleccione *aplicar directiva QoS*.
+. En el cuadro de diálogo, seleccione la política de calidad de servicio en la lista desplegable que desea aplicar a los volúmenes seleccionados.
+. Haga clic en *Aceptar*.
+
+
+
+
+== Cambie la asociación de políticas de calidad de servicio de un volumen
+
+Es posible quitar la asociación de una política de calidad de servicio de un volumen, o bien seleccionar otra política de calidad de servicio o personalizar la calidad de servicio.
+
+.Lo que necesitará
+El volumen que desea modificar es <<Aplique una política de calidad de servicio en los volúmenes,asociado>> Con una política de calidad de servicio.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Haga clic en la subpestaña *Volumes*.
+. Marque la casilla de comprobación de un volumen que contenga una política de calidad de servicio que desee modificar.
+. Haga clic en *acciones*.
+. En el menú que se abre, seleccione *Editar*.
+. En el cuadro de diálogo en *calidad de servicio*, seleccione una nueva directiva QoS o una configuración personalizada para aplicarla al volumen.
+. Si selecciona la configuración personalizada, modifique los valores *Min IOPS*, *Max IOPS* y *Burst IOPS*.
++
+
+NOTE: También puede hacer clic en *Restablecer QoS* predeterminada para restaurar los valores de IOPS predeterminados.
+
+. Haga clic en *Aceptar*.
+
+
+
+
+== Edite una política de calidad de servicio
+
+Una política de calidad de servicio existente se puede cambiar, o bien se pueden editar los valores asociados con esta. Los cambios en los valores de rendimiento de las políticas de calidad de servicio afectan a la calidad de servicio de todos los volúmenes asociados con la política.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Haga clic en la subpestaña *Directivas de QoS*.
+. Seleccione la casilla de comprobación de la política de calidad de servicio que desee editar.
+. Haga clic en *acciones*.
+. En el menú que se abre, seleccione *Editar*.
+. En el cuadro de diálogo *Editar directiva de QoS*, modifique las siguientes propiedades según sea necesario:
++
+** *Nombre de la directiva*: El nombre definido por el usuario para la directiva QoS.
+** *Min IOPS*: El número mínimo de IOPS garantizado para el volumen.
+** *Max IOPS*: El número máximo de IOPS permitido para el volumen.
+** *Burst IOPS*: El número máximo de IOPS permitido durante un breve período de tiempo para el volumen. El valor predeterminado es de 15 15,000.
++
+
+NOTE: También puede hacer clic en Reset Default QoS para restaurar los valores de IOPS predeterminados.
+
+
+
+. Haga clic en *Aceptar*.
+
+
+
+
+== Elimine una política de calidad de servicio
+
+Puede eliminar una política de calidad de servicio si ya no es necesaria. Cuando se elimina una política de calidad de servicio, todos los volúmenes asociados con la política se mantienen los valores de calidad de servicio que antes se definieron en la política, pero como calidad de servicio de un volumen individual. Se eliminará cualquier asociación con la política de calidad de servicio eliminada.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Haga clic en la subpestaña *Directivas de QoS*.
+. Seleccione la casilla de comprobación de la política de calidad de servicio que desea eliminar.
+. Haga clic en *acciones*.
+. En el menú que se abre, seleccione *Eliminar*.
+. Confirme la acción.
+
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
+* https://www.netapp.com/data-storage/solidfire/documentation["Página SolidFire y Element Resources"^]
+

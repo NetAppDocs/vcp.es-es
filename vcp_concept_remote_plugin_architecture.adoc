@@ -1,0 +1,75 @@
+---
+sidebar: sidebar 
+permalink: vcp_concept_remote_plugin_architecture.html 
+summary: Obtenga información acerca del plugin de NetApp Element remoto para arquitectura de vCenter Server. 
+keywords: netapp, vcp, vcenter, plugin, element, remote, architecture 
+---
+= Información general sobre la arquitectura de plugin remoto
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+A partir del plugin de NetApp Element para vCenter Server 5.0, la arquitectura del plugin cambia de local a remoto. Con la introducción de la arquitectura remota, el complemento ya no se implementa en un servidor vCenter. En el caso del plugin de Element para vCenter Server 4.10 o una versión anterior, la puesta en marcha del plugin sigue siendo local del servidor de vCenter en el que está registrado.
+
+En esta página, se describe la implementación del plugin de NetApp Element remoto para vCenter Server.
+
+La arquitectura de complemento remoto de vSphere Client está diseñada para integrar la funcionalidad del complemento en vSphere Client sin tener que ejecutarse en vCenter Server. La arquitectura de complementos remotos admite el aislamiento de complementos, permite la escalabilidad horizontal de plugins que funcionan en entornos vSphere de gran tamaño y ofrece los siguientes beneficios:
+
+* El plugin está protegido de las interferencias mediante plugins inestables o en riesgo cargados en el mismo vSphere Client.
+* La compatibilidad con el complemento es sólida en las actualizaciones de vCenter Server.
+* Un plugin incompatible no interfiere con la operación de vCenter Server.
+* Puede poner en marcha varias versiones de plugins dentro del mismo entorno de vSphere.
+* La interfaz de usuario del complemento remoto sólo necesita comunicarse con un único servidor de back-end.
+* La topología del complemento implementada es bien definida y fácil de entender que admite la solución de problemas.
+
+
+
+
+== Arquitectura de alto nivel del plugin remoto Element para vCenter Server
+
+Mediante el control de cloud híbrido de NetApp, el plugin remoto de Element se implementa en un contenedor Docker dentro de un nodo de gestión junto con los servicios de gestión.
+
+image:vcp_remote_plugin_high_level_architecture.png["Arquitectura de complemento remoto de alto nivel"]
+
+El servicio remoto del plugin de Element en vCenter Server, el servicio de registro y el servicio de control de I/o de almacenamiento (SIOC) comparten el mismo servicio docker, pero escuchan en diferentes puertos.
+
+[cols="50,25"]
+|===
+| Descripción | Puerto 
+
+
+| Plugin remoto de Element en vCenter Server | 8333 
+
+
+| Servicio de registro | 9443 
+
+
+| Servicio SIOC | 8443 
+|===
+
+
+== Información general de rutas de comunicación del plugin de Element remoto
+
+Primero, debe registrar el plugin remoto en vCenter Server mediante el servicio de registro que se ejecuta en un nodo de gestión (`https://<mnode-ip>:9443/`). En la página de registro, puede ver el nombre de usuario, la contraseña y el del servidor de vCenter `plugin.json` ruta del archivo de manifiesto.
+
+
+NOTE: La ruta predeterminada se completa en la interfaz de usuario. No se requiere ninguna acción.
+
+Si los detalles proporcionados son correctos, el servicio de registro registra el plugin en vCenter Server e introduce los detalles de vCenter en la base de datos de servidor del plugin.
+
+Cuando se completa el registro, el servidor de plugins descarga el `plugin.json` file e inicia la implementación remota del plugin, lo que implica configurar el plugin remoto como extensión con el `vsphere-ui` cliente. Una vez completada la implementación, puede acceder al punto de extensión *NetApp Element Remote Plugin* desde la `vsphere-ui` cliente web.
+
+Toda la comunicación desde la interfaz de usuario del plugin se produce a través de vCenter Server, que ejecuta un servicio proxy inverso mediante el protocolo HTTPS, que es responsable de reenviar las solicitudes al servicio de plugins remotos. El servidor del plugin interactúa con el servicio SIOC mediante la autenticación básica HTTPS y un clúster de Element mediante el kit de desarrollo de software Java de Element (SDK).
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
+* https://www.netapp.com/data-storage/solidfire/documentation["Página SolidFire y Element Resources"^]
+

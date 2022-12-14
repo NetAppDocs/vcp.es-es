@@ -1,0 +1,104 @@
+---
+sidebar: sidebar 
+permalink: vcp_concept_linkedmode.html 
+summary: Es posible usar el plugin de NetApp Element para VMware vCenter Server a fin de gestionar recursos de clústeres desde otras instancias de vCenter Server mediante el modo vinculado de vCenter. 
+keywords: netapp, vcp, element, plugin, plug-in, linked mode 
+---
+= Linked Mode y el plugin de vCenter
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Es posible usar el plugin de NetApp Element para VMware vCenter Server a fin de gestionar recursos de clústeres desde otras instancias de vCenter Server mediante el modo vinculado de vCenter.
+
+[role="tabbed-block"]
+====
+.Plugin de Element para vCenter 5.0 o posterior
+--
+A partir del plugin de Element 5.0, es posible registrar el plugin de Element desde un nodo de gestión independiente para cada instancia de vCenter Server donde se gestionan los clústeres de almacenamiento de SolidFire de NetApp.
+
+.Ejemplo
+* Registrar vCenter1: `https://[mnode1]:9443/solidfire-mnode/registration`
+* Registrar vCenter2: `https://[mnode2]:9443/solidfire-mnode/registration`
+
+
+Para configurar la gestión de clústeres de almacenamiento en un entorno de vSphere Linked Mode, puede utilizar el siguiente procedimiento para añadir manualmente los clústeres de almacenamiento.
+
+.Pasos
+. Para implementar el plugin de Element, registre el plugin desde un nodo de gestión independiente para cada instancia de vCenter Server en el entorno de Linked Mode que utiliza el plugin.
+. Utilice el plugin de Element.
++
+.. Inicie sesión en el cliente web de cualquier instancia de vCenter Server en el entorno de Linked Mode.
+.. En la línea *NetApp Element Remote Plugin*, seleccione la lista *Instance*.
++
+image:select_instance.png["seleccione la instancia de la lista"]
+
+.. Seleccione la instancia de vCenter Server con la que desea trabajar.
++
+Después de seleccionar la instancia de vCenter Server de destino, puede añadir y gestionar los clústeres para ese entorno de vCenter Server.
+
++
+
+NOTE: Solo se pueden ver y gestionar los clústeres de almacenamiento asociados con la instancia de vCenter Server seleccionada.
+
+
+
+
+
+.Ejemplo
+Dispone de vCenter1 y vCenter2 en modo vinculado y cluster1 de almacenamiento y cluster2 de almacenamiento. Desea incluir en las vCenter 1 gestionar cluster1 y vCenter2 para gestionar cluster2.
+
+image:two_vcenter_topology.PNG["Muestra la topología de vCenter y del clúster"]
+
+Después de registrar el plugin con un nodo de gestión separado para cada instancia de vCenter Server, configure la gestión del clúster de almacenamiento.
+
+.Pasos
+. Inicie sesión en el cliente web de cualquier instancia de vCenter Server en el entorno de Linked Mode.
+. En la línea *NetApp Element Remote Plugin*, seleccione la lista *Instance*.
+. Para gestionar cluster1 desde el cliente web de vCenter1, seleccione *vCenter1* de la lista.
+. Añada cluster1 al inventario del plugin de Element.
+. En la línea *NetApp Element Remote Plugin*, seleccione la lista *Instance*
+. Para gestionar cluster2 desde el cliente web de vCenter2, seleccione *vCenter2* de la lista.
+. Añada cluster2 al inventario del plugin de Element.
+
+
+--
+.Plugin de Element para vCenter 4.10 o una versión anterior
+--
+En el plugin de Element versión 4.10 o anterior, solo es posible gestionar el clúster de almacenamiento en el plugin de Element cuando se inicia sesión en el cliente web de vCenter de destino.
+
+Para configurar la gestión de clústeres de almacenamiento en un entorno de vSphere Linked Mode, puede utilizar el siguiente procedimiento para añadir manualmente los clústeres de almacenamiento.
+
+.Pasos
+. Registre el plugin en cada instancia de vCenter Server en el entorno de Linked Mode que utiliza el plugin.
+. Inicie sesión una vez en vSphere Web Client para cada instancia de vCenter Server vinculada.
++
+Iniciar sesión inicia la instalación del plugin en el cliente web.
+
+. Inicie sesión en el cliente web de la instancia de vCenter de destino que desea gestionar el clúster de almacenamiento.
+. Añada el clúster de almacenamiento al inventario del plugin de Element.
+
+
+.Ejemplo
+Dispone de vCenter1 y vCenter2 en modo vinculado y cluster1 de almacenamiento y cluster2 de almacenamiento. Desea incluir en las vCenter 1 gestionar cluster1 y vCenter2 para gestionar cluster2. Para configurar la gestión del clúster de almacenamiento, después de registrar el plugin en cada instancia de vCenter Server, realice los siguientes pasos:
+
+. Inicie sesión en el cliente web de vCenter1.
+. Para gestionar cluster1 desde el cliente web de vCenter1, añada cluster1 al inventario del complemento de Element.
+. Inicie sesión en el cliente web de vCenter2.
+. Para gestionar cluster2 desde el cliente web de vCenter2, añada cluster2 al inventario del complemento de Element.
+
+
+--
+====
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
+* https://www.netapp.com/data-storage/solidfire/documentation["Página SolidFire y Element Resources"^]
+

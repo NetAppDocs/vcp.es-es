@@ -1,0 +1,396 @@
+---
+sidebar: sidebar 
+permalink: vcp_task_protect_snapshots_volume.html 
+summary: Puede asegurarse de que las copias de sus datos se crean y se almacenan donde los necesite. 
+keywords: netapp, hci, vcp, vcenter, element, protect, snapshots, clone, backup, amazon, s3, openstack, swift 
+---
+= Permite crear y gestionar copias de Snapshot de volumen en vCenter Server
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Crear un https://docs.netapp.com/us-en/hci/docs/concept_hci_dataprotection.html#volume-snapshots-for-data-protection["copia de snapshot de volumen"] crea una copia de un momento específico de un volumen. Este proceso solo requiere una pequeña cantidad de espacio y recursos del sistema, por lo que es más rápido crear una copia de Snapshot que clonar.
+
+Las copias de Snapshot se pueden usar para revertir un volumen al estado que tenía en el momento de creación de las copias. No obstante, dado que las copias de Snapshot son réplicas de los metadatos del volumen, no es posible montarlas ni escribir en ellas.
+
+.Opciones
+* <<Cree una copia de Snapshot de volumen>>
+* <<Ver los detalles de las copias de Snapshot de volumen>>
+* <<Clonar un volumen a partir de una copia de Snapshot>>
+* <<Revertir un volumen a una copia de Snapshot>>
+* <<Realice un backup de una copia de Snapshot de volumen en un almacén de objetos externo>>
+* <<Eliminar una copia de Snapshot de volumen>>
+
+
+
+
+== Cree una copia de Snapshot de volumen
+
+Se puede crear una copia de Snapshot de un volumen activo para conservar la imagen del volumen en un momento determinado.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subpestaña *Volumes*.
+. En la vista *Active*, seleccione la casilla de verificación del volumen que se va a utilizar para la instantánea.
+. Seleccione *acciones*.
+. En el menú que se abre, seleccione *Crear instantánea*.
+. (Opcional): En el cuadro de diálogo Create Snapshot, introduzca un nombre para la snapshot.
++
+
+TIP: Utilice prácticas recomendadas de nomenclatura descriptiva. Esto es especialmente importante si se utilizan varios clústeres o instancias de vCenter Server en el entorno. Si no introduce un nombre, el sistema creará un nombre predeterminado de Snapshot con la fecha y la hora en que se creó la copia de Snapshot.
+
+. (Opcional) Active la casilla de verificación *incluir instantánea en la replicación cuando se empareja* para asegurarse de que la instantánea se replica cuando el volumen primario está emparejado.
+. Seleccione una de las siguientes opciones como el período de retención de la copia de Snapshot:
++
+** *Keep forever*: Retiene la instantánea en el sistema indefinidamente.
+** *Establecer período de retención*: Determinar el tiempo (días, horas o minutos) que el sistema debe conservar la instantánea.
++
+
+NOTE: Cuando se establece un período de retención, se puede seleccionar un período que comience en ese mismo momento. (La retención no se calcula a partir del momento de creación de la snapshot).
+
+
+
+. Para tomar una única instantánea inmediata, seleccione *tomar instantánea ahora*.
+. Para programar que la copia de Snapshot se ejecute en el futuro, complete los siguientes pasos:
++
+.. Seleccione *Crear programación de instantáneas*.
+.. Introduzca un nombre para la programación.
+.. Seleccione un tipo de programación y configure los detalles de la programación.
+.. (Opcional) Active la casilla de verificación *Programación recurrente* para repetir periódicamente la instantánea programada.
+
+
+. Seleccione *OK*.
+
+
+
+
+== Ver los detalles de las copias de Snapshot de volumen
+
+Puede que desee verificar que la snapshot se haya añadido.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subficha *instantáneas*.
+. (Opcional) Seleccione uno de los siguientes filtros:
++
+** *Individual*: Instantáneas de volumen que no son miembros de una instantánea de grupo.
+** *Miembros*: Instantáneas de volumen que son miembros de una instantánea de grupo.
+** *Inactive*: Instantáneas de volumen creadas a partir de volúmenes que se han eliminado pero que aún no se han purgado.
+
+
+. Ver los detalles de la instantánea.
+
+
+
+
+== Clonar un volumen a partir de una copia de Snapshot
+
+Es posible crear un nuevo volumen a partir de una copia de Snapshot de un volumen. En ese caso, el sistema utiliza la información de la copia de Snapshot para clonar un volumen nuevo con los datos que contenía el volumen en el momento en el que se creó la copia de Snapshot. En este proceso también se almacena información sobre otras copias de Snapshot del volumen en el volumen nuevo que se crea.
+
+.Pasos
+. En el complemento de vCenter, rom, el complemento vCenter, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subficha *instantáneas*.
+. Seleccione una de estas dos vistas:
++
+** *Individual*: Enumera las instantáneas de volumen que no son miembros de una instantánea de grupo.
+** *Miembros*: Enumera las instantáneas de volumen que son miembros de una instantánea de grupo.
+
+
+. Seleccione la casilla de comprobación para la copia de Snapshot de volumen que se va a clonar como un volumen.
+. Seleccione *acciones*.
+. En el menú que se abre, seleccione *Clone Volume from Snapshot*.
+. Introduzca un nombre de volumen, el tamaño total y seleccione GB o GIB para el nuevo volumen.
+. Seleccione un tipo de acceso para el volumen:
++
+** *Sólo lectura*: Sólo se permiten operaciones de lectura.
+** *Read/Write*: Se permiten operaciones de lectura y escritura.
+** *Bloqueado*: No se permiten operaciones de lectura o escritura.
+** *Destino de replicación*: Designado como volumen de destino en un par de volúmenes replicado.
+
+
+. Seleccione una cuenta de usuario para asociarla con el nuevo volumen.
+. Seleccione *OK*.
+. Valide el nuevo volumen:
++
+.. Abra la ficha *Administración*:
++
+*** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+*** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
+.. Seleccione la subpestaña *Volumes*.
+.. En la vista *Active*, confirme que el nuevo volumen aparece en la lista.
++
+
+TIP: Si es necesario, actualice la página.
+
+
+
+
+
+
+
+== Revertir un volumen a una copia de Snapshot
+
+Siempre que lo desee, es posible revertir un volumen a una copia de Snapshot. De este modo, se revierten los cambios que se hayan hecho al volumen desde el momento de la creación de la copia de Snapshot.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subficha *instantáneas*.
+. Seleccione una de estas dos vistas:
++
+** *Individual*: Enumera las instantáneas de volumen que no son miembros de una instantánea de grupo.
+** *Miembros*: Enumera las instantáneas de volumen que son miembros de una instantánea de grupo.
+
+
+. Seleccione la casilla de comprobación de la copia de Snapshot de volumen que desee usar para revertir un volumen.
+. Seleccione *acciones*.
+. En el menú que se abre, seleccione *revertir volumen a instantánea*.
+. (Opcional) para guardar el estado actual del volumen antes de revertir a la snapshot:
++
+.. En el cuadro de diálogo revertir a instantánea, seleccione *Guardar estado actual del volumen como instantánea*.
+.. Escriba un nombre para la snapshot nueva.
+
+
+. Seleccione *OK*.
+
+
+
+
+== Realice un backup de una copia de Snapshot de volumen en un almacén de objetos externo
+
+La función integrada de backup se puede usar para realizar un backup de una copia de Snapshot de volumen. Es posible realizar backups de copias de Snapshot de un clúster donde se ejecuta el software NetApp Element en un almacén de objetos externo o en otro clúster basado en Element.
+
+Cuando se crea un backup de una copia de Snapshot en un almacén de objetos externo, debe haber una conexión con el almacén de objetos que permita realizar operaciones de lectura y escritura.
+
+* <<Realice backups de una copia de Snapshot de volumen en un almacén de objetos Amazon S3>>
+* <<Realice backups de una copia de Snapshot de volumen en un almacén de objetos OpenStack Swift>>
+* <<Realice backups de una copia de Snapshot de volumen en un clúster donde se ejecuta el software Element>>
+
+
+
+
+=== Realice backups de una copia de Snapshot de volumen en un almacén de objetos Amazon S3
+
+Es posible realizar backups de snapshots de NetApp Element en almacenes de objetos externos que sean compatibles con Amazon S3.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subficha *instantáneas*.
+. Seleccione la casilla de comprobación de la copia de Snapshot de volumen del que desea realizar un backup.
+. Seleccione *acciones*.
+. En el menú que se abre, seleccione *copia de seguridad a*.
+. En el cuadro de diálogo de *copia de seguridad de volumen a*, seleccione *Amazon S3*.
+. Seleccione una opción en *con el siguiente formato de datos*:
++
+** *Original*: Formato comprimido que sólo pueden leer los sistemas de almacenamiento basados en software NetApp Element.
+** *Sin comprimir*: Formato sin comprimir compatible con otros sistemas.
+
+
+. Introduzca los detalles:
++
+** *Nombre de host*: Introduzca un nombre de host para acceder al almacén de objetos.
+** *ID de clave de acceso*: Introduzca un ID de clave de acceso para la cuenta.
+** *Clave de acceso secreta*: Introduzca la clave de acceso secreta de la cuenta.
+** *Amazon S3 Bucket*: Introduzca el bloque S3 en el que desea almacenar la copia de seguridad.
+** *Prefijo*: (Opcional) Introduzca un prefijo para el nombre de la copia de seguridad.
+** *Nametag*: (Opcional) Introduzca una etiqueta de nombre para adjuntarla al prefijo.
+
+
+. Seleccione *OK*.
+
+
+
+
+=== Realice backups de una copia de Snapshot de volumen en un almacén de objetos OpenStack Swift
+
+Es posible realizar backups de snapshots de NetApp Element en almacenes de objetos secundarios que sean compatibles con OpenStack Swift.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subficha *instantáneas*.
+. Seleccione la casilla de comprobación de la copia de Snapshot de volumen del que desea realizar un backup.
+. Seleccione *acciones*.
+. En el menú que se abre, seleccione *copia de seguridad a*.
+. En el cuadro de diálogo de *copia de seguridad de volumen a*, seleccione *OpenStack Swift*.
+. Seleccione una opción en *con el siguiente formato de datos*:
++
+** *Original*: Formato comprimido que sólo pueden leer los sistemas de almacenamiento basados en software NetApp Element.
+** *Sin comprimir*: Formato sin comprimir compatible con otros sistemas.
+
+
+. Introduzca los detalles:
++
+** *URL*: Introduzca una dirección URL para acceder al almacén de objetos.
+** *Nombre de usuario*: Introduzca el nombre de usuario de la cuenta.
+** *Clave de autenticación*: Introduzca la clave de autenticación de la cuenta.
+** *Contenedor*: Introduzca el contenedor en el que desea almacenar la copia de seguridad.
+** *Prefijo*: (Opcional) Introduzca un prefijo para el nombre del volumen de copia de seguridad.
+** *Nametag*: (Opcional) Introduzca una etiqueta de nombre para adjuntarla al prefijo.
+
+
+. Seleccione *OK*.
+
+
+
+
+=== Realice backups de una copia de Snapshot de volumen en un clúster donde se ejecuta el software Element
+
+Es posible realizar un backup de una copia de Snapshot de volumen en un clúster donde se ejecuta el software NetApp Element en un clúster de Element remoto.
+
+.Lo que necesitará
+Se debe crear un volumen en el clúster de destino de igual o mayor tamaño que la copia de Snapshot que se utiliza para el backup.
+
+.Acerca de esta tarea
+Cuando se crea un backup o se restaura de un clúster a otro, el sistema genera una clave que se debe usar como autenticación entre los clústeres. Con esta clave de escritura masiva de volúmenes, el clúster de origen puede autenticarse con el clúster de destino, lo que permite ofrecer seguridad cuando se escribe en el volumen de destino. Como parte del proceso de backup o restauración, debe generar una clave de escritura masiva de volúmenes desde el volumen de destino antes de iniciar la operación.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar debe estar seleccionado en la barra de navegación.
+
+
+
+. Seleccione la subpestaña *Volumes*.
+. Seleccione la casilla de comprobación del volumen de destino.
+. Seleccione *acciones*.
+. En el menú que se abre, seleccione *Restaurar de*.
+. En el cuadro de diálogo de *Restaurar desde*, seleccione *NetApp Element*.
+. Seleccione una opción en *con el siguiente formato de datos*:
++
+** *Original*: Formato comprimido que sólo pueden leer los sistemas de almacenamiento basados en software NetApp Element.
+** *Sin comprimir*: Formato sin comprimir compatible con otros sistemas.
+
+
+. Seleccione *generar clave* para generar una clave de escritura masiva de volúmenes para el volumen de destino.
+. Copie la clave de escritura masiva de volúmenes en el portapapeles para aplicarla en pasos posteriores en el clúster de origen.
+. En la instancia de vCenter que contiene el clúster de origen, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione la casilla de comprobación de la copia de Snapshot de volumen que utilice para el backup.
+. Seleccione *acciones*.
+. En el menú que se abre, seleccione *copia de seguridad a*.
+. En el cuadro de diálogo de *copia de seguridad del volumen hasta*, seleccione *NetApp Element*.
+. Seleccione la misma opción que el clúster de destino en *con el siguiente formato de datos*.
+. Introduzca los detalles:
++
+** *MVIP* del clúster remoto: Introduzca la dirección IP virtual de administración del clúster del volumen de destino.
+** *Contraseña de usuario del clúster remoto*: Introduzca el nombre de usuario del clúster remoto.
+** *Contraseña de usuario remoto*: Introduzca la contraseña del clúster remoto.
+** *Clave de escritura masiva de volúmenes*: Pegue la clave que ha generado en el clúster de destino anteriormente.
+
+
+. Seleccione *OK*.
+
+
+
+
+== Eliminar una copia de Snapshot de volumen
+
+Es posible eliminar una copia de Snapshot de volumen de un clúster donde se ejecuta el software NetApp Element mediante el punto de extensión del plugin. Cuando se elimina una copia de Snapshot, el sistema la quita de forma inmediata.
+
+.Acerca de esta tarea
+Es posible eliminar del clúster de origen copias de Snapshot que se están replicando. Si una snapshot se está sincronizando en el clúster de destino cuando se la elimina, se completa la replicación sincrónica y la snapshot se elimina del clúster de origen. La copia de Snapshot no se elimina del clúster de destino.
+
+También es posible eliminar del clúster de destino las copias de Snapshot que se hayan replicado en el destino. La copia de Snapshot eliminada se guarda en una lista de copias de Snapshot eliminadas en el destino hasta que el sistema detecta que se ha eliminado la copia de Snapshot en el clúster de origen. Después de que el destino detecta que se ha eliminado la copia de Snapshot de origen, el destino detiene la replicación de la copia de Snapshot.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar debe estar seleccionado en la barra de navegación.
+
+. En la subpestaña *Snapshots*, seleccione una de las siguientes vistas:
++
+** *Individual*: Lista de instantáneas de volumen que no forman parte de una instantánea de grupo.
+** *Inactive*: Lista de instantáneas de volumen creadas a partir de volúmenes que se han eliminado pero que aún no se han purgado.
+
+
+. Seleccione la casilla de comprobación de la copia de Snapshot de volumen que desea eliminar.
+. Seleccione *acciones*.
+. En el menú que se abre, seleccione *Eliminar*.
+. Confirme la acción.
+
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
+* https://www.netapp.com/data-storage/solidfire/documentation["Página SolidFire y Element Resources"^]
+

@@ -1,0 +1,730 @@
+---
+sidebar: sidebar 
+permalink: vcp_task_protect_remote_replication.html 
+summary: La replicación en tiempo real permite la creación rápida de copias remotas de datos de volumen. 
+keywords: netapp, hci, vcp, vcenter, element, protect, replication, remote, cluster 
+---
+= Ejecute la replicación remota entre clústeres
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+En los clústeres que ejecutan el software NetApp Element, la replicación en tiempo real permite la creación rápida de copias remotas de datos de volumen. Un clúster de almacenamiento se puede emparejar con hasta otros cuatro clústeres de almacenamiento.
+
+Es posible replicar datos de volúmenes de forma síncrona o asíncrona desde un clúster de una pareja de clústeres para escenarios de conmutación por error y conmutación tras recuperación. Primero, es necesario emparejar dos clústeres de NetApp Element y, a continuación, emparejar los volúmenes de cada clúster para aprovechar la replicación remota en tiempo real.
+
+.Lo que necesitará
+* Asegúrese de haber añadido al menos un clúster al plugin.
+* Compruebe que todas las direcciones IP de nodos en las redes de gestión y almacenamiento para los clústeres emparejados se encuentren enrutadas entre sí.
+* Compruebe que la MTU de todos los nodos emparejados sea la misma y que sea compatible entre clústeres de un extremo a otro.
+* Compruebe que la diferencia entre las versiones del software NetApp Element en los clústeres no sea superior a la versión principal. Si la diferencia es superior, se debe actualizar uno de los clústeres para ejecutar la replicación de datos.
+
+
+
+NOTE: NetApp no ha autorizado los dispositivos aceleradores WAN para usarlos al replicar datos. Estos dispositivos pueden interferir con la compresión y la deduplicación si se implementan entre dos clústeres que están replicando datos. Asegúrese de autorizar por completo los efectos de cualquier dispositivo acelerador WAN antes de implementarlo en un entorno de producción.
+
+.Pasos
+. <<Emparejar clústeres>>
+. <<Emparejar volúmenes>>
+. <<Validar la replicación de volúmenes>>
+. <<Eliminar una relación de volumen después de la replicación>>
+. <<Gestionar relaciones de volumen>>
+
+
+
+
+== Emparejar clústeres
+
+Debe emparejar dos clústeres como primer paso para utilizar la funcionalidad de replicación en tiempo real. Después de emparejar y conectar dos clústeres, es posible configurar volúmenes activos en un clúster para que se repliquen continuamente en un segundo clúster; esto proporciona protección de datos continua (CDP).
+
+Es posible emparejar un clúster de origen y de destino mediante la dirección MVIP de un clúster de destino si ambos clústeres ofrecen acceso de administrador del clúster. Si solo un clúster en una pareja de clústeres ofrece acceso de administrador del clúster, se puede usar una clave de emparejamiento en el clúster de destino para completar el emparejamiento de clústeres.
+
+.Lo que necesitará
+* Necesita privilegios de administrador del clúster en uno de los clústeres que se está emparejando, o en ambos.
+* Compruebe que la latencia de ida y vuelta entre los clústeres sea inferior a 2000 ms.
+* Compruebe que la diferencia entre las versiones del software NetApp Element en los clústeres no sea superior a la versión principal.
+* Compruebe que todas las IP de nodo en los clústeres emparejados se encuentren enrutadas entre sí.
+
+
+
+NOTE: El emparejamiento de clústeres requiere una conectividad completa entre los nodos en la red de gestión. La replicación requiere conectividad entre los nodos individuales en la red de clústeres de almacenamiento.
+
+Un clúster de NetApp Element se puede emparejar con hasta otros cuatro clústeres para replicar volúmenes. De igual manera, los clústeres que pertenecen a un grupo de clústeres se pueden emparejar entre sí.
+
+Elija uno de los siguientes métodos:
+
+* <<Emparejar clústeres con credenciales conocidas>>
+* <<Emparejar los clústeres con una clave de emparejamiento>>
+
+
+
+
+=== Emparejar clústeres con credenciales conocidas
+
+Es posible emparejar dos clústeres para la replicación en tiempo real mediante la dirección MVIP de un clúster para establecer una conexión con el otro clúster. Para usar este método, es necesario tener acceso de administrador del clúster en ambos clústeres.
+
+.Acerca de esta tarea
+La contraseña y el nombre de usuario del administrador de clúster se usan para autenticar el acceso a los clústeres antes de que estos se puedan emparejar.
+
+Si no se conoce la dirección MVIP o el acceso al clúster no se encuentra disponible, es posible generar una clave de emparejamiento y usarla para emparejar los dos clústeres. Para ver instrucciones, consulte <<Emparejar los clústeres con una clave de emparejamiento>>.
+
+.Pasos
+. En vSphere Web Client, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Configuration > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Configuración de NetApp Element > Protection*.
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+
+
+. Seleccione la subpestaña *Cluster Pairs*.
+. Seleccione *Crear Cluster Pairing*.
+. Seleccione una de las siguientes opciones:
++
+** *Registered Cluster*: Si el clúster remoto del emparejamiento está controlado por la misma instancia del plugin de Element vCenter, seleccione esta opción.
+** *Credentialed Cluster*: Si el clúster remoto tiene credenciales conocidas fuera de la configuración del plugin de Element vCenter, seleccione esta opción.
+
+
+. Si ha seleccionado *Registered Cluster*, seleccione un clúster de la lista de clústeres disponibles y haga clic en *Pair*.
+. Si ha seleccionado *clúster con acreditación*, haga lo siguiente:
++
+.. Introduzca la dirección de MVIP del clúster remoto.
+.. Introduzca un nombre de usuario de administrador del clúster.
+.. Introduzca una contraseña de administrador del clúster.
+.. Seleccione *Iniciar emparejamiento*.
+
+
+. Después de que se complete la tarea y vea la página Cluster Pairs, compruebe que la pareja de clústeres esté conectada.
+. (Opcional) en el clúster remoto, compruebe que la pareja de clústeres esté conectada mediante la interfaz de usuario de Element o los puntos de extensión del plugin:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection > Cluster Pairs*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection > Cluster Pairs*.
+
+
+
+
+
+
+=== Emparejar los clústeres con una clave de emparejamiento
+
+Si tiene acceso de administrador del clúster a un clúster local, pero no al clúster remoto, puede emparejar los clústeres mediante una clave de emparejamiento. Una clave de emparejamiento se genera en un clúster local y se envía de forma segura a un administrador del clúster en un sitio remoto a fin de establecer una conexión y completar el emparejamiento de clústeres para la replicación en tiempo real.
+
+En este procedimiento, se describe el emparejamiento de clústeres entre dos clústeres mediante vCenter en los sitios local y remoto. Si el plugin de vCenter no controla los clústeres, otra alternativa es https://docs.netapp.com/us-en/element-software/storage/task_replication_pair_cluster_using_pairing_key.html["inicie o complete el emparejamiento de clústeres"] Utilice la interfaz de usuario web de Element.
+
+[[open_protection_tab]]
+.Pasos
+. Desde la instancia de vCenter que contiene el clúster local, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+
+
+. Seleccione la subpestaña *Cluster Pairs*.
+. Seleccione *Crear Cluster Pairing*.
+. Seleccione *clúster inaccesible*.
+. Seleccione *generar clave*.
++
+
+NOTE: Esta acción genera una clave de texto para el emparejamiento y crea una pareja de clústeres sin configurar en el clúster local. Si no completa el procedimiento, deberá eliminar manualmente la pareja de clústeres.
+
+. Copie la clave de emparejamiento del clúster en el portapapeles.
+. Seleccione *Cerrar*.
+. Ponga la clave de emparejamiento a disposición del administrador del clúster en el sitio del clúster remoto.
++
+
+NOTE: La clave de emparejamiento de clústeres contiene una versión de la dirección MVIP, el nombre de usuario, la contraseña y la información de la base de datos para permitir las conexiones de volúmenes para la replicación remota. Esta clave se debe tratar de una forma segura y no se debe almacenar de manera que se pueda acceder de forma accidental o insegura al nombre de usuario o a la contraseña.
+
++
+
+IMPORTANT: No modifique ningún carácter de la clave de emparejamiento. La clave pierde su validez si se modifica.
+
+. Desde la instancia de vCenter donde se encuentra el clúster remoto, <<open_protection_tab,Abra la ficha Protección>>.
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
++
+
+NOTE: Como alternativa, es posible completar el emparejamiento mediante la interfaz de usuario de Element.
+
+. Seleccione la subpestaña *Cluster Pairs*.
+. Seleccione *Complete Cluster Pairing*.
++
+
+NOTE: Espere que el indicador giratorio de carga desaparezca antes de avanzar al siguiente paso. Si se produce un error inesperado durante el proceso de emparejamiento, busque y elimine manualmente las parejas de clústeres sin configurar en los clústeres local y remoto, y vuelva a realizar el emparejamiento.
+
+. Pegue la clave de emparejamiento del clúster local en el campo *Cluster Pairing Key*.
+. Seleccione *Pair Cluster*.
+. Después de que la tarea finalice y vea la página *par de clústeres*, compruebe que el par de clústeres esté conectado.
+. Para verificar que la pareja de clústeres esté conectada, en el clúster remoto <<open_protection_tab,Abra la ficha Protección>> O bien use la interfaz de usuario de Element.
+
+
+
+
+=== Valide las conexiones de parejas de clústeres
+
+Una vez que se ha completado el emparejamiento de clústeres, es posible que desee verificar la conexión de la pareja de clústeres para garantizar que la replicación se haya realizado correctamente.
+
+.Pasos
+. En el clúster local, seleccione *Data Protection* > *Cluster Pairs*.
+. Compruebe que la pareja de clústeres esté conectada.
+. Vuelva al clúster local y a la ventana *Cluster Pairs* y compruebe que el par de clústeres esté conectado.
+
+
+
+
+== Emparejar volúmenes
+
+Después de establecer una conexión entre los clústeres de una pareja de clústeres, es posible emparejar un volumen de un clúster con un volumen en el otro clúster de la pareja.
+
+El volumen se puede emparejar mediante uno de los siguientes métodos:
+
+* <<Emparejar volúmenes con credenciales conocidas>>: Utilizar credenciales conocidas para ambos clústeres
+* <<Emparejar volúmenes con una clave de emparejamiento>>: Utilice una clave de emparejamiento si las credenciales del clúster sólo están disponibles en el clúster de origen.
+* <<Cree volúmenes de destino y emparejarlos con volúmenes locales>>: Si conoce las credenciales de ambos clústeres, cree un volumen de destino de replicación en el clúster remoto para emparejarlo con el clúster de origen.
+
+
+Una vez establecida la relación de emparejamiento de volúmenes, es necesario identificar qué volumen es el destino de replicación:
+
+* <<Asigne un origen y un destino de replicación a los volúmenes emparejados>>
+
+
+.Lo que necesitará
+* Estableció una conexión entre los clústeres de una pareja de clústeres.
+* Es necesario tener privilegios de administrador del clúster en uno de los clústeres que se está emparejando, o en ambos.
+
+
+
+
+=== Emparejar volúmenes con credenciales conocidas
+
+Es posible emparejar un volumen local con otro volumen en un clúster remoto. Use este método si existe un acceso de administrador de clúster a los dos clústeres en los que planea emparejar volúmenes. Este método utiliza el ID de volumen del volumen en el clúster remoto para iniciar una conexión.
+
+.Antes de empezar
+* Tiene credenciales de administrador del clúster para el clúster remoto.
+* Confirme que los clústeres que contienen los volúmenes están emparejados.
+* Conoce el ID del volumen remoto o planea crear un volumen nuevo durante este proceso.
+* Si planea utilizar el volumen local como origen, compruebe que el modo de acceso del volumen se haya establecido en Read/Write.
+
+
+.Pasos
+. Desde la instancia de vCenter que contiene el clúster local, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subpestaña *Volumes*.
+. En la vista *Active*, seleccione la casilla de verificación correspondiente al volumen que desea emparejar.
+. Seleccione *acciones*.
+. Seleccione *Volume Pairing*.
+. Seleccione una de las siguientes opciones:
++
+** *Creación de volumen*: Para crear un volumen de destino de replicación en el clúster remoto, seleccione esta opción. Solo se puede utilizar este método en clústeres remotos controlados por un plugin de vCenter de Element.
+** *Selección de volumen*: Si un complemento de Element vCenter controla el clúster remoto del volumen de destino, seleccione esta opción.
+** *Volume ID*: Si el clúster remoto del volumen de destino tiene credenciales conocidas fuera de la configuración del plugin de vCenter de Element, seleccione esta opción.
+
+
+. Seleccione un modo de replicación:
++
+** *Real-Time (Synchronous)*: Las escrituras se reconocen en el cliente después de que se aplican en ambos clústeres de origen y destino.
+** *Tiempo real (asíncrono)*: Las escrituras se reconocen en el cliente después de que se aplican en el clúster de origen.
+** *Sólo instantáneas*: Sólo se replican las instantáneas creadas en el clúster de origen. No se replican las escrituras activas del volumen de origen.
+
+
+. Si ha seleccionado *creación de volumen* como opción de modo de emparejamiento, realice lo siguiente:
++
+.. Seleccione un clúster emparejado de la lista desplegable.
++
+
+NOTE: Esta acción rellena las cuentas disponibles en el clúster que se seleccionarán en el siguiente paso.
+
+.. Seleccione una cuenta en el clúster de destino para el volumen de destino de replicación.
+.. Introduzca un nombre de volumen de destino de replicación.
++
+
+NOTE: No se puede ajustar el tamaño del volumen durante este proceso.
+
+
+
+. Si ha seleccionado *selección de volumen* como la opción de modo de emparejamiento, haga lo siguiente:
++
+.. Seleccione un clúster emparejado.
++
+
+NOTE: Esta acción rellena los volúmenes disponibles en el clúster que se seleccionarán en el siguiente paso.
+
+.. (Opcional) Seleccione la opción *establecer volumen remoto en destino de replicación* si desea establecer el volumen remoto como destino en el emparejamiento de volúmenes. El volumen local, si se estableció en la opción de lectura/escritura, se convierte en el origen de la pareja.
++
+
+IMPORTANT: Si asigna un volumen existente como objetivo de replicación, los datos de ese volumen se sobrescriben. Como práctica recomendada, debe usar un volumen nuevo como objetivo de replicación.
+
++
+
+NOTE: También puede asignar el origen y el destino de la replicación más adelante en el proceso de emparejamiento desde *volúmenes* > *acciones* > *Editar*. Debe asignar un origen y un destino para completar el emparejamiento.
+
+.. Seleccione un volumen de la lista de volúmenes disponibles.
+
+
+. Si ha seleccionado *Volume ID* como la opción de modo de emparejamiento, haga lo siguiente:
++
+.. Seleccione un clúster emparejado de la lista desplegable.
+.. Si no se registró el clúster en el plugin, introduzca un ID de usuario de administrador del clúster y una contraseña de administrador del clúster.
+.. Introduzca un ID de volumen.
+.. Seleccione la opción *establecer volumen remoto en destino de replicación* si desea establecer el volumen remoto como destino en el emparejamiento de volúmenes. El volumen local, si se estableció en la opción de lectura/escritura, se convierte en el origen de la pareja.
++
+
+IMPORTANT: Si asigna un volumen existente como objetivo de replicación, los datos de ese volumen se sobrescriben. Como práctica recomendada, debe usar un volumen nuevo como objetivo de replicación.
+
++
+
+NOTE: También puede asignar el origen y el destino de la replicación más adelante en el proceso de emparejamiento desde *volúmenes* > *acciones* > *Editar*. Debe asignar un origen y un destino para completar el emparejamiento.
+
+
+
+. Seleccione *par*.
++
+
+NOTE: Después de confirmar el emparejamiento, los dos clústeres comienzan el proceso de conexión de los volúmenes. Durante el proceso de emparejamiento, puede ver mensajes de progreso en la columna Volume Status de la página Volume Pairs.
+
++
+
+NOTE: Si todavía no asignó un volumen al destino de replicación, no se completó la configuración de emparejamiento. La pareja de volúmenes mostrará PausedMisconfigured hasta que se asignen el origen y el destino de la pareja de volúmenes. Debe asignar un origen y un destino para completar el emparejamiento de volúmenes.
+
+. Seleccione *Protección* > *pares de volumen* en cualquiera de los clústeres.
+. Compruebe el estado del emparejamiento de volúmenes.
+
+
+
+
+=== Emparejar volúmenes con una clave de emparejamiento
+
+Es posible emparejar un volumen local con otro volumen en un clúster remoto mediante una clave de emparejamiento. Use este método si existe un acceso de administrador de clúster únicamente al clúster de origen. Este método genera una clave de emparejamiento que se puede usar en el clúster remoto para completar el emparejamiento de volúmenes.
+
+.Antes de empezar
+* Confirme que los clústeres que contienen los volúmenes están emparejados.
+* *Prácticas recomendadas*: Establezca el volumen de origen en lectura/escritura y el volumen de destino en destino de replicación. El volumen de destino no debe contener datos y debe tener las mismas características que el volumen de origen, como el tamaño, la configuración 512e y la configuración de calidad de servicio. Si asigna un volumen existente como objetivo de replicación, los datos de ese volumen se sobrescriben. El volumen de destino puede ser mayor o igual que el volumen de origen, pero no puede ser más pequeño.
+
+
+.Acerca de esta tarea
+En este procedimiento, se describe el emparejamiento de volúmenes entre dos volúmenes mediante vCenter en los sitios local y remoto. Si el plugin de vCenter no controla los volúmenes, una alternativa es iniciar o completar el emparejamiento de volúmenes mediante la interfaz de usuario web de Element.
+
+Para obtener instrucciones sobre la forma de iniciar o completar este emparejamiento, consulte la https://docs.netapp.com/us-en/element-software/storage/task_replication_pair_volumes_using_a_pairing_key.html["Documentación sobre el software NetApp Element"^].
+
+
+NOTE: La clave de emparejamiento de volúmenes contiene una versión cifrada de la información de los volúmenes y puede contener información confidencial. Comparta esta clave únicamente de forma segura.
+
+[[open_management]]
+.Pasos
+. Desde la instancia de vCenter que contiene el clúster local, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+
+
+. Seleccione la subpestaña *Volumes*.
+. En la vista *Active*, seleccione la casilla de verificación correspondiente al volumen que desea emparejar.
+. Seleccione *acciones*.
+. Seleccione *Volume Pairing*.
+. Seleccione *clúster inaccesible*.
+. Seleccione un modo de replicación:
++
+** *Real-Time (Synchronous)*: Las escrituras se reconocen en el cliente después de que se aplican en ambos clústeres de origen y destino.
+** *Tiempo real (asíncrono)*: Las escrituras se reconocen en el cliente después de que se aplican en el clúster de origen.
+** *Sólo instantáneas*: Sólo se replican las instantáneas creadas en el clúster de origen. No se replican las escrituras activas del volumen de origen.
+
+
+. Seleccione *generar clave*.
++
+
+NOTE: Esta acción genera una clave de texto para el emparejamiento y crea una pareja de volúmenes sin configurar en el clúster local. Si no hace esto, deberá eliminar manualmente la pareja de volúmenes.
+
+. Copie la clave de emparejamiento en el portapapeles.
+. Seleccione *Cerrar*.
+. Ponga la clave de emparejamiento a disposición del administrador del clúster en el sitio del clúster remoto.
++
+
+NOTE: La clave de emparejamiento se debe tratar de una forma segura y no se debe almacenar de manera que se pueda acceder de forma accidental o insegura a ella.
+
++
+
+IMPORTANT: No modifique ningún carácter de la clave de emparejamiento. La clave pierde su validez si se modifica.
+
+. Desde la instancia de vCenter donde se encuentra el clúster remoto, <<open_management,Abra la pestaña Gestión>>.
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subpestaña *Volumes*.
+. En la vista *Active*, seleccione la casilla de verificación correspondiente al volumen que desea emparejar.
+. Seleccione *acciones*.
+. Seleccione *Volume Pairing*.
+. Seleccione *Complete Cluster Pairing*.
+. Pegue la clave de emparejamiento del otro clúster en el cuadro *clave de emparejamiento*.
+. Seleccione *Complete Pairing*.
++
+
+NOTE: Después de confirmar el emparejamiento, los dos clústeres comienzan el proceso de conexión de los volúmenes. Durante el proceso de emparejamiento, puede ver mensajes de progreso en la columna Volume Status de la página Volume Pairs. Si se produce un error inesperado durante el proceso de emparejamiento, busque y elimine manualmente las parejas de clústeres sin configurar en los clústeres local y remoto, y vuelva a realizar el emparejamiento.
+
++
+
+IMPORTANT: Si todavía no asignó un volumen al destino de replicación, no se completó la configuración de emparejamiento. La pareja de volúmenes mostrará "PausedMisconfigured" hasta que se asignen el origen y el destino de la pareja de volúmenes. Debe asignar un origen y un destino para completar el emparejamiento de volúmenes.
+
+. Seleccione *Protección* > *pares de volumen* en cualquiera de los clústeres.
+. Compruebe el estado del emparejamiento de volúmenes.
++
+
+NOTE: Los volúmenes emparejados mediante una clave de emparejamiento se muestran después de que se completa el proceso de emparejamiento en la ubicación remota.
+
+
+
+
+
+=== Cree volúmenes de destino y emparejarlos con volúmenes locales
+
+Es posible emparejar dos o más volúmenes locales con volúmenes de destino en un clúster remoto. Este proceso crea un volumen de destino de replicación en el clúster remoto de cada volumen de origen local que se selecciona. Use este método si el plugin controla el clúster, existe acceso de administrador de clúster a los dos clústeres en los que se deben emparejar los volúmenes y el clúster remoto.
+
+Este método utiliza el ID de volumen de cada volumen en el clúster remoto para iniciar una o varias conexiones.
+
+.Antes de empezar
+* Asegúrese de tener credenciales de administrador del clúster para el clúster remoto.
+* Confirme que los clústeres que contienen los volúmenes se emparejaron mediante el plugin.
+* Compruebe que el plugin controla el clúster remoto.
+* Confirme que el modo de acceso de cada volumen local se estableció en Read/Write.
+
+
+.Pasos
+. Desde la instancia de vCenter que contiene el clúster local, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subpestaña *Volumes*.
+. En la vista *Active*, seleccione dos o más volúmenes que desee emparejar.
+. Seleccione *acciones*.
+. Seleccione *Volume Pairing*.
+. Seleccione un *modo de replicación*:
++
+** *Real-Time (Synchronous)*: Las escrituras se reconocen en el cliente después de que se aplican en ambos clústeres de origen y destino.
+** *Tiempo real (asíncrono)*: Las escrituras se reconocen en el cliente después de que se aplican en el clúster de origen.
+** *Sólo instantáneas*: Sólo se replican las instantáneas creadas en el clúster de origen. No se replican las escrituras activas del volumen de origen.
+
+
+. Seleccione un clúster emparejado de la lista desplegable.
+. Seleccione una cuenta en el clúster de destino para el volumen de destino de replicación.
+. (Opcional) Escriba un prefijo o sufijo para los nombres de los volúmenes nuevos en el clúster de destino.
++
+
+NOTE: Se muestra un ejemplo de nombre de volumen con el nombre modificado.
+
+. Seleccione *Crear pares*.
++
+
+NOTE: Después de confirmar el emparejamiento, los dos clústeres comienzan el proceso de conexión de los volúmenes. Durante el proceso de emparejamiento, puede ver mensajes de progreso en la columna Volume Status de la página Volume Pairs. Una vez que finaliza el proceso, se crean y se conectan nuevos volúmenes de destino en el clúster remoto.
+
+. Seleccione *Protección* > *pares de volumen* en cualquiera de los clústeres.
+. Compruebe el estado del emparejamiento de volúmenes.
+
+
+
+
+=== Asigne un origen y un destino de replicación a los volúmenes emparejados
+
+Si no asignó un volumen para que sea objetivo de replicación durante el emparejamiento de volúmenes, la configuración no está completa. Puede utilizar este procedimiento para asignar un volumen de origen y su volumen de destino de replicación. Un origen u objetivo de replicación pueden ser un volumen de una pareja de volúmenes.
+
+Este procedimiento también se puede usar para redirigir datos desde un volumen de origen hacia un volumen de destino remoto en caso de que no esté disponible el volumen de origen.
+
+.Antes de empezar
+Debe tener acceso a los clústeres que contienen los volúmenes de origen y de destino.
+
+.Acerca de esta tarea
+Este procedimiento describe la asignación de volúmenes de origen y replicación entre dos clústeres mediante vCenter en los sitios local y remoto. Si el plugin de vCenter no controla los volúmenes, una alternativa es https://docs.netapp.com/us-en/element-software/storage/task_replication_assign_replication_source_and_target_to_paired_volumes.html["asigne un volumen de origen o replicación"] Utilice la interfaz de usuario web de Element.
+
+Un volumen de origen de replicación tiene acceso de lectura/escritura a la cuenta. Un volumen de destino de replicación solo es accesible mediante el origen de replicación como lectura/escritura.
+
+*Prácticas recomendadas*: El volumen de destino no debe contener datos y debe tener las mismas características que el volumen de origen, como el tamaño, la configuración 512e y la configuración QoS. El volumen de destino puede ser mayor o igual que el volumen de origen, pero no puede ser más pequeño.
+
+.Pasos
+. Seleccione el clúster que contiene el volumen emparejado que desea usar como origen de replicación desde el punto de extensión del plugin:
++
+** A partir del complemento de Element para vCenter 5.0 desde el *complemento remoto de NetApp > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *NetApp Element Management*.
+
+
+. En el punto de extensión del plugin de Element para la versión de vCenter Server, seleccione la pestaña *Management*.
+. Seleccione la subpestaña *Volumes*.
+. En la vista *Active*, seleccione la casilla de verificación del volumen que desea editar.
+. Seleccione *acciones*.
+. Seleccione *Editar*.
+. En la lista desplegable Access, seleccione *lectura/escritura*.
++
+
+IMPORTANT: Si va a revertir la asignación de origen y objetivo, esta acción hará que la pareja de volúmenes muestre PausedMisconfigured hasta que se asigne un nuevo objetivo de replicación. Cambiar el acceso pone en pausa la replicación de volumen y provoca el cese de la transmisión de datos. Asegúrese de haber coordinado estos cambios en ambos sitios.
+
+. Seleccione *OK*.
+. Seleccione el clúster que contiene el volumen emparejado que desea usar como objetivo de replicación:
++
+** Para el complemento de Element vCenter 4.10 y versiones anteriores, seleccione *NetApp Element Management > Management > Management*.
+** A partir del complemento de vCenter para Element 5.0, * Plugin remoto de NetApp > gestión > gestión*.
+
+
+. Seleccione la subpestaña *Volumes*.
+. En la vista *Active*, seleccione la casilla de verificación del volumen que desea editar.
+. Seleccione *acciones*.
+. Seleccione *Editar*.
+. En la lista desplegable *Access*, seleccione *destino de replicación*.
++
+
+IMPORTANT: Si asigna un volumen existente como objetivo de replicación, los datos de ese volumen se sobrescriben. Como práctica recomendada, debe usar un volumen nuevo como objetivo de replicación.
+
+. Seleccione *OK*.
+
+
+
+
+== Validar la replicación de volúmenes
+
+Una vez que se replica un volumen, los volúmenes de origen y objetivo deben estar activos. Cuando en el estado Active, los volúmenes se emparejan, los datos se envían del volumen de origen al de destino y los datos están sincronizados.
+
+.Pasos
+. Desde la instancia de vCenter que contiene el clúster local, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subpestaña *pares de volumen*.
+. Compruebe que el estado del volumen sea Active.
+
+
+
+
+== Eliminar una relación de volumen después de la replicación
+
+Una vez que se completa la replicación y ya no se necesita la relación de emparejamiento de volúmenes, es posible eliminar la relación de volumen.
+
+Consulte <<Elimine una pareja de volúmenes>>.
+
+
+
+== Gestionar relaciones de volumen
+
+Es posible gestionar las relaciones de volúmenes de muchas maneras, como pausar la replicación, revertir el emparejamiento de volúmenes, cambiar el modo de replicación, eliminar una pareja de volúmenes o eliminar una pareja de clústeres.
+
+* <<Detenga la replicación>>
+* <<Cambie el modo de replicación>>
+* <<Elimine una pareja de volúmenes>>
+* <<Elimine una pareja de clústeres>>
+
+
+
+
+=== Detenga la replicación
+
+Es posible editar las propiedades de una pareja de volúmenes para pausar manualmente la replicación.
+
+.Pasos
+. Desde la instancia de vCenter que contiene el clúster local, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subpestaña *pares de volumen*.
+. Seleccione la casilla de comprobación de la pareja de volúmenes que desea editar.
+. Seleccione *acciones*.
+. Seleccione *Editar*.
+. PAUSE o inicie manualmente el proceso de replicación.
++
+
+IMPORTANT: Cuando se pausa o se reanuda manualmente una replicación de volumen, se detiene o se reanuda la transmisión de datos. Asegúrese de haber coordinado estos cambios en ambos sitios.
+
+. Seleccione *Guardar cambios*.
+
+
+
+
+=== Cambie el modo de replicación
+
+Es posible editar las propiedades de una pareja de volúmenes para realizar cambios en el modo de replicación de la relación de pareja de volúmenes.
+
+.Pasos
+. Desde la instancia de vCenter que contiene el clúster local, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subpestaña *pares de volumen*.
+. Seleccione la casilla de comprobación de la pareja de volúmenes que desea editar.
+. Seleccione *acciones*.
+. Seleccione *Editar*.
+. Seleccione un nuevo modo de replicación:
++
+
+IMPORTANT: Al cambiar el modo de replicación, el modo cambia de inmediato. Asegúrese de haber coordinado estos cambios en ambos sitios.
+
++
+** *Real-Time (Synchronous)*: Las escrituras se reconocen en el cliente después de que se aplican tanto en los clústeres de origen como de destino.
+** *Tiempo real (asíncrono)*: Las escrituras se reconocen en el cliente después de que se aplican en el clúster de origen.
+** *Sólo instantáneas*: Sólo se replican las instantáneas creadas en el clúster de origen. No se replican las escrituras activas del volumen de origen.
+
+
+. Seleccione *Guardar cambios*.
+
+
+
+
+=== Elimine una pareja de volúmenes
+
+Es posible eliminar una pareja de volúmenes si se desea quitar una asociación de pareja entre dos volúmenes.
+
+.Acerca de esta tarea
+En este procedimiento, se describe la eliminación de una relación de emparejamiento de volúmenes entre dos volúmenes mediante vCenter en los sitios local y remoto.
+
+Si el plugin de vCenter no controla los volúmenes, otra alternativa es link:https://docs.netapp.com/us-en/element-software/storage/task_replication_delete_volume_relationship_after_replication.html["elimine un extremo de la pareja de volúmenes"] Utilice la interfaz de usuario web de Element.
+
+.Pasos
+. Desde la instancia de vCenter que contiene el clúster local, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subpestaña *pares de volumen*.
+. Seleccione la o las parejas de volúmenes que desee eliminar.
+. Seleccione *acciones*.
+. Seleccione *Eliminar*.
+. Confirme los detalles de cada pareja de volúmenes.
++
+
+NOTE: Si el plugin no gestiona los clústeres, esta acción solo elimina el extremo de la pareja de volúmenes en el clúster local. Es necesario eliminar manualmente el extremo de la pareja de volúmenes del clúster remoto para quitar por completo la relación de emparejamiento.
+
+. (Opcional para clústeres administrados por el plugin) Active la casilla de verificación *Change Replication Target Access to* y seleccione un nuevo modo de acceso para el volumen de destino de replicación. Este nuevo modo de acceso se aplicará una vez que se haya eliminado la relación de emparejamiento de volúmenes.
+. Seleccione *Sí*.
+
+
+
+
+=== Elimine una pareja de clústeres
+
+Es posible eliminar una relación de emparejamiento de clústeres entre dos clústeres mediante vCenter en los sitios local y remoto. Para quitar una relación de emparejamiento de clústeres por completo, es necesario eliminar los extremos de la pareja de clústeres tanto del clúster local como del remoto.
+
+Es posible utilizar el plugin de vCenter para eliminar un extremo de la pareja de clústeres
+
+Si el plugin de vCenter no controla los clústeres, otra alternativa es link:https://docs.netapp.com/us-en/element-software/storage/task_replication_delete_cluster_pair.html["elimine un extremo de la pareja de clústeres"] Utilice la interfaz de usuario web de Element.
+
+.Pasos
+. Desde la instancia de vCenter que contiene el clúster local, abra la pestaña *Protection*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Protection*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Protection*.
+
+
+. Seleccione la subpestaña *Cluster Pairs*.
+. Seleccione la casilla de comprobación de la pareja de clústeres que desea eliminar.
+. Seleccione *acciones*.
+. Seleccione *Eliminar*.
+. Confirme la acción.
++
+
+NOTE: Esta acción solo elimina el extremo de la pareja de clústeres en el clúster local. Es necesario eliminar manualmente el extremo de la pareja de clústeres del clúster remoto para quitar por completo la relación de emparejamiento.
+
+. Repita los pasos desde el clúster remoto de la pareja de clústeres.
+
+
+
+
+== Mensajes y advertencias sobre el emparejamiento de volúmenes
+
+Es posible ver la información de los volúmenes que se emparejaron o que están en proceso de emparejamiento desde la página Volume Pairs de la pestaña Protection del punto de extensión del plugin. A partir del complemento de Element para vCenter 5.0, seleccione la pestaña Management en el punto de extensión NetApp Element Remote Plugin. Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione el punto de extensión NetApp Element Management.
+
+El sistema muestra los mensajes de emparejamiento y progreso en la columna Volume Status.
+
+* <<Mensajes sobre el emparejamiento de volúmenes>>
+* <<Advertencias sobre el emparejamiento de volúmenes>>
+
+
+
+
+=== Mensajes sobre el emparejamiento de volúmenes
+
+Es posible ver mensajes durante el proceso inicial de emparejamiento en la página Volume Pairs de la pestaña Protection del punto de extensión del plugin. Estos mensajes se muestran en la columna Volume Status y pueden aparecer tanto en los extremos de origen como de destino del emparejamiento.
+
+* *PausedDisconnected*: Se ha agotado el tiempo de ejecución de la replicación de origen o los RPC de sincronización. Se perdió la conexión con el clúster remoto. Compruebe las conexiones de red con el clúster.
+* *ResumingConnected**: La sincronización de replicación remota está activa. Se inicia el proceso de sincronización y se esperan los datos.
+* *ReumingRRSync**: Se está realizando una copia sencilla de Helix de los metadatos del volumen en el clúster emparejado.
+* *ReumingLocalSync**: Se está haciendo una copia doble Helix de los metadatos del volumen en el clúster emparejado.
+* *ReumingDataTransfer**: Se ha reanudado la transferencia de datos.
+* *Activo*: Los volúmenes están emparejados y los datos se envían desde el origen al volumen de destino y los datos están sincronizados.
+* *Inactivo*: No se está produciendo ninguna actividad de replicación.
+
+
+*Este proceso está controlado por el volumen de destino y puede que no se muestre en el volumen de origen.
+
+
+
+=== Advertencias sobre el emparejamiento de volúmenes
+
+Es posible ver mensajes de advertencia después de emparejar volúmenes en la página Volume Pairs de la pestaña Protection, en el punto de extensión del plugin. Estos mensajes se muestran en la columna Volume Status y pueden aparecer tanto en los extremos de origen como de destino del emparejamiento.
+
+Estos mensajes pueden aparecer tanto en los extremos de origen como de destino del emparejamiento, a menos que se indique de otro modo.
+
+* *PausedaClusterFull*: Debido a que el clúster de destino está lleno, la replicación de origen y la transferencia de datos masivos no pueden continuar. El mensaje aparece solamente en el extremo de origen de la pareja.
+* *PausedExceededededMaxSnapshotCount*: El volumen de destino ya tiene el número máximo de instantáneas y no puede replicar instantáneas adicionales.
+* *PausedManual*: El volumen local se ha pausado manualmente. La pausa se debe cancelar antes de que se reanude la replicación.
+* *PausedManualRemote*: El volumen remoto está en modo de pausa manual. Se requiere intervención manual para cancelar la pausa del volumen remoto antes de que se reanude la replicación.
+* *PausedMisconfigured*: Esperando una fuente y un destino activos. Se requiere intervención manual para reanudar la replicación.
+* *PausedQoS*: La QoS de destino no pudo sostener el IO entrante. La replicación se reanuda automáticamente. El mensaje aparece solamente en el extremo de origen de la pareja.
+* *PausedSlowLink*: Se ha detectado un vínculo lento y se ha detenido la replicación. La replicación se reanuda automáticamente. El mensaje aparece solamente en el extremo de origen de la pareja.
+* *PausedVolumeSizediscordancia*: El volumen de destino es menor que el volumen de origen.
+* *PausedXCopy*: Se emite un comando SCSI XCOPY a un volumen de origen. El comando debe completarse antes de que la replicación se pueda reanudar. El mensaje aparece solamente en el extremo de origen de la pareja.
+* *StoppedMisconfigured*: Se ha detectado un error de configuración permanente. El volumen remoto se purgó o se desemparejó. No se puede realizar ninguna acción correctiva y se debe establecer un nuevo emparejamiento.
+
+
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
+* https://www.netapp.com/data-storage/solidfire/documentation["Página SolidFire y Element Resources"^]
+

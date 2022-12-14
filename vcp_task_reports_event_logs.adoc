@@ -1,0 +1,104 @@
+---
+sidebar: sidebar 
+permalink: vcp_task_reports_event_logs.html 
+summary: Revise los registros de eventos en el plugin de NetApp Element para VMware vCenter Server que enumera las operaciones realizadas en el clúster junto con cualquier error de clúster que indique errores. 
+keywords: netapp, hci, vcp, vcenter, element, monitor, report, event, log, cluster, performance 
+---
+= Supervise los registros de eventos para solucionar problemas
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible revisar los registros de eventos para operaciones realizadas en el clúster seleccionado, así como los errores que se produzcan en el clúster. El sistema resuelve automáticamente la mayoría de los errores. Otros errores pueden requerir intervención manual.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
+. Seleccione *Informes* > *Registro de sucesos*.
+. Para revisar los detalles, seleccione un evento y haga clic en *Detalles*.
+. Revise la información del evento que incluye lo siguiente:
++
+** *Tipo de evento*: Tipo de evento que se está registrando; por ejemplo, eventos de API o eventos de clon.
+** *ID de servicio*: El ID del servicio que notificó el evento (si corresponde). El valor es cero si la falla no se asocia con un servicio.
+** *Nodo* o *ID de unidad*: El ID del nodo o de la unidad que notificó el evento (si procede).
+
+
+
+
+
+
+== Tipos de evento
+
+El sistema informa de varios tipos de eventos, cada uno de los cuales es una operación que completó el sistema. Los eventos son rutinarios y normales, o bien eventos que requieren la atención del administrador. La columna Event Type de la página Event Log indica en qué parte del sistema se ha producido el evento.
+
+
+NOTE: El sistema no registra comandos de API de solo lectura en el registro de eventos.
+
+En la siguiente lista, se describen los tipos de eventos que pueden aparecer en el registro de eventos.
+
+* *ApiEvent*: Eventos iniciados por un usuario a través de una API o una interfaz de usuario web que modifican la configuración.
+* *BinAssignmentEvent*: Eventos relacionados con la asignación de bandejas de datos. En esencia, las ubicaciones son contenedores que incluyen datos que se asignan en el clúster.
+* *BinSyncEvent*: Eventos del sistema relacionados con una reasignación de datos entre los servicios de bloques.
+* *BsCheckEvent*: Eventos del sistema relacionados con comprobaciones de servicio de bloqueo.
+* *BsKillEvent*: Eventos del sistema relacionados con terminaciones de servicios de bloques.
+* *BulkOpEvent*: Eventos relacionados con operaciones realizadas en todo un volumen, como copia de seguridad, restauración, instantánea o clon.
+* *ClonEvent*: Eventos relacionados con la clonación de volúmenes.
+* *ClusterMasterEvent*: Eventos que aparecen tras la inicialización del clúster o tras cambios de configuración en el clúster, como agregar o eliminar nodos.
+* *CsumEvent*: Eventos relacionados con sumas de comprobación de datos no válidas en el disco.
+* *DataEvent*: Eventos relacionados con la lectura y escritura de datos.
+* *DbEvent*: Eventos relacionados con la base de datos global mantenida por nodos del conjunto en el cluster.
+* *DriveEvent*: Eventos relacionados con las operaciones de unidades.
+* *EncryptionAtRestEvent*: Eventos relacionados con el proceso de cifrado en un clúster.
+* *EnsembleEvent*: Eventos relacionados con el aumento o disminución del número de nodos en un conjunto.
+* *FiberChannelEvent*: Eventos relacionados con la configuración y conexiones de los nodos.
+* *GcEvent*: Eventos relacionados con procesos que se ejecutan cada 60 minutos para recuperar almacenamiento en unidades de bloques. Este proceso también se conoce como recolección de basura.
+* *IeEvent*: Error interno del sistema.
+* *InstallEvent*: Eventos de instalación automática del software. El software se instala automáticamente en un nodo pendiente.
+* *ISCSIEvent*: Eventos relacionados con problemas de iSCSI en el sistema.
+* *LimitEvent*: Eventos relacionados con el número de volúmenes o volúmenes virtuales en una cuenta o en el clúster que se acercan al máximo permitido.
+* *MaintenanceModeEvent*: Eventos relacionados con el modo de mantenimiento del nodo, como la desactivación del nodo.
+* *NetworkEvent*: Eventos relacionados con el estado de las redes virtuales.
+* *PlatformHardwareEvent*: Eventos relacionados con problemas detectados en dispositivos de hardware.
+* *RemoteClusterEvent*: Eventos relacionados con el emparejamiento de clústeres remotos.
+* *SchedulerEvent*: Eventos relacionados con las instantáneas programadas.
+* *ServiceEvent*: Eventos relacionados con el estado del servicio del sistema.
+* *SliceEvent*: Eventos relacionados con Slice Server, como la eliminación de una unidad de metadatos o un volumen.
++
+Existen tres tipos de eventos de reasignación de segmentos, que incluyen información acerca del servicio al que se asigna un volumen:
+
+* voltear: cambiar el servicio primario a un nuevo servicio primario
++
+`sliceID oldPrimaryServiceID->newPrimaryServiceID`
+
+* mover: cambiar el servicio secundario a un nuevo servicio secundario
++
+`sliceID {oldSecondaryServiceID(s)}->{newSecondaryServiceID(s)}`
+
+* eliminar: eliminar un volumen de un conjunto de servicios
++
+`sliceID {oldSecondaryServiceID(s)}`
+
+* *SnmpTrapEvent*: Eventos relacionados con las capturas SNMP.
+* *StatEvent*: Eventos relacionados con las estadísticas del sistema.
+* *TsEvent*: Eventos relacionados con el servicio de transporte del sistema.
+* *INetedException*: Eventos relacionados con excepciones inesperadas del sistema.
+* *UreEvent*: Eventos relacionados con errores de lectura irrecuperables que se producen mientras se leen desde el dispositivo de almacenamiento.
+* *VasaProviderEvent*: Eventos relacionados con un proveedor VASA (API de vSphere para el reconocimiento del almacenamiento).
+
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
+* https://www.netapp.com/data-storage/solidfire/documentation["Página SolidFire y Element Resources"^]
+

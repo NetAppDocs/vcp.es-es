@@ -1,0 +1,126 @@
+---
+sidebar: sidebar 
+permalink: vcp_task_add_manage_drive.html 
+summary: Es posible añadir y gestionar unidades al clúster con el plugin. 
+keywords: netapp, drives, add, manage, remove, view vcp, vcenter, element 
+---
+= Añadir y gestionar unidades
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible añadir unidades a un clúster, ver las unidades existentes y quitar unidades mediante el punto de extensión de plugin.
+
+* <<Añada unidades disponibles a un clúster>>
+* <<Ver detalles de unidades>>
+* <<Quite una unidad>>
+
+
+
+
+== Añada unidades disponibles a un clúster
+
+Es posible añadir unidades a un clúster mediante el punto de extensión del plugin. Cuando se añade un nodo al clúster o se instalan unidades nuevas en un nodo existente, las unidades se registran automáticamente como `Available`. Para que las unidades puedan participar en el clúster, primero es necesario añadir cada unidad al clúster.
+
+.Acerca de esta tarea
+Las unidades no se muestran en la lista de unidades disponibles cuando se dan las siguientes condiciones:
+
+* Las unidades están en una `Active`, `Removing`, `Erasing`, o. `Failed` estado.
+* El nodo en el que la unidad forma parte forma parte `Pending` estado.
+
+
+.Pasos
+. En vSphere Web Client, abra la pestaña *Cluster*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Cluster*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > clúster*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. En la subpestaña *Drives*, seleccione *Available* en la lista desplegable para ver la lista de unidades disponibles.
+. Añada las unidades de la siguiente manera:
++
+.. Seleccione la casilla de comprobación de cada unidad que desea añadir.
+.. Haga clic en *Agregar unidades*.
+
+
+. Revise los detalles de las unidades que pretende añadir y confirme la acción.
+
+
+
+
+== Ver detalles de unidades
+
+Es posible ver una lista de las unidades activas en el clúster mediante la vista Active en la página Drives de la pestaña Cluster del punto de extensión del plugin. Para cambiar la vista, seleccione una de las opciones disponibles en el filtro desplegable.
+
+.Acerca de esta tarea
+Cuando se inicializa un clúster por primera vez, la lista de unidades activas está vacía. Puede añadir unidades que no estén asignadas a un clúster y que aparezcan en la pestaña Available después de crear un clúster de nuevo.
+
+.Pasos
+. En vSphere Web Client, abra la pestaña *Cluster*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Cluster*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > clúster*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subpestaña *Drives*.
+. Seleccione la vista *Active*.
+. Permite ver los detalles de las unidades que están activas actualmente en el sistema.
++
+Es posible ver información como los ID de unidad, la capacidad y el estado de cada unidad, así como información sobre el nodo en el que reside la unidad.
+
+
+
+
+
+== Quite una unidad
+
+Es posible quitar una unidad de un clúster mediante el punto de extensión de plugin. Se recomienda hacer esto al reducir la capacidad de un clúster o como preparación para reemplazar unidades que se acercan al final de su vida útil. Al quitar una unidad, esta se desconecta. Los datos en la unidad se extraen y se migran a otras unidades del clúster antes de quitar la unidad del clúster. La migración de datos a otras unidades activas del sistema puede demorar desde algunos minutos hasta una hora según el uso de la capacidad y las operaciones de I/o activas en el clúster.
+
+.Acerca de esta tarea
+Al quitar una unidad de un `Failed` estado, la unidad no se devuelve a. `Available` o. `Active` estados unidos. En cambio, la unidad no está disponible para usar en el clúster.
+
+.Pasos
+. En vSphere Web Client, abra la pestaña *Cluster*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Cluster*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > clúster*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione *todo* en la lista desplegable para ver la lista completa de unidades.
+. Quite las unidades de la siguiente manera:
++
+.. Seleccione la casilla de comprobación de cada unidad que desea quitar.
+.. Haga clic en *Quitar unidades*.
+
+
+. Confirme la acción.
++
+
+NOTE: Si no hay suficiente capacidad para quitar las unidades activas antes de quitar un nodo, se muestra un mensaje de error al confirmar la eliminación de la unidad.
+
+
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
+* https://www.netapp.com/data-storage/solidfire/documentation["Página SolidFire y Element Resources"^]
+

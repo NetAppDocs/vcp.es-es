@@ -1,0 +1,216 @@
+---
+sidebar: sidebar 
+permalink: vcp_task_add_manage_nodes.html 
+summary: Con el plugin, es posible crear y gestionar nodos en la configuración del clúster. 
+keywords: netapp, nodes, create, manage, delete, view vcp, vcenter, element 
+---
+= Permite añadir y gestionar nodos
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Con el plugin, puede añadir https://docs.netapp.com/us-en/hci/docs/concept_hci_nodes.html#storage-nodes["nodos de almacenamiento"] cuando se crea un clúster o cuando se necesita más almacenamiento. También es posible añadir nodos de almacenamiento que ejecutan el software Element. Debe añadir nodos de computación de NetApp HCI fuera del plugin en vSphere.
+
+* <<Añada un nodo a un clúster>>
+* <<Ver los detalles del nodo>>
+* <<Reiniciar un nodo>>
+* <<Apague un nodo>>
+* <<Quite un nodo de un clúster>>
+
+
+
+
+== Añada un nodo a un clúster
+
+Puede añadir nodos de almacenamiento al clúster con el plugin de vCenter.
+
+.Lo que necesitará
+* El nodo que desea añadir ya está instalado, encendido y configurado.
+* Los números de versión superior o inferior del software en cada nodo de un clúster deben coincidir para que el software sea compatible. Por ejemplo, la versión 9.0 de Element no es compatible con la versión 9.1.
+
+
+
+NOTE: Si el nodo que desea añadir tiene una versión superior o inferior del software NetApp Element diferente a la que se ejecuta en el clúster, el clúster actualiza de forma asíncrona el nodo a la versión del software NetApp Element que se ejecuta en el maestro de clústeres. Después de que se actualiza el nodo, se añade automáticamente al clúster. Durante este proceso asíncrono, el nodo estará en un `pendingActive` estado.
+
+.Acerca de esta tarea
+Los nodos requieren una configuración inicial cuando se conectan por primera vez. Una vez instalado y configurado el nodo, se registra a sí mismo en el clúster identificado cuando se configuró el nodo y aparece en la lista de nodos pendientes en la página *Cluster > Nodes* del punto de extensión del complemento.
+
+Es posible añadir nodos de capacidad inferior o superior a un clúster existente.
+
+Este procedimiento es igual para añadir nodos FC o nodos de almacenamiento donde se ejecuta el software NetApp Element.
+
+.Pasos
+. En vSphere Web Client, abra la pestaña *Cluster*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Cluster*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > clúster*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Haga clic en la subpestaña *Nodes*.
+. Seleccione *pendiente* en la lista desplegable para ver la lista de nodos.
+. Para añadir uno o varios nodos, realice los siguientes pasos:
++
+.. Seleccione la casilla de comprobación de cada nodo que desea añadir.
+.. Haga clic en *Agregar nodo*.
+
+
+. Revise los detalles de los nodos que pretende añadir y confirme la acción.
++
+Una vez completada la acción, el nodo aparecerá en la lista de nodos activos del clúster.
+
+
+
+
+
+== Ver los detalles del nodo
+
+Puede ver una lista de los nodos en el clúster en la página Nodes de la pestaña Cluster en el punto de extensión del plugin. Debe seleccionar la vista Active para ver la lista de nodos activos. Para cambiar la vista, seleccione `Pending`, `PendingActive`, y. `All` opciones que utilizan el filtro desplegable.
+
+.Pasos
+. En vSphere Web Client, abra la pestaña *Cluster*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Cluster*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > clúster*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subpestaña *Nodes*.
+. Seleccione la vista *Active*.
+. Consulte los detalles de los nodos del clúster de almacenamiento.
++
+Es posible ver información como los ID de nodo, el nombre y el estado de cada nodo, las IOPS configuradas, el tipo de nodo, el número de unidades activas de cada nodo y la información de red sobre cada nodo.
+
+
+
+
+
+== Reiniciar un nodo
+
+Es posible reiniciar uno o varios nodos activos en un clúster mediante el punto de extensión de plugin.
+
+.Lo que necesitará
+Detuvo las operaciones de I/o y desconectó todas las sesiones iSCSI si el objetivo es reiniciar más de un nodo a la vez.
+
+.Acerca de esta tarea
+Para reiniciar el clúster, puede seleccionar todos los nodos del clúster y ejecutar un reinicio.
+
+
+IMPORTANT: Este método reinicia todos los servicios de red en un nodo, lo que produce una pérdida temporal de conectividad de red.
+
+
+NOTE: Esta función no está disponible en los clústeres de SDS empresarial de SolidFire.
+
+.Pasos
+. En vSphere Web Client, abra la pestaña *Cluster*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Cluster*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > clúster*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subpestaña *Nodes*.
++
+.. En la vista *Active*, active la casilla de verificación de cada nodo que desee reiniciar.
+.. Haga clic en *acciones*.
+.. Seleccione *Reiniciar*.
+
+
+. Confirme la acción.
+
+
+
+
+== Apague un nodo
+
+Es posible apagar uno o más nodos activos en un clúster mediante el punto de extensión del plugin. Para apagar el clúster, puede seleccionar todos los nodos del clúster y efectuar una operación de apagado en simultáneo.
+
+.Lo que necesitará
+Detuvo las operaciones de I/o y desconectó todas las sesiones iSCSI si el objetivo es reiniciar más de un nodo a la vez.
+
+.Acerca de esta tarea
+
+NOTE: Esta función no está disponible en los clústeres de SDS empresarial de SolidFire.
+
+.Pasos
+. En vSphere Web Client, abra la pestaña *Cluster*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Cluster*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > clúster*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subpestaña *Nodes*.
++
+.. En la vista *Active*, seleccione la casilla de verificación de cada nodo que desee apagar.
+.. Haga clic en *acciones*.
+.. Seleccione *Apagar*.
+
+
+. Confirme la acción.
+
+
+
+NOTE: Si un nodo ha estado desconectado más de 5.5 minutos en alguna de estas condiciones de cierre, el software NetApp Element determina que el nodo no volverá a unirse al clúster. La protección de datos Double Helix comienza la tarea de escritura de bloques replicados sencillos en otro nodo para replicar los datos. Según cuánto tiempo esté apagado un nodo, es posible que las unidades deban volver a añadirse al clúster después de que se ponga al nodo nuevamente en línea.
+
+
+
+== Quite un nodo de un clúster
+
+Cuando ya no se necesita el almacenamiento de un nodo o se debe realizar alguna tarea de mantenimiento en él, se puede quitar sin interrumpir el servicio.
+
+.Lo que necesitará
+Quitó todas las unidades en el nodo del clúster. No se puede quitar un nodo hasta que el `RemoveDrives` el proceso ha finalizado y todos los datos se han migrado del nodo.
+
+.Acerca de esta tarea
+Se necesitan al menos dos nodos FC para establecer la conectividad de FC en un clúster de NetApp Element. Si se conecta un solo nodo FC, el sistema activa alertas en Event Log hasta que se añade otro nodo de FC al clúster, aunque todo el tráfico de red de FC de sigue funcionando con un único nodo de FC.
+
+.Pasos
+. En vSphere Web Client, abra la pestaña *Cluster*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Cluster*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > clúster*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subpestaña *Nodes*.
+. Para quitar uno o varios nodos, realice los siguientes pasos:
++
+.. En la vista *activo*, active la casilla de verificación de cada nodo que desee quitar.
+.. Haga clic en *acciones*.
+.. Seleccione *Quitar*.
+
+
+. Confirme la acción.
++
+Los nodos que se quitan de un clúster se muestran en la lista de nodos pendientes Pending.
+
+
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
+* https://www.netapp.com/data-storage/solidfire/documentation["Página SolidFire y Element Resources"^]
+

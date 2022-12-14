@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: vcp_task_reports_iscsi.html 
+summary: Para ver información sobre las sesiones iSCSI que están conectadas al clúster seleccionado, en el plugin de NetApp Element para VMware vCenter Server. 
+keywords: netapp, hci, vcp, vcenter, element, monitor, report, iscsi, connection 
+---
+= Supervise las sesiones iSCSI para determinar el estado de la conexión
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para ver información sobre las sesiones iSCSI que están conectadas al clúster seleccionado, en el plugin de NetApp Element para VMware vCenter Server.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Reporting*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Reporting*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *NetApp Element Management > Reporting*.
+
+
+. Seleccione *sesiones iSCSI*.
+
+
+
+
+== Datos de la sesión iSCSI
+
+* *Node*: El nodo que aloja la partición de metadatos principal del volumen.
+* *Cuenta*: El nombre de la cuenta que posee el volumen. Si el valor está vacío, se mostrará un guión (-).
+* *Volumen*: El nombre de volumen identificado en el nodo.
+* *ID de volumen*: ID del volumen asociado con el IQN objetivo.
+* *ID de iniciador*: Un ID generado por el sistema para el iniciador.
+* *Alias de iniciador*: Un nombre opcional para el iniciador que facilita la búsqueda del iniciador en una lista larga.
+* *IP del iniciador*: La dirección IP del extremo que inicia la sesión.
+* *IQN del iniciador*: El IQN del extremo que inicia la sesión.
+* *Target IP*: La dirección IP del nodo que aloja el volumen.
+* *IQN objetivo*: El IQN del volumen.
+* *Creado el*: Fecha en que se estableció la sesión.
+
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
+* https://www.netapp.com/data-storage/solidfire/documentation["Página SolidFire y Element Resources"^]
+

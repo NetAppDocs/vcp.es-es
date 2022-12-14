@@ -1,0 +1,143 @@
+---
+sidebar: sidebar 
+permalink: vcp_task_create_manage_user_accounts.html 
+summary: Es posible crear y gestionar cuentas de usuario con el plugin. 
+keywords: netapp, storage, accounts, vcp, vcenter, element 
+---
+= Crear y administrar cuentas de usuario
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+link:vcp_concept_accounts.html["Cuentas de usuario"] Se utiliza para controlar el acceso a los recursos de almacenamiento en una red basada en software de NetApp Element.
+
+.Opciones
+* <<Crear una cuenta>>
+* <<Editar una cuenta>>
+* <<Eliminar una cuenta>>
+
+
+
+
+== Crear una cuenta
+
+Es posible crear una cuenta de usuario única para permitir el acceso a los volúmenes de almacenamiento.
+
+.Lo que necesitará
+* Debe haber al menos un clúster añadido y en ejecución.
+
+
+.Pasos
+. En vSphere Web Client, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subpestaña *Cuentas*.
+. Seleccione *Crear cuenta*.
+. Introduzca un nombre de usuario.
++
+
+TIP: Utilice prácticas recomendadas de nomenclatura descriptiva. Esto es especialmente importante si se utilizan varios clústeres o instancias de vCenter Server en el entorno.
+
+. En la sección *Configuración CHAP*:
++
+.. Introduzca el secreto de iniciador para la autenticación CHAP de la sesión de nodo.
+.. Introduzca el secreto de destino para la autenticación CHAP de la sesión de nodo.
++
+
+NOTE: Los secretos de iniciador y de destino deben ser distintos. Si estos campos se dejan en blanco, el sistema genera las credenciales de autenticación.
+
+
+
+. Haga clic en *Aceptar* para crear la cuenta.
+
+
+
+
+== Editar una cuenta
+
+Una cuenta de usuario se puede editar para cambiar el estado o los secretos de CHAP. Al cambiar la configuración de CHAP, se puede perder la conectividad entre un host y los volúmenes asociados.
+
+.Acerca de esta tarea
+Si utiliza volúmenes persistentes con el nodo de gestión, no modifique el nombre de cuenta de la cuenta asociada con estos volúmenes.
+
+.Pasos
+. En vSphere Web Client, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subpestaña *Cuentas*.
+. Seleccione la casilla de comprobación de la cuenta que desee editar.
+. Seleccione *acciones*.
+. En el menú que se abre, seleccione *Editar*.
+. Cambie los siguientes valores según sea necesario:
++
+.. Edite el estado de acceso de la cuenta.
++
+
+IMPORTANT: Al cambiar el acceso a *Locked* se cierran todas las conexiones iSCSI a la cuenta y ya no se puede acceder a ella. Los volúmenes asociados con la cuenta se mantienen, pero ya no se podrán detectar los volúmenes con iSCSI.
+
+.. Edite las credenciales de secreto de iniciador y de destino utilizadas para la autenticación de la sesión del nodo.
++
+
+NOTE: Si las credenciales no se modifican, seguirán siendo las mismas. Si deja vacíos los campos de las credenciales, el sistema generará contraseñas nuevas.
+
+
+
+. Haga clic en *Aceptar*.
+
+
+
+
+== Eliminar una cuenta
+
+Es posible eliminar cuentas de usuario mediante el punto de extensión del plugin.
+
+.Lo que necesitará
+Elimine y purgue todos los volúmenes asociados con la cuenta o reasigne los volúmenes a otra cuenta.
+
+
+IMPORTANT: Si utiliza volúmenes persistentes con el nodo de gestión, no elimine la cuenta asociada con estos volúmenes.
+
+.Pasos
+. En vSphere Web Client, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. Seleccione la subpestaña *Cuentas*.
+. Seleccione la casilla de comprobación de la cuenta que desea eliminar.
+. Haga clic en *acciones*.
+. En el menú que se abre, seleccione *Eliminar*.
+. Confirme la acción.
+
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
+* https://www.netapp.com/data-storage/solidfire/documentation["Página SolidFire y Element Resources"^]
+

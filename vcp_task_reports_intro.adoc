@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: vcp_task_reports_intro.html 
+summary: Vea información sobre los componentes y el rendimiento del clúster mediante las páginas Reporting del plugin de NetApp Element para VMware vCenter Server. 
+keywords: netapp, hci, vcp, vcenter, element, monitor, report, cluster, performance 
+---
+= Supervise el rendimiento del sistema con las opciones de generación de informes
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede ver información sobre los componentes y el rendimiento del clúster mediante las páginas Reporting del plugin de NetApp Element para VMware vCenter Server.
+
+Con el plugin de vCenter, puede supervisar el rendimiento y los componentes del clúster de las siguientes maneras:
+
+* link:vcp_task_reports_overview.html["Supervise el estado general del clúster en la página Overview"]
+* link:vcp_task_reports_alerts.html["Supervise las alertas del sistema"]
+* link:vcp_task_reports_event_logs.html["Supervise los registros de eventos para solucionar problemas"]
+* link:vcp_task_reports_volume_performance.html["Supervisar el rendimiento del volumen"]
+* link:vcp_task_reports_iscsi.html["Supervise las sesiones iSCSI para determinar el estado de la conexión"]
+* link:vcp_task_reports_qossioc.html["Supervise el almacenamiento en niveles del rendimiento de las máquinas virtuales con eventos de QoSSIOC"]
+
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
+* https://www.netapp.com/data-storage/solidfire/documentation["Página SolidFire y Element Resources"^]
+

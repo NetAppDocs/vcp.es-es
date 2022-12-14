@@ -1,0 +1,242 @@
+---
+sidebar: sidebar 
+permalink: vcp_task_getstarted_5_0.html 
+summary: Es posible instalar y configurar el plugin de Element para vCenter Server 5.0 y versiones posteriores, a fin de usar con el almacenamiento de Element. 
+keywords: netapp, hci, vcp, vcenter, element, install, setup 
+---
+= Instale y configure el plugin de Element 5.0 y versiones posteriores en vCenter Server 7.0 y versiones posteriores
+:hardbreaks:
+:allow-uri-read: 
+:url-peak: https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Element_Plug-in_for_vCenter_server/mNode_Status_shows_as_%27Network_Down%27_or_%27Down%27_in_the_mNode_Settings_tab_of_the_Element_Plugin_for_vCenter_(VCP)
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+A partir del plugin de NetApp Element para vCenter Server 5.0, puede instalar la versión más reciente del plugin de Element directamente en vCenter y acceder al plugin con vSphere Web Client.
+
+Una vez finalizada la instalación, puede utilizar el servicio de control de I/o de almacenamiento para calidad de servicio (QoSSIOC), así como otros servicios del plugin de vCenter.
+
+Lea y complete cada paso para instalar y comenzar a utilizar el plugin:
+
+* <<Preparación de la instalación>>
+* <<Instale el nodo de gestión>>
+* <<Registre el plugin con vCenter>>
+* <<Acceda al plugin y verifique que la instalación se haya realizado correctamente>>
+* <<Añada clústeres de almacenamiento para usarlos con el plugin>>
+* <<Configure los ajustes de QoSSIOC mediante el plugin>>
+* <<Configurar cuentas de usuario>>
+* <<Crear almacenes de datos y volúmenes>>
+
+
+
+
+== Preparación de la instalación
+
+Antes de iniciar la instalación, revise link:reference_requirements_vcp.html["requisitos previos a la puesta en marcha"].
+
+
+
+== Instale el nodo de gestión
+
+Puede hacerlo manualmente https://docs.netapp.com/us-en/hci/docs/task_mnode_install.html["instale el nodo de gestión"^] Para el clúster que ejecuta el software NetApp Element con la imagen adecuada de su configuración.
+
+Este proceso manual está dirigido a administradores de almacenamiento all-flash de SolidFire y administradores de NetApp HCI que no utilizan el motor de implementación de NetApp para la instalación de nodos de gestión.
+
+
+
+== Registre el plugin con vCenter
+
+Implementar el paquete del plugin de vCenter en vSphere Web Client implica registrar el paquete como extensión en vCenter Server. Una vez completado el registro, el plugin queda disponible para todas las instancias de vSphere Web Client que se conectan al entorno de vSphere.
+
+.Lo que necesitará
+* Tiene los privilegios de la función de administrador de vCenter para registrar un plugin.
+* Implementó un OVA del nodo de gestión que ejecuta el software Element 12.3.x o posterior.
+* El nodo de gestión se enciende con su dirección IP o dirección DHCP configurada.
+* Utiliza un cliente SSH o un navegador web (Chrome 56 o posterior, o Firefox 52 o posterior).
+* Las reglas de firewall permiten abrir link:reference_requirements_vcp.html["comunicación de red"] Entre vCenter y la MVIP del clúster de almacenamiento en los puertos TCP 443, 8443, 8333 y 9443. El puerto 9443 se utiliza para el registro y se puede cerrar después de que se completa el registro. Si habilitó la funcionalidad de volúmenes virtuales en el clúster, compruebe que el puerto TCP 8444 también esté abierto para el acceso de proveedor de VASA.
+
+
+.Acerca de esta tarea
+Es necesario registrar el plugin de vCenter en cada instancia de vCenter Server donde se planea usar el plugin.
+
+Para los entornos de modo vinculado, es necesario registrar plugins separados con cada instancia de vCenter Server en el entorno para mantener los datos del MOB sincronizados y poder actualizar el plugin. Cuando vSphere Web Client se conecta a una instancia de vCenter Server en la que no se registró el plugin, el cliente no puede ver el plugin.
+
+
+NOTE: Para usar link:vcp_concept_linkedmode.html["VCenter Linked Mode"], Se registra el plugin de Element desde un nodo de gestión independiente para cada instancia de vCenter Server que administra los clústeres de almacenamiento de SolidFire de NetApp.
+
+.Pasos
+. Introduzca la dirección IP para el nodo de gestión en un navegador, incluido el puerto TCP para el registro:
++
+`\https://<managementNodeIP>:9443`
+
++
+La interfaz de usuario de registro muestra la página Manage QoSSIOC Service Credentials del plugin.
+
++
+image::vcp_registration_ui_qossioc.png[Página QoSSIOC de la interfaz de usuario de la utilidad de registro]
+
+. *Opcional*: Cambie la contraseña del servicio QoSSIOC antes de registrar el plugin de vCenter:
++
+.. Para la contraseña antigua, introduzca la contraseña actual del servicio QoSSIOC. Si todavía no ha asignado una contraseña, escriba la contraseña predeterminada:
++
+`solidfire`
+
+.. Seleccione *Enviar cambios*.
++
+
+NOTE: Después de enviar los cambios, el servicio QoSSIOC se reinicia automáticamente.
+
+
+
+. Seleccione *vCenter Plug-in Registration*.
++
+image::vcp_remote_plugin_registration_ui.png[Interfaz de usuario de utilidad de registro de plugins remotos]
+
+. Introduzca la siguiente información:
++
+** La dirección IPv4 o el nombre de dominio completo del servicio vCenter en el que planea registrar el plugin.
+** El nombre de usuario administrador de vCenter.
++
+
+NOTE: Las credenciales de nombre de usuario y contraseña introducidas deben corresponder a un usuario con privilegios de la función de administrador de vCenter.
+
+** La contraseña de administrador de vCenter.
+
+
+. Seleccione *Registrar*.
+. (Opcional) Verifique el estado de registro:
++
+.. Seleccione *Estado de registro*.
+.. Introduzca la siguiente información:
++
+*** La dirección IPv4 o el nombre de dominio completo del servicio vCenter en el que desea registrar el plugin
+*** El nombre de usuario administrador de vCenter
+*** La contraseña de administrador de vCenter
+
+
+.. Seleccione *Check Status* para comprobar que la nueva versión del plugin esté registrada en vCenter Server.
+
+
+. En vSphere Web Client, busque las siguientes tareas completadas en el monitor de tareas para garantizar que se haya completado la instalación: `Download plug-in` y.. `Deploy plug-in`.
+
+
+
+
+== Acceda al plugin y verifique que la instalación se haya realizado correctamente
+
+Después de realizar una instalación o actualización correctamente, se muestra el punto de extensión del complemento remoto de NetApp Element en la pestaña Shortcuts de vSphere Web Client en el panel lateral.
+
+image::vcp_remote_plugin_icons_home_page.png[muestra el punto de extensión del plugin después de una actualización o instalación correctas]
+
+
+NOTE: Si los iconos del plugin de vCenter no se ven, consulte link:vcp_reference_troubleshoot_vcp.html#plug-in-registration-successful-but-icons-do-not-appear-in-web-client["documentación sobre la solución de problemas"].
+
+
+
+== Añada clústeres de almacenamiento para usarlos con el plugin
+
+Puede añadir y gestionar un clúster que ejecute el software Element mediante el punto de extensión NetApp Element Remote Plugin.
+
+.Lo que necesitará
+* Tiene al menos un clúster disponible y conoce su dirección IP o FQDN.
+* Tiene credenciales de usuario administrador del clúster completas para el clúster.
+* Las reglas de firewall permiten abrir link:reference_requirements_vcp.html["comunicación de red"] Entre vCenter y la MVIP del clúster en los puertos TCP 443, 8333 y 8443.
+
+
+
+NOTE: Debe añadir al menos un clúster para usar las funciones de gestión.
+
+.Acerca de esta tarea
+En este procedimiento se describe cómo añadir un perfil de clúster de modo que el plugin pueda gestionar el clúster. No es posible modificar credenciales de administrador de clúster mediante el plugin.
+
+Consulte https://docs.netapp.com/us-en/element-software/storage/concept_system_manage_manage_cluster_administrator_users.html["gestionar cuentas de usuario administrador del clúster"^] para obtener instrucciones sobre cómo cambiar las credenciales de una cuenta de administrador de clúster.
+
+.Pasos
+. Seleccione *NetApp Element Remote Plugin > Configuración > clústeres*.
+. Seleccione *Agregar clúster*.
+. Introduzca la siguiente información:
++
+** *IP address/FQDN*: Introduzca la dirección MVIP del clúster.
+** *ID de usuario*: Introduzca un nombre de usuario de administrador de clúster.
+** *Contraseña*: Introduzca una contraseña de administrador del clúster.
+** *VCenter Server*: Si configura un grupo de Linked Mode, seleccione la instancia de vCenter Server que desea que acceda al clúster. Si no utiliza Linked Mode, la instancia de vCenter Server actual es la predeterminada.
++
+[NOTE]
+====
+*** Los hosts para un clúster son exclusivos de cada instancia de vCenter Server. Asegúrese de que la instancia de vCenter Server que seleccione tenga acceso a los hosts deseados. Puede quitar un clúster, reasignarlo a otra instancia de vCenter Server y añadirlo nuevamente si decide usar hosts diferentes más adelante.
+*** Para usar link:vcp_concept_linkedmode.html["VCenter Linked Mode"], Se registra el plugin de Element desde un nodo de gestión independiente para cada instancia de vCenter Server que administra los clústeres de almacenamiento de SolidFire de NetApp.
+
+
+====
+
+
+. Seleccione *OK*.
+
+
+Una vez que se completa el proceso, el clúster se muestra en la lista de clústeres disponibles y se puede usar en el punto de extensión NetApp Element Management.
+
+
+
+== Configure los ajustes de QoSSIOC mediante el plugin
+
+Puede configurar la calidad de servicio automática según Storage I/o Control link:vcp_concept_qossioc.html["(QoSSIOC)"] de volúmenes y almacenes de datos individuales controlados por el plugin. Para hacerlo, se configuran las credenciales de QoSSIOC y vCenter que permitirán que el servicio QoSSIOC se comunique con vCenter.
+
+.Acerca de esta tarea
+Una vez que se configuró un ajuste válido de QoSSIOC para el nodo de gestión, estos ajustes se convierten en los valores predeterminados. La configuración de QoSSIOC se revierte a la última válida conocida hasta que se proporciona una configuración válida de QoSSIOC para un nodo de gestión nuevo. Es necesario borrar la configuración de QoSSIOC del nodo de gestión configurado antes de configurar las credenciales de QoSSIOC para un nuevo nodo de gestión.
+
+.Pasos
+. Seleccione *NetApp Element Remote Plugin > Configuración > Configuración de QoSSIOC*.
+. Seleccione *acciones*.
+. En el menú que se abre, seleccione *Configurar*.
+. En el cuadro de diálogo *Configurar ajustes de QoSSIOC*, introduzca la siguiente información:
++
+** *MNode IP Address/FQDN*: La dirección IP del nodo de gestión para el clúster que contiene el servicio QoSSIOC.
+** * MNode Port*: La dirección de puerto del nodo de gestión que contiene el servicio QoSSIOC. El puerto predeterminado es 8443.
+** *ID de usuario de QoSSIOC*: El ID de usuario del servicio QoSSIOC. El ID de usuario predeterminado del servicio QoSSIOC es admin. Para NetApp HCI, el ID de usuario es el mismo introducido durante la instalación con el motor de implementación de NetApp.
+** *Contraseña de QoSSIOC*: La contraseña del servicio QoSSIOC de Element. La contraseña predeterminada del servicio QoSSIOC es `solidfire`. Si no creó una contraseña personalizada, puede crear una desde la interfaz de usuario de la utilidad de registro (`https://[management node IP]:9443`).
+** *ID de usuario de vCenter*: El nombre de usuario del administrador de vCenter con privilegios completos de la función de administrador.
+** *VCenter Password*: La contraseña del administrador de vCenter con privilegios completos de la función de administrador.
+
+
+. Seleccione *OK*.
++
+Aparece el campo *Estado de QoSSIOC* `UP` cuando el plugin puede comunicarse correctamente con el servicio.
+
++
+[NOTE]
+====
+Consulte este {URL-pico}[KB] para solucionar problemas si el estado es uno de los siguientes:
+
+** `Down`: QoSSIOC no está habilitado.
+** `Not Configured`: No se han configurado los ajustes de QoSSIOC.
+** `Network Down`: VCenter no puede comunicarse con el servicio QoSSIOC en la red. Es posible que el nodo mNode y el servicio SIOC sigan en ejecución.
+
+
+====
++
+Después de habilitar el servicio QoSSIOC, es posible configurar el rendimiento de QoSSIOC en almacenes de datos individuales.
+
+
+
+
+
+== Configurar cuentas de usuario
+
+Para habilitar el acceso a los volúmenes, deberá crear al menos uno link:vcp_task_create_manage_user_accounts.html#create-an-account["cuenta de usuario"].
+
+
+
+== Crear almacenes de datos y volúmenes
+
+Puede crear link:vcp_task_datastores_manage.html#create-a-datastore["Almacenes de datos y volúmenes de Element"] para comenzar a asignar almacenamiento.
+
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
+* http://mysupport.netapp.com/hci/resources["Recursos de NetApp HCI"^]
+* https://www.netapp.com/data-storage/solidfire/documentation["Página SolidFire y Element Resources"^]
+

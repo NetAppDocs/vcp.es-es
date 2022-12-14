@@ -1,0 +1,66 @@
+---
+sidebar: sidebar 
+permalink: vcp_task_reports_volume_performance.html 
+summary: Puede ver información sobre el rendimiento de todos los volúmenes en el clúster seleccionado desde la página Volume Performance de la pestaña Reporting, en el plugin de NetApp Element para VMware vCenter Server. 
+keywords: netapp, hci, vcp, vcenter, element, monitor, report, event, log, cluster, performance 
+---
+= Supervisar el rendimiento del volumen
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible ver información sobre el rendimiento de todos los volúmenes en el clúster seleccionado desde la pestaña Reporting del punto de extensión del plugin.
+
+.Pasos
+. En el complemento de vCenter, abra la pestaña *Reporting*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione * NetApp Element Remote Plugin > Management > Reporting*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *NetApp Element Management > Reporting*.
+
+
+. Seleccione *rendimiento de volumen*.
+. Para cambiar la frecuencia con la que los datos se actualizan en la página, haga clic en *Actualizar cada lista* y elija un valor.
++
+El intervalo de actualización predeterminado es de 10 segundos si el clúster tiene menos de 1000 volúmenes; de lo contrario, el valor predeterminado es de 60 segundos. Si elige Never, se deshabilita la actualización automática de página.
+
+
+
+
+
+== Datos de rendimiento de volúmenes
+
+* *Nombre*: Nombre del volumen cuando se creó.
+* *Cuenta*: El nombre de la cuenta asignada al volumen.
+* *Grupos de acceso*: El nombre del grupo o los grupos de acceso de volúmenes a los que pertenece el volumen.
+* *Utilización de volumen %*: Un valor porcentual que describe la cantidad de uso del volumen por parte del cliente.
++
+Los posibles valores son los siguientes:
+
+* 0 = el cliente no usa el volumen
+* 100 = el cliente usa el máximo
+* >100 = el cliente está utilizando la ráfaga
+* *Total de IOPS*: El número total de IOPS (de lectura y escritura) que se están ejecutando actualmente en el volumen.
+* *Read IOPS*: El número total de IOPS de lectura que se está ejecutando actualmente en el volumen.
+* *Write IOPS*: El número total de IOPS de escritura que se está ejecutando actualmente en el volumen.
+* *Rendimiento total*: La cantidad total de rendimiento (lectura y escritura) que se está ejecutando actualmente en el volumen.
+* *Read Throughput*: La cantidad total de rendimiento de lectura que se está ejecutando actualmente en el volumen.
+* *Grabación*: La cantidad total de rendimiento de escritura que se está ejecutando actualmente en el volumen.
+* *Latencia total (ms)*: El tiempo medio, en microsegundos, para completar las operaciones de lectura y escritura en un volumen.
+* *Latencia de lectura (ms)*: El tiempo medio, en microsegundos, para completar las operaciones de lectura al volumen en los últimos 500 milisegundos.
+* *Latencia de escritura (ms)*: El tiempo medio, en microsegundos, para completar las operaciones de escritura en un volumen en los últimos 500 milisegundos.
+* *Profundidad de cola*: Número de operaciones de lectura y escritura pendientes en el volumen.
+* *Tamaño medio de E/S*: Tamaño medio en bytes de E/S recientes en el volumen en los últimos 500 milisegundos.
+
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
+* https://www.netapp.com/data-storage/solidfire/documentation["Página SolidFire y Element Resources"^]
+

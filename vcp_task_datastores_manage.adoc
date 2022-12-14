@@ -1,0 +1,536 @@
+---
+sidebar: sidebar 
+permalink: vcp_task_datastores_manage.html 
+summary: Es posible añadir un almacén de datos de gestión que se crea en volúmenes de Element mediante el plugin. 
+keywords: netapp, datastore, vcp, vcenter, element 
+---
+= Gestionar almacenes de datos
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Con el plugin de NetApp Element para VMware vCenter Server, es posible gestionar almacenes de datos respaldados por volúmenes de Element. Es posible crear, ampliar, clonar, compartir o eliminar almacenes de datos. También se puede utilizar VAAI UNMAP para permitir que un clúster reclame espacio de bloque liberado desde almacenes de datos de VMFS con aprovisionamiento ligero.
+
+.Lo que necesitará
+* Para crear y gestionar almacenes de datos, primero debe crear al menos una cuenta de usuario.
+* Para usar el servicio QoSSIOC con almacenes de datos, primero se deben configurar los ajustes en la página QoSSIOC Settings del punto de extensión del plugin.
++
+** link:vcp_task_getstarted_5_0.html#configure-qossioc-settings-using-the-plug-in["Configure ajustes mediante el plugin de Element vCenter versión 5.0 y versiones posteriores"]
+** link:vcp_task_getstarted.html#configure-qossioc-settings-using-the-plug-in["Configure ajustes mediante el plugin de vCenter de Element 4.10 y versiones anteriores"]
+
+
+* Dado que los almacenes de datos se crean utilizando la versión de VMFS más alta que admite el host ESXi seleccionado, todos los miembros del clúster deberían ejecutar la misma versión de vSphere y ESXi para evitar problemas de compatibilidad con VMFS.
+
+
+.Opciones
+* <<Cree un almacén de datos>>
+* <<Consulte la lista de almacenes de datos>>
+* <<Ampliar un almacén de datos>>
+* <<Clonar un almacén de datos>>
+* <<Compartir un almacén de datos>>
+* <<Ejecute VAAI UNMAP>>
+* <<Eliminar un almacén de datos>>
+
+
+
+TIP: Supervise las operaciones de almacenes de datos para completar mediante la supervisión de tareas en vSphere.
+
+
+
+== Cree un almacén de datos
+
+Es posible crear un almacén de datos desde la extensión del plugin.
+
+.Lo que necesitará
+* Se debe conectar al menos un host a vCenter Server.
+* Debe haber al menos un clúster añadido y en ejecución.
++
+
+NOTE: Si se usa vCenter Linked Mode, asegúrese de haber añadido el clúster con la instancia correcta de vCenter Server.
+
+* Se debe crear al menos una cuenta de usuario.
+* Para usar el servicio QoSSIOC con almacenes de datos, primero se deben configurar los ajustes en la página QoSSIOC Settings del punto de extensión del plugin:
++
+** link:vcp_task_getstarted_5_0.html#configure-qossioc-settings-using-the-plug-in["Configure ajustes mediante el plugin de Element vCenter versión 5.0 y versiones posteriores"]
+** link:vcp_task_getstarted.html#configure-qossioc-settings-using-the-plug-in["Configure ajustes mediante el plugin de vCenter versión 4.10 y versiones anteriores de Element"]
+
+
+
+
+.Pasos
+. En vSphere Web Client, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+
+. En la página Datastore, seleccione *Create Datastore*.
+. Introduzca un nombre para el almacén de datos.
++
+
+TIP: Utilice un nombre único para cada almacén de datos en un centro de datos. Para varios entornos de clústeres o vCenter Server, utilice prácticas recomendadas de nomenclatura descriptiva.
+
+. Seleccione *Siguiente*.
+. Seleccione uno o más hosts requeridos para el almacén de datos.
++
+
+NOTE: Debe haber al menos un host conectado para poder crear un nuevo almacén de datos. Si el host tiene varios iniciadores, elija uno solo o elija el host para seleccionar todos los iniciadores. Si se usa vCenter Linked Mode, solo pueden seleccionarse los hosts disponibles en la instancia de vCenter Server a la cual se asigna el clúster.
+
+. Seleccione *Siguiente*.
+. En el panel *Configurar volumen*, seleccione un volumen existente y continúe con el paso siguiente, o cree un volumen nuevo para el nuevo almacén de datos:
++
+
+NOTE: Si selecciona un volumen existente para crear un almacén de datos nuevo, se perderán los datos existentes. Para ver los volúmenes de VMFS existentes, consulte la documentación de VMware acerca de https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.vsphere.storage.doc/GUID-EEFEB765-A41F-4B6D-917C-BB9ABB80FC80.html["Montar una copia de almacén de datos VMFS"^] y.. https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.vsphere.storage.doc/GUID-EBAB0D5A-3C77-4A9B-9884-3D4AD69E28DC.html["Gestión de almacenes de datos VMFS duplicados"^].
+
++
+.. Introduzca un nombre para el volumen que respalda al almacén de datos.
+.. Seleccione una cuenta de usuario en la lista de cuentas.
+.. Introduzca el tamaño total del volumen que desea crear.
++
+
+NOTE: El tamaño de volumen predeterminado se selecciona en GB. Los volúmenes se pueden crear con tamaños en GB o GIB: 1 GB = 1 000 000 000 bytes 1 GIB = 1 073 741 824 bytes
+
++
+De manera predeterminada, la emulación de 512 bytes se establece como ON para todos los volúmenes nuevos.
+
+.. En el área *calidad de servicio*, realice una de las siguientes acciones:
++
+... En *Directiva*, seleccione una directiva QoS existente.
+... En *Configuración personalizada*, establezca valores mínimos, máximos y de ráfaga personalizados para IOPS o utilice los valores de QoS predeterminados.
++
+
+TIP: Las políticas de calidad de servicio son mejores para los entornos de servicio, por ejemplo, con servidores de bases de datos, aplicaciones o infraestructuras que rara vez se reinician y necesitan igual acceso constante al almacenamiento. La automatización personalizada de QoSSIOC es la mejor opción para equipos virtuales de uso reducido, como escritorios virtuales o equipos virtuales especializados de tipo quiosco, que pueden reiniciarse, encenderse o apagarse a diario o varias veces al día. Las políticas de automatización y calidad de servicio de QoSSIOC no se deben utilizar juntas.
+
++
+
+TIP: Los volúmenes que tengan un valor de IOPS máximo o de ráfaga superior a 20 20,000 IOPS podrían requerir una profundidad de cola alta o varias sesiones para alcanzar este nivel de IOPS en un único volumen.
+
+
+
+
+
+. Seleccione *Siguiente*.
+. Configure el tipo de autorización para el acceso al host seleccionando una de las siguientes opciones:
++
+** *Use Volume Access Group*: Seleccione esta opción para limitar explícitamente qué iniciadores pueden ver volúmenes.
+** *Use CHAP*: Seleccione para acceso seguro basado en secretos sin límites en iniciadores.
+
+
+. Seleccione *Siguiente*.
+. Si seleccionó *Use Volume Access Group*, configure los grupos de acceso de volúmenes para los hosts seleccionados.
++
+Los grupos de acceso de volúmenes que figuran en *Required by Selected Initiators* ya están asociados a uno o más de los iniciadores de host seleccionados en el paso anterior
+
++
+.. Seleccione grupos de acceso de volúmenes adicionales para crear nuevos grupos y asociarlos con los iniciadores disponibles:
++
+*** *Disponible*: Otras opciones de grupo de acceso de volúmenes en el clúster.
+*** *Crear nuevo grupo de acceso*: Introduzca el nombre del nuevo grupo de acceso y seleccione *Agregar*.
+
+
+.. Seleccione *Siguiente*.
+.. En el panel *Configurar acceso de hosts*, asocie los iniciadores de host disponibles (IQN o WWPN) con los grupos de acceso de volúmenes seleccionados en el panel anterior. Si un iniciador de host ya está asociado con un grupo de acceso de volúmenes, el campo de ese iniciador será de solo lectura. Si un iniciador de host no tiene asociación de grupo de acceso de volúmenes, seleccione una opción de la lista junto al iniciador.
+.. Seleccione *Siguiente*.
+
+
+. Si desea habilitar la automatización QoSSIOC, compruebe *Enable QoS & SIOC* y, a continuación, configure los ajustes de QoSSIOC.
++
+--
+
+TIP: Si utiliza políticas de calidad de servicio, no habilite QoSSIOC. QoSSIOC anulará y ajustará los valores de calidad de servicio de los volúmenes.
+
+Si el servicio QoSSIOC no está disponible, primero se deben configurar los ajustes de QoSSIOC:
+
+** link:vcp_task_getstarted_5_0.html#configure-qossioc-settings-using-the-plug-in["Configure ajustes mediante el plugin de Element vCenter versión 5.0 y versiones posteriores"]
+** link:vcp_task_getstarted.html#configure-qossioc-settings-using-the-plug-in["Configure ajustes mediante el plugin de vCenter de Element 4.10 y versiones anteriores"]
+
+
+--
++
+.. Seleccione *Activar QoS y SIOC*.
+.. Configure *Burst factor*.
++
+
+NOTE: El factor de ráfaga es un múltiplo de la opción de límite de IOPS (SIOC) para el VMDK. Si cambia el valor predeterminado, asegúrese de utilizar un valor de factor de ráfaga que no supere el límite de ráfaga máximo para un volumen de Element cuando el valor de factor de ráfaga se multiplique por el límite de IOPS para cualquier VMDK.
+
+.. (Opcional) Seleccione *Anular QoS* predeterminada y configure los ajustes.
++
+
+NOTE: Si la opción Override Default QoS está deshabilitada para el almacén de datos, los valores de Shares y Limit IOPS se establecen automáticamente de acuerdo con la configuración predeterminada de SIOC de cada máquina virtual.
+
++
+
+TIP: No personalice el límite de uso compartido de SIOC sin también personalizar el límite de IOPS de SIOC.
+
++
+
+TIP: De forma predeterminada, el número máximo de recursos compartidos de disco SIOC se establece en `Unlimited`. En un entorno de máquina virtual de gran tamaño, como VDI, esto puede provocar el sobrecompromiso máximo de IOPS en el clúster. Cuando habilita QoSSIOC, compruebe siempre la calidad de servicio predeterminada Override y establezca la opción Limit IOPS en algo razonable.
+
+
+
+. Seleccione *Siguiente*.
+. Confirme las selecciones y haga clic en *Finalizar*.
+. Para ver el progreso de la tarea, use Task Monitoring en vSphere. Si el almacén de datos no aparece en la lista, actualice la vista.
+
+
+
+
+== Consulte la lista de almacenes de datos
+
+Es posible ver los almacenes de datos disponibles en la página datastores del punto de extensión del plugin.
+
+. En vSphere Web Client, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, seleccione el clúster que desea utilizar en la barra de navegación.
+
+. Revise la lista de almacenes de datos.
++
+
+NOTE: Los almacenes de datos que abarcan varios volúmenes (almacenes de datos mixtos) no se muestran en la lista. Las vistas de almacenes de datos muestran solo los almacenes de datos disponibles en hosts ESXi en el clúster de NetApp Element seleccionado.
+
+. Revise la siguiente información:
++
+** *Nombre*: El nombre asignado al almacén de datos.
+** *Nombre(s) de host*: La dirección de cada dispositivo host asociado.
+** *Estado*: Los valores posibles `Accessible` o. `Inaccessible` Indica si el almacén de datos está conectado a vSphere o no.
+** *Tipo*: El tipo de almacén de datos del sistema de archivos VMware.
+** *Nombre del volumen*: Nombre asignado al volumen asociado.
+** *NAA de volumen*: Identificador global exclusivo de dispositivo SCSI para el volumen asociado en formato extendido registrado de NAA según la norma IEEE.
+** *Capacidad total (GB)*: Capacidad formateada total del almacén de datos.
+** *Capacidad libre (GB)*: Espacio disponible para el almacén de datos.
+** *Automatización de QoSSIOC*: Indica si la automatización de QoSSIOC está activada o no. Los posibles valores son los siguientes:
++
+*** `Enabled`: QoSSIOC está habilitado.
+*** `Disabled`: QoSSIOC no está habilitado.
+*** `Max Exceeded`: La QoS máxima de volumen ha superado el valor de límite especificado.
+
+
+
+
+
+
+
+
+== Ampliar un almacén de datos
+
+Es posible ampliar un almacén de datos para aumentar el tamaño del volumen mediante el punto de extensión del plugin. Al ampliarse el almacén de datos, también se amplía el volumen VMFS relacionado con ese almacén de datos.
+
+.Pasos
+. En vSphere Web Client, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, seleccione el clúster que desea utilizar en la barra de navegación.
+
+. En la página datastores, seleccione la casilla de comprobación del almacén de datos que desea ampliar.
+. Seleccione *acciones*.
+. En el menú que se abre, seleccione *Extend*.
+. En el campo New Datastore Size, introduzca el tamaño requerido para el nuevo almacén de datos y seleccione GB o GIB.
++
+
+NOTE: La ampliación del almacén de datos consume el tamaño del volumen completo. El tamaño del nuevo almacén de datos no puede exceder el espacio sin aprovisionar disponible en el clúster seleccionado ni el tamaño de volumen máximo que permite el clúster.
+
+. Seleccione *OK*.
+. Actualice la página.
+
+
+
+
+== Clonar un almacén de datos
+
+Es posible clonar almacenes de datos con el plugin, lo que incluye el montaje del almacén de datos nuevo en el clúster o servidor ESXi que desee. Puede asignarle un nombre al clon del almacén de datos y configurar sus ajustes de QoSSIOC, volumen, host y tipo de autorización.
+
+Si hay máquinas virtuales en el almacén de datos de origen, las máquinas virtuales del almacén de datos de clonado se incluirán en el inventario con un nombre nuevo.
+
+El tamaño del volumen del almacén de datos clonado coincide con el tamaño del volumen que respalda el almacén de datos de origen. De manera predeterminada, la emulación de 512 bytes se establece como ON para todos los volúmenes nuevos.
+
+.Lo que necesitará
+* Debe haber al menos un host conectado a una instancia de vCenter Server.
+* Debe haber al menos un clúster añadido y en ejecución.
++
+
+NOTE: Si se usa vCenter Linked Mode, asegúrese de haber añadido el clúster con la instancia correcta de vCenter Server.
+
+* El espacio sin aprovisionar disponible debe ser igual o mayor que el tamaño del volumen de origen.
+* Se debe crear al menos una cuenta de usuario.
+
+
+.Pasos
+. En vSphere Web Client, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, seleccione el clúster que desea utilizar en la barra de navegación.
+
+. En la página *datastores*, active la casilla de verificación del almacén de datos que desea clonar.
+. Seleccione *acciones*.
+. En el menú que se abre, seleccione *Clonar*.
++
+
+NOTE: Si se intenta clonar un almacén de datos que contiene máquinas virtuales con discos conectados que no están ubicados en el almacén de datos seleccionado, no se añadirán copias de las máquinas virtuales del almacén de datos clonado en el inventario de máquinas virtuales.
+
+. Introduzca un nombre para el almacén de datos.
++
+
+TIP: Utilice un nombre único para cada almacén de datos en un centro de datos. Para varios entornos de clústeres o vCenter Server, utilice prácticas recomendadas de nomenclatura descriptiva.
+
+. Seleccione *Siguiente*.
+. Seleccione uno o más hosts requeridos para el almacén de datos.
++
+
+NOTE: Debe haber al menos un host conectado para poder crear un nuevo almacén de datos. Si el host tiene varios iniciadores, elija uno solo o elija el host para seleccionar todos los iniciadores. Si se usa vCenter Linked Mode, solo pueden seleccionarse los hosts disponibles en la instancia de vCenter Server a la cual se asigna el clúster.
+
+. Seleccione *Siguiente*.
+. En el panel *Configurar volumen*, haga lo siguiente:
++
+.. Introduzca un nombre para el nuevo volumen NetApp Element que respalda el almacén de datos clonado.
+.. Seleccione una cuenta de usuario en la lista de cuentas.
++
+
+NOTE: Debe haber al menos una cuenta de usuario para poder crear un volumen.
+
+.. En el área *calidad de servicio*, realice una de las siguientes acciones:
++
+*** En *Directiva*, seleccione una directiva QoS existente, si está disponible.
+*** En *Configuración personalizada*, establezca valores mínimos, máximos y de ráfaga personalizados para IOPS o utilice los valores de QoS predeterminados.
++
+
+TIP: Las políticas de calidad de servicio son mejores para los entornos de servicio, por ejemplo, con servidores de bases de datos, aplicaciones o infraestructuras que rara vez se reinician y necesitan igual acceso constante al almacenamiento. La automatización personalizada de QoSSIOC es la mejor opción para equipos virtuales de uso reducido, como escritorios virtuales o equipos virtuales especializados de tipo quiosco, que pueden reiniciarse, encenderse o apagarse a diario o varias veces al día. Las políticas de automatización y calidad de servicio de QoSSIOC no se deben utilizar juntas.
+
++
+
+TIP: Los volúmenes que tengan un valor de IOPS máximo o de ráfaga superior a 20 20,000 IOPS podrían requerir una profundidad de cola alta o varias sesiones para alcanzar este nivel de IOPS en un único volumen.
+
+
+
+
+
+. Seleccione *Siguiente*.
+. Configure el tipo de autorización para el acceso al host seleccionando una de las siguientes opciones:
++
+** *Use Volume Access Group*: Seleccione esta opción para limitar explícitamente qué iniciadores pueden ver volúmenes.
+** *Use CHAP*: Seleccione para acceso seguro basado en secretos sin límites en iniciadores.
+
+
+. Seleccione *Siguiente*.
+. Si seleccionó *Use Volume Access Group*, configure los grupos de acceso de volúmenes para los hosts seleccionados.
++
+Los grupos de acceso de volúmenes que figuran en *Required by Selected Initiators* ya están asociados a uno o más de los iniciadores de host seleccionados en el paso anterior.
+
++
+.. Seleccione grupos de acceso de volúmenes adicionales para crear nuevos grupos y asociarlos con los iniciadores disponibles:
++
+*** *Disponible*: Otras opciones de grupo de acceso de volúmenes en el clúster.
+*** *Crear nuevo grupo de acceso*: Introduzca el nombre del nuevo grupo de acceso y haga clic en *Agregar*.
+
+
+.. Seleccione *Siguiente*.
+.. En el panel *Configurar acceso de hosts*, asocie los iniciadores de host disponibles (IQN o WWPN) con los grupos de acceso de volúmenes seleccionados en el panel anterior.
++
+Si un iniciador de host ya está asociado con un grupo de acceso de volúmenes, el campo de ese iniciador será de solo lectura. Si un iniciador de host no tiene asociación de grupo de acceso de volúmenes, seleccione una opción de la lista desplegable junto al iniciador.
+
+.. Seleccione *Siguiente*.
+
+
+. Si desea habilitar la automatización QoSSIOC, active la casilla *Enable QoS & SIOC* y, a continuación, configure los ajustes de QoSSIOC.
++
+--
+
+IMPORTANT: Si utiliza políticas de calidad de servicio, no habilite QoSSIOC. QoSSIOC anulará y ajustará los valores de calidad de servicio de los volúmenes.
+
+Si el servicio QoSSIOC no está disponible, primero se deben configurar los ajustes en la página QoSSIOC Settings del punto de extensión del plugin:
+
+** link:vcp_task_getstarted_5_0.html#configure-qossioc-settings-using-the-plug-in["Configure ajustes mediante el plugin de Element vCenter versión 5.0 y versiones posteriores"]
+** link:vcp_task_getstarted.html#configure-qossioc-settings-using-the-plug-in["Configure ajustes mediante el plugin de vCenter de Element 4.10 y versiones anteriores"]
+
+
+--
++
+.. Seleccione *Activar QoS y SIOC*.
+.. Configure *Burst factor*.
++
+
+NOTE: El factor de ráfaga es un múltiplo de la opción de límite de IOPS (SIOC) para el VMDK. Si cambia el valor predeterminado, asegúrese de utilizar un valor de factor de ráfaga que no supere el límite de ráfaga máximo para un volumen de NetApp Element cuando el valor del factor de ráfaga se multiplique por el límite de IOPS para cualquier VMDK.
+
+.. *Opcional*: Seleccione *Anular QoS* predeterminada y configure los ajustes.
++
+Si la opción Override Default QoS está deshabilitada para el almacén de datos, los valores de Shares y Limit IOPS se establecen automáticamente de acuerdo con la configuración predeterminada de SIOC de cada máquina virtual.
+
++
+
+TIP: No personalice el límite de uso compartido de SIOC sin también personalizar el límite de IOPS de SIOC.
+
++
+
+TIP: De forma predeterminada, el número máximo de recursos compartidos de disco SIOC se establece en `Unlimited`. En un entorno de máquina virtual de gran tamaño, como VDI, esto puede provocar el sobrecompromiso máximo de IOPS en el clúster. Cuando habilita QoSSIOC, compruebe siempre la calidad de servicio predeterminada Override y establezca la opción Limit IOPS en algo razonable.
+
+
+
+. Seleccione *Siguiente*.
+. Confirme las selecciones y seleccione *Finalizar*.
+. Actualice la página.
+
+
+
+
+== Compartir un almacén de datos
+
+Es posible compartir un almacén de datos con uno o más hosts mediante el punto de extensión de plugin.
+
+Los almacenes de datos solo se pueden compartir entre hosts dentro del mismo centro de datos.
+
+.Lo que necesitará
+* Debe haber al menos un clúster añadido y en ejecución.
++
+
+NOTE: Si se usa vCenter Linked Mode, asegúrese de haber añadido el clúster con la instancia correcta de vCenter Server.
+
+* Debe haber más de un host bajo el centro de datos seleccionado.
+
+
+.Pasos
+. En vSphere Web Client, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, seleccione el clúster que desea utilizar en la barra de navegación.
+
+. En la página *datastores*, seleccione la casilla de verificación del almacén de datos que desea compartir.
+. Seleccione *acciones*.
+. En el menú que se abre, seleccione *Compartir*.
+. Configure el tipo de autorización para el acceso al host seleccionando una de las siguientes opciones:
++
+** *Use Volume Access Group*: Seleccione esta opción para limitar explícitamente qué iniciadores pueden ver volúmenes.
+** *Use CHAP*: Seleccione esta opción para un acceso seguro basado en secretos sin límites en los iniciadores.
+
+
+. Seleccione *Siguiente*.
+. Seleccione uno o más hosts requeridos para el almacén de datos.
++
+
+NOTE: Debe haber al menos un host conectado para poder crear un nuevo almacén de datos. Si el host tiene varios iniciadores, elija uno o todos los iniciadores seleccionando el host. Si se usa vCenter Linked Mode, solo pueden seleccionarse los hosts disponibles en la instancia de vCenter Server a la cual se asigna el clúster.
+
+. Seleccione *Siguiente*.
+. Si seleccionó Use *Volume Access Group*, configure los grupos de acceso de volúmenes para los hosts seleccionados.
++
+Los grupos de acceso de volúmenes que figuran en *Required by Selected Initiators* ya están asociados a uno o más de los iniciadores de host seleccionados en el paso anterior.
+
++
+.. Seleccione grupos de acceso de volúmenes adicionales para crear nuevos grupos y asociarlos con los iniciadores disponibles:
++
+*** *Disponible*: Otras opciones de grupo de acceso de volúmenes en el clúster.
+*** *Crear nuevo grupo de acceso*: Introduzca el nombre del nuevo grupo de acceso y haga clic en *Agregar*.
+
+
+.. Seleccione *Siguiente*.
+.. En el panel *Configurar acceso de hosts*, asocie los iniciadores de host disponibles (IQN o WWPN) con los grupos de acceso de volúmenes seleccionados en el panel anterior.
++
+Si un iniciador de host ya está asociado con un grupo de acceso de volúmenes, el campo de ese iniciador será de solo lectura. Si un iniciador de host no tiene asociación de grupo de acceso de volúmenes, seleccione una opción de la lista desplegable junto al iniciador.
+
+
+
+. Confirme las selecciones y seleccione *Finalizar*.
+. Actualice la página.
+
+
+
+
+== Ejecute VAAI UNMAP
+
+Si desea que un clúster reclame espacio de bloque liberado de almacenes de datos de VMFS5 con aprovisionamiento ligero, utilice la función VAAI UNMAP.
+
+.Lo que necesitará
+* Compruebe que el almacén de datos que utiliza para la tarea sea VMFS5 o anterior. VAAI UNMAP no se encuentra disponible para VMFS6, ya que ESXi ejecuta la tarea de forma automática
+* Compruebe que la configuración del sistema host ESXi se encuentre habilitada para VAAI UNMAP:
++
+`esxcli system settings advanced list -o/VMFS3/EnableBlockDelete`
+
++
+El valor del entero debe establecerse en 1 para habilitar la configuración.
+
+* Si la configuración del sistema host ESXi no se encuentra habilitada para VAAI UNMAP, establezca el valor entero en 1 con este comando:
++
+`esxcli system settings advanced set -i 1 -o /VMFS3/EnableBlockDelete`
+
+
+
+.Pasos
+. En vSphere Web Client, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, seleccione el clúster que desea utilizar en la barra de navegación.
+
+. En la página *datastores*, seleccione la casilla de verificación del almacén de datos en el que desea usar VAAI UNMAP.
+. En el menú que se abre, seleccione *acciones*.
+. Seleccione *VAAI Unmap*.
+. Seleccione un host por nombre o dirección IP.
+. Introduzca el nombre de usuario y la contraseña del host.
+. Confirme las selecciones y seleccione *OK*.
+
+
+
+
+== Eliminar un almacén de datos
+
+Es posible eliminar un almacén de datos mediante el punto de extensión del plugin. Esta operación elimina de forma permanente todos los archivos asociados con las máquinas virtuales del almacén de datos que desea eliminar. El plugin no elimina almacenes de datos que contienen máquinas virtuales registradas.
+
+. En vSphere Web Client, abra la pestaña *Management*:
++
+** A partir del complemento de vCenter para Element 5.0, seleccione *NetApp Element Remote Plugin > Management > Management*.
+** Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione *Gestión de NetApp Element > Gestión*.
+
+
++
+
+NOTE: Si se añaden dos o más clústeres, seleccione el clúster que desea utilizar en la barra de navegación.
+
+. En la página *datastores*, seleccione la casilla de comprobación del almacén de datos que desea eliminar.
+. Seleccione *acciones*.
+. En el menú que se abre, seleccione *Eliminar*.
+. (Opcional) Si desea eliminar el volumen NetApp Element asociado al almacén de datos, active la casilla de verificación *Eliminar volumen asociado*.
++
+
+NOTE: También puede optar por retener el volumen y, posteriormente, asociarlo con otro almacén de datos.
+
+. Seleccione *Sí*.
+
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
+* https://www.netapp.com/data-storage/solidfire/documentation["Página SolidFire y Element Resources"^]
+
