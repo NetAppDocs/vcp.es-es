@@ -1,0 +1,2317 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head class="at-element-marker">
+  <title>Lista de alertas del sistema</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Lista de alertas del sistema" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/es-es/vcp/vcp_reference_reports_alert_errors.html" />
+	<meta property="og:description" content="Aquí hay una lista de alertas del sistema, que son información, advertencias o errores que indican cómo se ejecuta el clúster mediante las páginas Reporting ..." />
+  <meta property="og:image" content="https://docs.netapp.com/es-es/vcp/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="Aquí hay una lista de alertas del sistema, que son información, advertencias o errores que indican cómo se ejecuta el clúster mediante las páginas Reporting ...">
+  <meta name="keywords" content=" netapp, hci, vcp, vcenter, element, monitor, report, alert, cluster, performance"><!-- Icons -->
+  <link rel="icon" href="/es-es/vcp/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+  <!-- Elastic Search -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
+
+  <!-- Combined CSS -->
+  <link rel="stylesheet" type="text/css" href="/es-es/vcp/css/netappdocs.css">
+
+  
+  <link rel="stylesheet" href="/es-es/vcp/css/landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/es-es/vcp/css/tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel='stylesheet' href='/es-es/vcp/css/na-feature.css' type='text/css'><!-- Top level site integrations --><script>
+    function addAdobeLaunch(adobeId) {
+      var head = document.getElementsByTagName('head')[0];
+      var adobe = document.createElement("script");
+      adobe.type = "text/plain";
+      adobe.className = "optanon-category-C0002";
+      adobe.src = "//assets.adobedtm.com/60287eadf1ee/c284da483c83/"+adobeId+".min.js";
+      head.appendChild(adobe);
+    }
+
+    function addGoogleAnalytics(gtagId) {
+      var google = document.createElement("script");
+      google.type = "text/plain";
+      google.className = "optanon-category-C0002";
+      google.src = "https://www.googletagmanager.com/gtag/js?id="+gtagId;
+      var head = document.getElementsByTagName('head')[0];
+      head.appendChild(google);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', gtagId);
+    }
+
+    function addConsent(consentId) {
+      var head = document.getElementsByTagName('head')[0];
+      var onetrustConsent = document.createElement("script");
+      onetrustConsent.type = "text/javascript";
+      onetrustConsent.src = "https://cdn.cookielaw.org/consent/"+consentId+"/OtAutoBlock.js";
+      head.appendChild(onetrustConsent);
+
+      var onetrustScript = document.createElement("script");
+      onetrustScript.type = "text/javascript";
+      onetrustScript.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+      onetrustScript.charset = "UTF-8";
+      onetrustScript.dataset.documentLanguage = "true";
+      onetrustScript.dataset.domainScript = consentId;
+      head.appendChild(onetrustScript);
+    }addConsent("72570c5c-fe30-465f-b0e0-b77f7fb4ae34");
+    addAdobeLaunch("launch-e9ff3acac59f");
+    addGoogleAnalytics("UA-81697994-3");function OptanonWrapper() { }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/es-es/vcp/js/na-search.js'></script><script src='/es-es/vcp/js/na-pagenav.js'></script><script src='/es-es/vcp/js/na-utility.js'></script>
+  <script src='/es-es/vcp/js/clouddocs.js'></script>
+  <script src='/es-es/vcp/js/jquery.navgoco.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src='/es-es/vcp/js/toc.js'></script>
+  <script src='/es-es/vcp/js/customscripts.js'></script><script>
+      $(document).ready(function() {
+          
+          var collapseOnInit = true;
+          
+
+          var navSettings = {
+              "caretHtml": '',
+              "accordion": collapseOnInit,
+              "openClass": 'active', // open
+              "save": false, // leave false or nav highlighting doesn't work right
+              "cookie": {
+                  "name": 'navgoco',
+                  "expires": false,
+                  "path": '/'
+              },
+              "slide": {
+                  "duration": 400,
+                  "easing": 'swing'
+              }
+          };
+
+          // Initialize navgoco with default options
+          $("#mysidebar").navgoco(navSettings);
+          
+
+          $("#collapseAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', false);
+          });
+
+          $("#expandAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', true);
+          });
+
+          $(".sidebar-nav-container").on("scroll", function() {
+            $.cookie("sidebarScroll", $(".sidebar-nav-container").scrollTop(), {
+              path    : "/es-es/vcp"  
+            });
+          });
+          $(function() {
+            if ($.cookie("sidebarScroll")) {
+              $(".sidebar-nav-container").scrollTop($.cookie("sidebarScroll"));
+            }
+          });
+
+      });
+
+  </script>
+  <script>
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+  </script>
+  <script src='/es-es/vcp/js/custom-dropdown.js'></script>
+  <script src='/es-es/vcp/js/FileSaver.min.js'></script>
+  <script src='/es-es/vcp/js/jszip-utils.min.js'></script>
+  <script src='/es-es/vcp/js/jszip.min.js'></script>
+  <script src='/es-es/vcp/js/pdf-ux.js'></script>
+</head>
+
+
+  <body class role="document" data-flavor="">
+    <div id="page" class="n-off-canvas-menu">
+      <div class="n-off-canvas-menu__menu"><!--TODO: Add offcanvas code --></div>
+      <div class="n-off-canvas-menu__content-wrap">
+        <header class="site-header" id="banner">
+  
+  <!-- Start Page Toolbar -->
+  
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/vcp/issues/new?body=Page%3A%20[Lista de alertas del sistema](https://docs.netapp.com/es-es/vcp/vcp_reference_reports_alert_errors.html)&template=public-issue-template.md" class="page-nav-contribute-link" role="button"><img src="/es-es/vcp/images/discuss-sm.svg" alt="" class="github-icon" />Solicitar cambios en el documento</a><a target="_blank" href="https://github.com/NetAppDocs/vcp/blob/main/vcp_reference_reports_alert_errors.adoc" class="page-nav-contribute-link" role="button"><img src="/es-es/vcp/images/edit-sm.svg" alt="" class="github-icon" />Editar en GitHub</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/es-es/vcp/images/article-sm.svg" alt="" class="github-icon" />Guía del colaborador</a></div>
+    <div class="page-nav-container">
+      <nav class="page-nav-fixed">
+        <div class="page-nav-title">EN ESTA PÁGINA</div>
+        <div class="page-nav-links">
+          <ul class="page-nav-inner" id="page-menu"></ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+  
+  <!-- Start top_hat -->
+  <div class="n-top-hat">
+    <div class="n-container">
+      <div class="n-top-hat__cross-property-nav">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/products-a-z/" class="n-top-hat__link">Producto y soluciones</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/support-and-training/netapp-university/" class="n-top-hat__link">Asistencia y capacitación</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://cloud.netapp.com" class="n-top-hat__link">Cloud Central</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://community.netapp.com/" class="n-top-hat__link">Comunidad</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://blog.netapp.com/" class="n-top-hat__link">Blog</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://customers.netapp.com/en/" class="n-top-hat__link">Historias de clientes</a>
+          </li>
+        </ul>
+      </div>
+      <div class="n-top-hat__utils">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/company/contact-us/" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">Contacto</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End top_hat -->
+
+  <!-- Start property bar -->
+  <style>
+    .n-property-navigation-bar__menus--desktop-experience .n-menu--mega__default-content__heading span {
+    color: #34B0FF;
+    }
+  </style>
+  <div class="n-property-bar " data-ntap-ui="sticky-nav">
+    <div class="n-property-bar__inner-wrap">
+      <div class="n-property-bar__menu-toggle">
+        <a href="#" class="n-property-bar__menu-toggle-link">
+          <span class="n-property-bar__menu-toggle-text">Menu</span>
+          <svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
+            <title>bars</title>
+            <use xlink:href="/es-es/vcp/common/svg/sprite.svg#bars"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="n-property-bar__property-mark ">
+        <a href="https://www.netapp.com" class="n-property-bar__property-link">
+          <div class="n-property-bar__logo">
+            <svg class="n-icon-netapp-mark n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
+              <title>netapp-mark</title>
+              <use xlink:href="/es-es/vcp/common/svg/sprite.svg#netapp-mark"></use>
+            </svg>
+            <svg class="n-icon-netapp-logo n-property-bar__logo-svg" aria-labelledby="title">
+              <title>netapp-logo</title>
+              <use xlink:href="/es-es/vcp/common/svg/sprite.svg#netapp-logo"></use>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      
+      
+      
+      <div class="search-property-bar">
+        <div id="search-demo-container" class="searchbox n-property-bar__search">
+          <div id="react-search" 
+          data-search-html="/es-es/vcp/search.html"
+          data-type="widget" 
+          data-placeholder="Buscar documentación"
+          data-no-results-found="No se encontraron resultados para {query}"
+          data-did-you-mean="Buscar {suggestion}."
+          data-no-results-found-did-you-mean="No se encontraron resultados para {query}. ¿Quiso decir {suggestion}?"
+          data-results-found="{hitCount} resultados encontrados"
+          data-error-message="We're sorry, an issue occurred when fetching your results. Please try again."
+          data-error-reset="Reset Search"
+          data-sk-es-pf-indexes=""
+          data-flavor=""></div>
+          <button class="n-property-bar__search-toggle-button" type="button">
+            <svg class="n-icon-search n-property-bar__search-toggle-button-icon" aria-labelledby="title">
+              <title>search</title>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/es-es/vcp/common/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="n-property-bar__toolbar">
+    <!-- Start Language Selector --><div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+      <div class="custom-dropdown-select custom-dropdown-select-lang">
+      <span class="lang-name">Español</span>
+          <svg class="n-globe__icon" aria-labelledby="title">
+            <title>globe</title>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/es-es/vcp/common/svg/sprite.svg#globe"></use>
+          </svg>
+        </button>
+      </div>
+
+      <ul class="custom-dropdown-menu"><li>
+          <a href="https://docs.netapp.com/es-es/vcp/vcp_reference_reports_alert_errors.html" target="_self"><span translate="no" class="notranslate">Español</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/us-en/vcp/vcp_reference_reports_alert_errors.html" target="_self"><span translate="no" class="notranslate">English</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ja-jp/vcp/vcp_reference_reports_alert_errors.html" target="_self"><span translate="no" class="notranslate">日本語</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ko-kr/vcp/vcp_reference_reports_alert_errors.html" target="_self"><span translate="no" class="notranslate">한국어</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/zh-cn/vcp/vcp_reference_reports_alert_errors.html" target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/zh-tw/vcp/vcp_reference_reports_alert_errors.html" target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/de-de/vcp/vcp_reference_reports_alert_errors.html" target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/fr-fr/vcp/vcp_reference_reports_alert_errors.html" target="_self"><span translate="no" class="notranslate">Français</span></a>
+        </li></ul>
+    </div><!-- End Language Selector -->
+
+    <div class="n-property-bar__cta"></div>
+  </div>
+  <!-- End property bar -->
+</header>
+
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+  <!-- Sidebar Column -->
+  
+  <div class="col-md-3" id="sidebar-height">
+      <button id="btn-sidebar-collapse" onclick="hideSidebar()"><img src="/es-es/vcp/images/collapse.png" alt="Contraer panel de navegación"></button>
+      <div class="n-pdf-header">
+  <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+    <img src="/es-es/vcp/images/pdf.png" alt="" width="16" height="16"/>PDFs disponibles<span>
+    </span>
+  </a>
+</div>
+<div class="n-pdf-body-container">
+  <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+        
+        
+        
+        <a target="_blank" href="/es-es/vcp/pdfs/fullsite-sidebar/Documentación_del_plugin_de_NetApp_Element_para_VMware_vCenter_Server.pdf" >
+          <img src="/es-es/vcp/images/pdf.png" alt="" width="16" height="16"/>PDF de este sitio de documentos</a>
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/vcp/pdfs/sidebar/Notas_de_la_versión.pdf" 
+            
+          >
+            <img src="/es-es/vcp/images/pdf.png" alt="" width="16" height="16"/>
+            Notas de la versión
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/vcp/pdfs/sidebar/Conceptos.pdf" 
+            
+          >
+            <img src="/es-es/vcp/images/pdf.png" alt="" width="16" height="16"/>
+            Conceptos
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/vcp/pdfs/sidebar/Plugin_de_NetApp_Element_para_VMware_vCenter_Server_5_0_o_posterior.pdf" 
+            
+          >
+            <img src="/es-es/vcp/images/pdf.png" alt="" width="16" height="16"/>
+            Plugin de NetApp Element para VMware vCenter Server 5.0 o posterior
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/vcp/pdfs/sidebar/Plugin_de_NetApp_Element_para_VMware_vCenter_Server_4_10_o_una_versión_anterior.pdf" 
+            
+          >
+            <img src="/es-es/vcp/images/pdf.png" alt="" width="16" height="16"/>
+            Plugin de NetApp Element para VMware vCenter Server 4.10 o una versión anterior
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/vcp/pdfs/sidebar/Instale_y_configure_el_plugin_de_NetApp_Element_para_vCenter_Server.pdf" 
+            
+          >
+            <img src="/es-es/vcp/images/pdf.png" alt="" width="16" height="16"/>
+            Instale y configure el plugin de NetApp Element para vCenter Server
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/vcp/pdfs/sidebar/Gestione_el_almacenamiento_con_el_plugin_de_vCenter.pdf" 
+            
+          >
+            <img src="/es-es/vcp/images/pdf.png" alt="" width="16" height="16"/>
+            Gestione el almacenamiento con el plugin de vCenter
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/vcp/pdfs/sidebar/Gestionar_el_hardware_de_los_clústeres_y_las_redes_virtuales.pdf" 
+            
+          >
+            <img src="/es-es/vcp/images/pdf.png" alt="" width="16" height="16"/>
+            Gestionar el hardware de los clústeres y las redes virtuales
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/vcp/pdfs/sidebar/Supervise_el_rendimiento_del_sistema.pdf" 
+            
+          >
+            <img src="/es-es/vcp/images/pdf.png" alt="" width="16" height="16"/>
+            Supervise el rendimiento del sistema
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/vcp/pdfs/sidebar/Supervise_las_alertas_del_sistema.pdf" 
+            
+          >
+            <img src="/es-es/vcp/images/pdf.png" alt="" width="16" height="16"/>
+            Supervise las alertas del sistema
+          </a>
+          
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/vcp/pdfs/sidebar/Proteja_los_datos_con_el_plugin_de_vCenter.pdf" 
+            
+          >
+            <img src="/es-es/vcp/images/pdf.png" alt="" width="16" height="16"/>
+            Proteja los datos con el plugin de vCenter
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li></ul>
+  <div class="zip-pdf-link-container" style="display: none;">   
+    <a href="#" id="zipPdf">
+      <img src="/es-es/vcp/images/pdf-zip.png" alt="" width="16" height="16"/>
+      <pre>Colección de documentos PDF separados<span class="zip-size"></span></pre>
+    </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+</div>
+<script>
+  $("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+  $("#toggleButtonPdf").click(function () {
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+  });
+</script><div class="sidebar-nav-container" id="mysidebardiv">
+  <ul id="mysidebar" class="nav"><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Documentación del plugin de NetApp Element para VMware vCenter Server"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/index.html">
+        Documentación del plugin de NetApp Element para VMware vCenter Server
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información general del producto del plugin de NetApp Element para VMware vCenter Server"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/concept_vcp_product_overview.html">
+        Información general del producto del plugin de NetApp Element para VMware vCenter Server
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notas de la versión"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Notas de la versión</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Novedades del plugin de NetApp Element para VMware vCenter Server"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/rn_whatsnew_vcp.html">
+        Novedades del plugin de NetApp Element para VMware vCenter Server
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información adicional sobre la versión"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/rn_relatedrn_vcp.html">
+        Información adicional sobre la versión
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Conceptos"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Conceptos</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Plugin de NetApp Element para VMware vCenter Server 5.0 o posterior"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Plugin de NetApp Element para VMware vCenter Server 5.0 o posterior</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información general sobre la arquitectura de plugin remoto"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_concept_remote_plugin_architecture.html">
+        Información general sobre la arquitectura de plugin remoto
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Punto de extensión del complemento remoto de NetApp Element"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_concept_remote_plugin_extension_point.html">
+        Punto de extensión del complemento remoto de NetApp Element
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Plugin de NetApp Element para VMware vCenter Server 4.10 o una versión anterior"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Plugin de NetApp Element para VMware vCenter Server 4.10 o una versión anterior</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Punto de extensión NetApp Element Configuration"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_concept_config_extension_point.html">
+        Punto de extensión NetApp Element Configuration
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Punto de extensión NetApp Element Management"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_concept_management_extension_point.html">
+        Punto de extensión NetApp Element Management
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cuentas de usuario"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_concept_accounts.html">
+        Cuentas de usuario
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Dominios de protección"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_concept_protection_domains.html">
+        Dominios de protección
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Linked Mode y el plugin de vCenter"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_concept_linkedmode.html">
+        Linked Mode y el plugin de vCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="QoSSIOC"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_concept_qossioc.html">
+        QoSSIOC
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Volúmenes virtuales (vVols)"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_concept_vvols.html">
+        Volúmenes virtuales (vVols)
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Requisitos previos a la puesta en marcha"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/reference_requirements_vcp.html">
+        Requisitos previos a la puesta en marcha
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Instale y configure el plugin de NetApp Element para vCenter Server"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Instale y configure el plugin de NetApp Element para vCenter Server</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Instale y configure el plugin de Element 5.0 y versiones posteriores en vCenter Server 7.0 y versiones posteriores"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_getstarted_5_0.html">
+        Instale y configure el plugin de Element 5.0 y versiones posteriores en vCenter Server 7.0 y versiones posteriores
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Instale y configure el plugin de Element versión 4.10 y versiones anteriores"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_getstarted.html">
+        Instale y configure el plugin de Element versión 4.10 y versiones anteriores
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Actualice el plugin"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/task_vcp_upgrades.html">
+        Actualice el plugin
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestione el almacenamiento con el plugin de vCenter"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Gestione el almacenamiento con el plugin de vCenter</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestione clústeres"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_clusters_manage.html">
+        Gestione clústeres
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestionar almacenes de datos"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_datastores_manage.html">
+        Gestionar almacenes de datos
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestione los volúmenes"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_volumes_manage.html">
+        Gestione los volúmenes
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Crear y administrar cuentas de usuario"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_create_manage_user_accounts.html">
+        Crear y administrar cuentas de usuario
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Permite crear y gestionar grupos de acceso"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_create_manage_access_groups.html">
+        Permite crear y gestionar grupos de acceso
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cree y gestione iniciadores"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_create_manage_initiators.html">
+        Cree y gestione iniciadores
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configure y gestione QoSSIOC para volúmenes de Element y almacenes de datos de VMware"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_qossioc.html">
+        Configure y gestione QoSSIOC para volúmenes de Element y almacenes de datos de VMware
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cree y gestione políticas de calidad de servicio de volúmenes"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_qos_policies.html">
+        Cree y gestione políticas de calidad de servicio de volúmenes
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestionar el hardware de los clústeres y las redes virtuales"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Gestionar el hardware de los clústeres y las redes virtuales</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información general sobre el hardware de los clústeres de gestión y las redes virtuales"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_manage_cluster_overview.html">
+        Información general sobre el hardware de los clústeres de gestión y las redes virtuales
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Añadir y gestionar unidades"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_add_manage_drive.html">
+        Añadir y gestionar unidades
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Permite añadir y gestionar nodos"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_add_manage_nodes.html">
+        Permite añadir y gestionar nodos
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Crear y gestionar redes virtuales"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_create_manage_vlans.html">
+        Crear y gestionar redes virtuales
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supervise el rendimiento del sistema"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Supervise el rendimiento del sistema</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supervise el rendimiento del sistema con las opciones Report"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_reports_intro.html">
+        Supervise el rendimiento del sistema con las opciones Report
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supervise el estado general del clúster en la página Overview"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_reports_overview.html">
+        Supervise el estado general del clúster en la página Overview
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supervise las alertas del sistema"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="/es-es/vcp/vcp_task_reports_alerts.html">
+        <div class="na-navbar-padding"> Supervise las alertas del sistema</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Lista de alertas del sistema"
+      data-li-level="3#" 
+      class="  active "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_reference_reports_alert_errors.html">
+        Lista de alertas del sistema
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supervise los registros de eventos para solucionar problemas"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_reports_event_logs.html">
+        Supervise los registros de eventos para solucionar problemas
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supervisar el rendimiento del volumen"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_reports_volume_performance.html">
+        Supervisar el rendimiento del volumen
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supervise las sesiones iSCSI para determinar el estado de la conexión"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_reports_iscsi.html">
+        Supervise las sesiones iSCSI para determinar el estado de la conexión
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supervise el rendimiento de las máquinas virtuales con eventos QoSSIOC"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_reports_qossioc.html">
+        Supervise el rendimiento de las máquinas virtuales con eventos QoSSIOC
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Proteja los datos con el plugin de vCenter"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Proteja los datos con el plugin de vCenter</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Proteja datos con la información general del plugin de vCenter"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_protect_overview.html">
+        Proteja datos con la información general del plugin de vCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Permite crear y gestionar copias de Snapshot de volumen"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_protect_snapshots_volume.html">
+        Permite crear y gestionar copias de Snapshot de volumen
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Permite crear y gestionar copias de Snapshot de grupo"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_protect_snapshots_group.html">
+        Permite crear y gestionar copias de Snapshot de grupo
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Crear programaciones de snapshots"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_protect_snapshots_schedules.html">
+        Crear programaciones de snapshots
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Ejecute la replicación remota entre clústeres"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_protect_remote_replication.html">
+        Ejecute la replicación remota entre clústeres
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configure y gestione volúmenes virtuales con el plugin de vCenter"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_task_configure_manage_vvols.html">
+        Configure y gestione volúmenes virtuales con el plugin de vCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cancele el registro del plugin"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/task_vcp_unregister.html">
+        Cancele el registro del plugin
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Quite el plugin"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/task_vcp_remove.html">
+        Quite el plugin
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Solucione problemas del plugin"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/vcp_reference_troubleshoot_vcp.html">
+        Solucione problemas del plugin
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Versiones anteriores de la documentación del plugin de NetApp Element"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/reference_earlier_versions.html">
+        Versiones anteriores de la documentación del plugin de NetApp Element
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Avisos legales"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/vcp/legal-notices.html">
+        Avisos legales
+      </a></li></ul>
+</div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+<script>$("#mysidebar li.active").parents('ul').css("display","block");</script>
+
+
+  </div>
+  
+
+  <div class="ie-content-pane n-doc__component-detail-content n-doc__component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content" id="main">
+      <div class="ie-utility">
+  <button id="btn-sidebar-expand" onclick="showSidebar()"><img src="/es-es/vcp/images/expand.png" alt="Expandir panel de navegación"></button>
+  <div class="ie-menu">
+    <div class="n-breadcrumb">
+      <ul class="n-breadcrumb__list">
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com">docs.netapp.com</a>
+        </li>
+        
+
+        
+
+        <li class="n-breadcrumb__list-item">
+          <a href="/es-es/vcp/">VCP</a>
+        </li>
+
+      </ul>
+    </div>
+    <div style="clear: both"></div><!-- Main needs to have height -->
+  </div>
+</div>
+
+      <div class="ie-nmt-disclaimer">
+  <span>
+    <div class="ie-nmt-disclaimer-container">
+      <div class="ie-nmt-disclaimer-icon">
+        <svg class="luci-icon" aria-hidden="true">
+          <use xlink:href="/es-es/vcp/common/svg/sprite.svg#circle-info">
+        </svg>
+      </div>
+      <div class="ie-nmt-disclaimer-content">
+        <span> Se proporciona el idioma español mediante traducción automática para su comodidad. En caso de alguna inconsistencia, el inglés precede al español. </span>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </span>
+</div><div class="n-doc__component-detail-heading-wrap">
+  <h1 class="n-doc__component-detail-heading">Lista de alertas del sistema</h1>
+</div>
+
+
+<p class="page-details">
+  
+    
+    <time datetime="2023-02-20 22:39:28 +0000">02/20/2023</time>
+    
+  
+
+<span>Colaboradores
+</span>
+
+
+</p>
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>El sistema informa de códigos de error con cada alerta que ayuda a determinar el componente del sistema que ha experimentado la alerta y el motivo por el que se ha generado esta. Para ver los códigos de error, es posible utilizar el punto de extensión del plugin:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A partir del complemento de vCenter para Element 5.0, seleccione <strong>NetApp Remote Plugin &gt; Management &gt; Reporting &gt; Alerts</strong>.</p>
+</li>
+<li>
+<p>Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione <strong>NetApp Element Management &gt; Reporting &gt; Alerts</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En la siguiente lista, se describen los distintos tipos de alertas del sistema.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>AutenticationServiceFault</strong>: El servicio de autenticación en uno o más nodos del clúster no funciona como se esperaba.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Póngase en contacto con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>AvailableVirtualNetworkIPAddressLow</strong>: El número de direcciones de red virtual en el bloque de direcciones IP es bajo.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Agregue más direcciones IP al bloque de direcciones de red virtual.</p>
+</div>
+</li>
+<li>
+<p><strong>BlockBlockClusterFull</strong>: No hay suficiente espacio libre de almacenamiento en bloque para admitir una pérdida de un solo nodo. Consulte el método API GetClusterFullThreshold para obtener detalles sobre los niveles de ocupación de los clústeres. Esta falla del clúster indica una de las siguientes condiciones:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Stage3Low (Advertencia): Se superó el umbral definido por el usuario. Ajuste la configuración del clúster lleno o añada más nodos.</p>
+</li>
+<li>
+<p>Stage4Critical (error): No hay espacio suficiente para recuperar el sistema de un fallo de 1 nodo. No se permite la creación de volúmenes, snapshots y clones.</p>
+</li>
+<li>
+<p>Stage5CompletelyConsumed (crítico)1; no se permiten escrituras ni nuevas conexiones iSCSI. Se mantendrán las conexiones iSCSI actuales. Las escrituras fallarán hasta que se añada más capacidad al clúster.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Purgue o elimine volúmenes o agregue otro nodo de almacenamiento al clúster de almacenamiento.</p>
+</div>
+</li>
+<li>
+<p>* BlocksDegred*: Los datos de los bloques ya no se replican por completo debido a un fallo.</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Gravedad</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Advertencia</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solo se puede acceder a dos copias completas de datos en bloques.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Error</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solo se puede acceder a una única copia completa de los datos en bloque.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Crítico</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No se puede acceder a ninguna copia completa de los datos en bloque.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/vcp/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+El estado de advertencia sólo puede ocurrir en un sistema Triple Helix.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Restaure cualquier nodo sin conexión o servicio de bloques, o póngase en contacto con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>BlockServiceTooFull</strong>: Un servicio de bloque está utilizando demasiado espacio.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Añada más capacidad aprovisionada.</p>
+</div>
+</li>
+<li>
+<p><strong>BlockServiceUnhealthy</strong>: Se ha detectado un servicio de bloque como malsano:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Gravedad = Advertencia: No se realiza ninguna acción. Este período de advertencia caducará en cTimeUntilBSIsKilledMSec=330000 milisegundos.</p>
+</li>
+<li>
+<p>Gravedad = error: El sistema decomisiona automáticamente los datos y vuelve a replicar los datos en otras unidades en buen estado.</p>
+</li>
+<li>
+<p>Severidad = crítico: Hay servicios de bloque con errores en varios nodos mayores o iguales al número de replicación (2 para Double Helix). Los datos no están disponibles y la sincronización de bandejas no finalizará.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Resolver</strong>: Compruebe si hay problemas de conectividad de red y errores de hardware. Si se han producido errores en componentes de hardware específicos, habrá otros errores. El fallo se borrará cuando se pueda acceder al servicio de bloqueo o cuando se haya retirado el servicio.</p>
+</div>
+</li>
+<li>
+<p><strong>RelojSkewExceedsFaultThreshold</strong>: El desfase de tiempo entre el maestro del clúster y el nodo que presenta un token supera el umbral recomendado. El clúster de almacenamiento no puede corregir el desfase de hora entre los nodos automáticamente.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Utilice servidores NTP internos a la red en lugar de los valores predeterminados de instalación. Si usa un servidor NTP interno, comuníquese con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>ClusterCannotSync</strong>: Hay una condición de falta de espacio y los datos en las unidades de almacenamiento en bloque fuera de línea no pueden sincronizarse con las unidades que siguen activas.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Añada más almacenamiento.</p>
+</div>
+</li>
+<li>
+<p><strong>ClusterFull</strong>: No hay más espacio de almacenamiento libre en el cluster de almacenamiento.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Añada más almacenamiento.</p>
+</div>
+</li>
+<li>
+<p><strong>ClusterIOPSAreOverProvisioned</strong>: La tasa de IOPS del clúster está sobreaprovisionada. La suma de todas las IOPS de calidad de servicio mínima es mayor que el número de IOPS que se espera del clúster. No puede mantenerse una calidad de servicio mínima para todos los volúmenes en simultáneo.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Reduzca la configuración mínima de IOPS de QoS para los volúmenes.</p>
+</div>
+</li>
+<li>
+<p><strong>DisableDriveSecurityFailed</strong>: El clúster no está configurado para habilitar la seguridad de la unidad (cifrado en reposo), pero al menos una unidad tiene habilitada la seguridad de la unidad, lo que significa que la desactivación de la seguridad de la unidad en esas unidades falló. Este fallo se registra con la gravedad de "Advertencia".</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Compruebe los detalles de la avería por el motivo por el que no se pudo desactivar la seguridad de la unidad. Los posibles motivos son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>No se pudo adquirir la clave de cifrado, investigue el problema de acceso a la clave o al servidor de claves externo.</p>
+</li>
+<li>
+<p>Se produjo un error en la operación de desactivación de la unidad, determine si es posible que se haya adquirido una clave incorrecta.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Si ninguno de estos son el motivo del fallo, es posible que sea necesario sustituir la unidad. Es posible intentar recuperar una unidad que no deshabilita la seguridad correctamente incluso cuando se proporciona la clave de autenticación correcta. Para realizar esta operación, quite las unidades del sistema moverlas a Available, ejecute un borrado seguro en la unidad y vuelva a moverlas a Active.</p>
+</div>
+</li>
+<li>
+<p><strong>DisconnectedClusterPair</strong>: Un par de clústeres está desconectado o configurado incorrectamente.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Compruebe la conectividad de red entre los clústeres.</p>
+</div>
+</li>
+<li>
+<p><strong>DisconnectedRemoteNode</strong>: Un nodo remoto está desconectado o configurado incorrectamente.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Compruebe la conectividad de red entre los nodos.</p>
+</div>
+</li>
+<li>
+<p><strong>DisconnectedSnapMirrorEndpoint</strong>: Un extremo de SnapMirror remoto se desconecta o configura incorrectamente.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Compruebe la conectividad de red entre el clúster y el SnapMirrorEndpoint remoto.</p>
+</div>
+</li>
+<li>
+<p><strong>Disponible</strong>: Hay una o más unidades disponibles en el clúster. En general, todos los clústeres deben tener todas las unidades añadidas, y ninguna debe estar en estado disponible. Si esta falla aparece de forma inesperada, comuníquese con el soporte de NetApp.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Añada cualquier unidad disponible al clúster de almacenamiento.</p>
+</div>
+</li>
+<li>
+<p><strong>DriveFailed</strong>: El clúster devuelve este fallo cuando una o varias unidades han fallado, lo que indica una de las siguientes condiciones:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>El administrador de unidades no puede acceder a la unidad.</p>
+</li>
+<li>
+<p>El servicio de segmentos o bloques se ha producido un error demasiadas veces, probablemente debido a fallos de lectura o escritura de la unidad y no se puede reiniciar.</p>
+</li>
+<li>
+<p>Falta la unidad.</p>
+</li>
+<li>
+<p>No se puede acceder al servicio maestro del nodo (todas las unidades del nodo se consideran ausentes o con errores).</p>
+</li>
+<li>
+<p>La unidad está bloqueada y no puede adquirirse la clave de autenticación de la unidad.</p>
+</li>
+<li>
+<p>La unidad se bloqueó y la operación de desbloqueo falla.</p>
+<div class="paragraph">
+<p><strong>Resolver</strong>:</p>
+</div>
+</li>
+<li>
+<p>Compruebe la conectividad de red del nodo.</p>
+</li>
+<li>
+<p>Sustituya la unidad.</p>
+</li>
+<li>
+<p>Asegúrese de que la clave de autenticación esté disponible.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>HealthdriveFault</strong>: Una unidad ha fallado la comprobación DE estado INTELIGENTE y, como resultado, las funciones de la unidad se ven disminuidas. Existe un nivel de gravedad crítico para esta falla:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Unidad con serie: &lt;serial number&gt; en ranura: &lt;node slot&gt; &lt;drive slot&gt; no superó la comprobación de estado general INTELIGENTE.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Sustituya la unidad.</p>
+</div>
+</li>
+<li>
+<p><strong>DriveWearFault</strong>: La vida restante de una unidad ha descendido por debajo de los umbrales, pero sigue funcionando. Existen dos niveles de gravedad posibles para este fallo: Crítico y Advertencia:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Unidad con serie: &lt;serial number&gt; en ranura: &lt;node slot&gt; &lt;drive slot&gt; tiene niveles de desgaste críticos.</p>
+</li>
+<li>
+<p>Unidad con serie: &lt;serial number&gt; en ranura: &lt;node slot&gt; &lt;drive slot&gt; tiene bajas reservas de desgaste.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Para resolver esta falla, sustituya la unidad pronto.</p>
+</div>
+</li>
+<li>
+<p><strong>DuplicateClusterMasterCandidates</strong>: Se ha detectado más de un candidato maestro de clúster de almacenamiento.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Póngase en contacto con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>EnableDriveSecurityFailed</strong>: El clúster está configurado para requerir la seguridad de la unidad (Encryption at Rest), pero no se pudo habilitar la seguridad de la unidad en al menos una unidad. Este fallo se registra con la gravedad de "Advertencia".</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Compruebe los detalles de la avería por el motivo por el que no se pudo habilitar la seguridad de la unidad. Los posibles motivos son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>No se pudo adquirir la clave de cifrado, investigue el problema de acceso a la clave o al servidor de claves externo.</p>
+</li>
+<li>
+<p>Se produjo un error en la operación de habilitación en la unidad, para determinar si podría haberse adquirido una clave incorrecta.</p>
+<div class="paragraph">
+<p>Si ninguno de estos son el motivo del fallo, es posible que sea necesario sustituir la unidad.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Es posible intentar recuperar una unidad que no habilita la seguridad correctamente incluso cuando se proporciona la clave de autenticación correcta. Para realizar esta operación, quite las unidades del sistema moverlas a Available, ejecute un borrado seguro en la unidad y vuelva a moverlas a Active.</p>
+</div>
+</li>
+<li>
+<p><strong>EnsembleDegraded</strong>: Se ha perdido la conectividad de red o la potencia a uno o más de los nodos del conjunto.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Para resolver este fallo, restaure la alimentación o la conectividad de red.</p>
+</div>
+</li>
+<li>
+<p><strong>Excepción</strong>: Un fallo reportado que no es un fallo rutinario. Estas fallas no se borran automáticamente de la cola de fallas.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong> Póngase en contacto con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>FailedSpaceTooFull</strong>: Un servicio de bloque no responde a las solicitudes de escritura de datos. Esto provoca que el servicio de segmentos se quede sin espacio para almacenar escrituras fallidas.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Para resolver este fallo, restaure la funcionalidad de servicios de bloque para permitir que las escrituras continúen normalmente y que el espacio fallido se vacíe en el servicio de cortes.</p>
+</div>
+</li>
+<li>
+<p><strong>FanSensor</strong>: Un sensor de ventilador ha fallado o está ausente.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Para solucionar este fallo, sustituya cualquier hardware defectuoso.</p>
+</div>
+</li>
+<li>
+<p><strong>FiberChannelAccessDegred</strong>: Un nodo Fibre Channel no responde a otros nodos del cluster de almacenamiento a través de su IP de almacenamiento durante un período de tiempo. En este estado, se considera que el nodo no responde y se genera una falla en el clúster.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Compruebe la conectividad de red.</p>
+</div>
+</li>
+<li>
+<p><strong>FiberChannelAccessUnavailable</strong>: Todos los nodos Fibre Channel no responden. Se muestran los ID de los nodos.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Compruebe la conectividad de red.</p>
+</div>
+</li>
+<li>
+<p><strong>FiberChannelActiveIxL</strong>: La cuenta IXL Nexus se acerca al límite admitido de 8000 sesiones activas por nodo Fibre Channel.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>El límite de mejores prácticas es de 5500.</p>
+</li>
+<li>
+<p>El límite de advertencia es 7500.</p>
+</li>
+<li>
+<p>El límite máximo (no forzado) es 8192.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Resolver</strong>: Reducción de la cuenta IXL Nexus por debajo del límite de mejores prácticas de 5500.</p>
+</div>
+</li>
+<li>
+<p><strong>FiberChannelConfig</strong>: Este fallo del grupo indica una de las condiciones siguientes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Hay un puerto de Fibre Channel no esperado en una ranura PCI.</p>
+</li>
+<li>
+<p>Hay un modelo de adaptador de bus de host de Fibre Channel no esperado.</p>
+</li>
+<li>
+<p>Hay un problema con el firmware de un adaptador de bus de host de Fibre Channel.</p>
+</li>
+<li>
+<p>Un puerto de Fibre Channel no está en línea.</p>
+</li>
+<li>
+<p>Hay un problema persistente en la configuración de traspaso de Fibre Channel.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Póngase en contacto con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>FiberChannelIOPS</strong>: El número total de IOPS se acerca al límite de IOPS de los nodos Fibre Channel del clúster. Los límites son:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>FC0025: Límite de 450 000 IOPS con un tamaño de bloque de 4 KB por nodo Fibre Channel.</p>
+</li>
+<li>
+<p>FCN001: Límite de 625K OPS a un tamaño de bloque de 4K por nodo Fibre Channel.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Para resolver este fallo, equilibre la carga en todos los nodos Fibre Channel disponibles.</p>
+</div>
+</li>
+<li>
+<p><strong>FiberChannelStaticIxL</strong>: La cuenta IXL Nexus se acerca al límite admitido de 16000 sesiones estáticas por nodo Fibre Channel.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>El límite de mejores prácticas es de 11000.</p>
+</li>
+<li>
+<p>El límite de advertencia es 15000.</p>
+</li>
+<li>
+<p>El límite máximo (obligatorio) es 16384.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Para resolver este fallo, reduzca el número de Nexus IXL por debajo del límite de mejores prácticas de 11000.</p>
+</div>
+</li>
+<li>
+<p><strong>FilSystemCapacidadLow</strong>: No hay suficiente espacio en uno de los sistemas de archivos.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Añada más capacidad al sistema de ficheros.</p>
+</div>
+</li>
+<li>
+<p><strong>FipsDrivesdiscordancia</strong>: Se ha insertado físicamente una unidad que no es FIPS en un nodo de almacenamiento compatible con FIPS o se ha insertado físicamente una unidad FIPS en un nodo de almacenamiento que no es FIPS. Se genera un solo error por nodo y se enumera todas las unidades afectadas.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Para resolver esta falla, quite o sustituya la unidad o unidades que no coinciden en cuestión.</p>
+</div>
+</li>
+<li>
+<p><strong>FipsDrivesOutOfCompliance</strong>: El sistema ha detectado que el cifrado en reposo estaba desactivado después de que se activara la función unidades FIPS. Esta falla también se genera cuando la función de unidades FIPS está habilitada y hay un nodo o una unidad no FIPS en el clúster de almacenamiento.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Habilite el cifrado en reposo o elimine el hardware no FIPS del clúster de almacenamiento.</p>
+</div>
+</li>
+<li>
+<p><strong>FipsSelfTestFailure</strong>: El subsistema FIPS ha detectado un fallo durante la autoprueba.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Póngase en contacto con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>HardwareConfigdiscordancia</strong>: Este fallo del clúster indica una de las siguientes condiciones:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>La configuración no coincide con la definición del nodo.</p>
+</li>
+<li>
+<p>El tamaño de unidad para este tipo de nodo es incorrecto.</p>
+</li>
+<li>
+<p>Se detectó una unidad no compatible. Un posible motivo es que la versión de elemento instalada no reconoce esta unidad. Recomienda actualizar el software Element en este nodo.</p>
+</li>
+<li>
+<p>Hay un error de coincidencia en el firmware de la unidad.</p>
+</li>
+<li>
+<p>El estado de capacidad de cifrado de la unidad no coincide con el nodo.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Póngase en contacto con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>IdPCertificateExpiration</strong>: El certificado SSL del proveedor de servicios del clúster para su uso con un proveedor de identidades (IDP) de terceros está a punto de expirar o ya ha caducado. Este fallo utiliza las siguientes gravedades en función de la urgencia:</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Gravedad</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Advertencia</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El certificado caduca dentro de los 30 días.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Error</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El certificado caduca dentro de los 7 días.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Crítico</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El certificado caduca en un plazo de 3 días o ya ha caducado.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Para resolver este error, actualice el certificado SSL antes de que caduque. Utilice la <code>UpdateIdpConfiguration</code> Método API con <code>refreshCertificateExpirationTime=true</code> Para proporcionar el certificado SSL actualizado.</p>
+</div>
+</li>
+<li>
+<p><strong>InconstentBondModes</strong>: Faltan los modos de enlace en el dispositivo VLAN. Esta falla muestra el modo de enlace esperado y el modo de enlace actualmente en uso.</p>
+</li>
+<li>
+<p><strong>InconstelentMtus</strong>: Este fallo del grupo indica una de las condiciones siguientes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Bond1G mismatch: Se detectaron varias MTU inconsistentes en interfaces Bond1G.</p>
+</li>
+<li>
+<p>Bond10G mismatch: Se detectaron varias MTU inconsistentes en interfaces Bond10G.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Esta falla muestra los nodos en cuestión junto con el valor de MTU asociado.</p>
+</div>
+</li>
+<li>
+<p><strong>InconstentRoutingRules</strong>: Las reglas de enrutamiento de esta interfaz son inconsistentes.</p>
+</li>
+<li>
+<p>* InconstentSubnetMasks*: La máscara de red del dispositivo VLAN no coincide con la máscara de red registrada internamente para la VLAN. Esta falla muestra la máscara de red esperada y la máscara de red actualmente en uso.</p>
+</li>
+<li>
+<p><strong>IncorrectBondPortCount</strong>: El número de puertos de enlace es incorrecto.</p>
+</li>
+<li>
+<p><strong>InvalidConfiguredFiberChannelNodeCount</strong>: Una de las dos conexiones de nodos Fibre Channel esperadas está degradada. Esta falla aparece cuando se conecta un solo nodo Fibre Channel.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Compruebe la conectividad de red del clúster y el cableado de red y compruebe si hay servicios defectuosos. Si no hay problemas de red o servicio, comuníquese con el soporte de NetApp para obtener el reemplazo de un nodo Fibre Channel.</p>
+</div>
+</li>
+<li>
+<p><strong>IrqBalanceFailed</strong>: Se produjo una excepción al intentar balancear las interrupciones.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Póngase en contacto con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>KmipCertificadosFault</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>El certificado de la entidad de certificación raíz (CA) está cerca de su vencimiento.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Para resolver este fallo, adquiera un nuevo certificado de la CA raíz con una fecha de vencimiento al menos 30 días y utilice ModifyKeyServerKmip para proporcionar el certificado de CA raíz actualizado.</p>
+</div>
+</li>
+<li>
+<p>El certificado de cliente está a punto de expirar.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Para resolver este error, cree una nueva CSR con GetClientCertificateSigningRequest, asegúrese de que la nueva fecha de vencimiento está al menos 30 días fuera y utilice ModifyKeyServerKmip para reemplazar el certificado de cliente KMIP que va a caducar con el nuevo certificado.</p>
+</div>
+</li>
+<li>
+<p>El certificado de la entidad de certificación raíz (CA) ha caducado.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Para resolver este fallo, adquiera un nuevo certificado de la CA raíz con una fecha de vencimiento al menos 30 días y utilice ModifyKeyServerKmip para proporcionar el certificado de CA raíz actualizado.</p>
+</div>
+</li>
+<li>
+<p>El certificado de cliente ha caducado.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Para resolver este fallo, cree una nueva CSR mediante <code>GetClientCertificateSigningRequest</code>, haga que firme asegurando que la nueva fecha de caducidad esté por lo menos 30 días fuera, y utilice <code>ModifyKeyServerKmip</code> Para sustituir el certificado de cliente KMIP caducado por el nuevo certificado.</p>
+</div>
+</li>
+<li>
+<p>Error de certificado de entidad de certificación raíz (CA).</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Para resolver este fallo, compruebe que se ha proporcionado el certificado correcto y, si es necesario, vuelva a adquirir el certificado de la CA raíz. Uso <code>ModifyKeyServerKmip</code> Para instalar el certificado de cliente KMIP correcto.</p>
+</div>
+</li>
+<li>
+<p>Error del certificado de cliente.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Para resolver este fallo, compruebe que está instalado el certificado de cliente KMIP correcto. La CA raíz del certificado de cliente debe instalarse en el EKS. Uso <code>ModifyKeyServerKmip</code> Para instalar el certificado de cliente KMIP correcto.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>KmipServerFault</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Error de conexión</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Para resolver este fallo, compruebe que el servidor de claves externo está activo y accesible a través de la red. Uso <code>TestKeyServerKimp</code> y.. <code>TestKeyProviderKmip</code> para probar la conexión.</p>
+</div>
+</li>
+<li>
+<p>Error de autenticación</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Para resolver este fallo, compruebe que se están utilizando los certificados de cliente KMIP y CA raíz correctos y que la clave privada y el certificado de cliente KMIP coinciden.</p>
+</div>
+</li>
+<li>
+<p>Error del servidor</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Para resolver este fallo, compruebe los detalles del error. Es posible que sea necesario solucionar los problemas en el servidor de claves externo según el error que se devuelve.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>MemoryEccThreshold</strong>: Se ha detectado un gran número de errores ECC corregibles o no corregibles. Cuando se devuelve una gravedad de tipo error, es probable que esto se deba a un error de DIMM.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Póngase en contacto con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>MemoryUsageThreshold</strong>: El uso de la memoria está por encima de lo normal. Este fallo utiliza las siguientes gravedades en función de la urgencia:</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/vcp/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+Consulte el encabezado Detalles para obtener información más detallada sobre el error.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Gravedad</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Advertencia</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La memoria del sistema es baja.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Error</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La memoria del sistema es muy baja.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Crítico</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La memoria del sistema se ha consumido por completo.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Póngase en contacto con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>MetadataClusterFull</strong>: No hay suficiente espacio libre de almacenamiento de metadatos para admitir la pérdida de un solo nodo. Consulte <code>GetClusterFullThreshold</code> Método API para obtener detalles sobre los niveles de ocupación de los clústeres. Esta falla del clúster indica una de las siguientes condiciones:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Stage3Low (Advertencia): Se superó el umbral definido por el usuario. Ajuste la configuración del clúster lleno o añada más nodos.</p>
+</li>
+<li>
+<p>Stage4Critical (error): No hay espacio suficiente para recuperar el sistema de un fallo de 1 nodo. No se permite la creación de volúmenes, snapshots y clones.</p>
+</li>
+<li>
+<p>Stage5CompletelyConsumed (crítico)1; no se permiten escrituras ni nuevas conexiones iSCSI. Se mantendrán las conexiones iSCSI actuales. Las escrituras fallarán hasta que se añada más capacidad al clúster. Purgue o elimine datos o añada más nodos.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Purgue o elimine volúmenes o agregue otro nodo de almacenamiento al clúster de almacenamiento.</p>
+</div>
+</li>
+<li>
+<p><strong>MtuCheckFailure</strong>: Un dispositivo de red no está configurado para el tamaño de MTU correcto.</p>
+<div class="paragraph">
+<p><strong>Resolver</strong>: Asegúrese de que todas las interfaces de red y puertos de switch estén configurados para tramas gigantes (MTU de hasta 9000 bytes de tamaño).</p>
+</div>
+</li>
+<li>
+<p><strong>NetworkConfig</strong>: Este fallo del clúster indica una de las siguientes condiciones:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>No hay una interfaz esperada.</p>
+</li>
+<li>
+<p>Hay una interfaz duplicada.</p>
+</li>
+<li>
+<p>Una interfaz configurada está inactiva.</p>
+</li>
+<li>
+<p>Se requiere reiniciar la red.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Póngase en contacto con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>NoAvailableVirtualNetworkIPAddresses</strong>: No hay direcciones de red virtual disponibles en el bloque de direcciones IP.</p>
+<div class="listingblock">
+<div class="content">
+<pre> virtualNetworkID # TAG(###) has no available storage IP addresses. Additional nodes cannot be added to the cluster.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Agregue más direcciones IP al bloque de direcciones de red virtual.</p>
+</div>
+</li>
+<li>
+<p><strong>NodeHardwarFault (error de interfaz de red &lt;name&gt; inactivo o el cable está desenchufado)</strong>: Una interfaz de red está inactiva o el cable está desenchufado.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Compruebe la conectividad de red para el nodo o los nodos.</p>
+</div>
+</li>
+<li>
+<p><strong>NodeHardwarfault (el estado compatible con el cifrado de la unidad coincide con el estado compatible con el cifrado del nodo para la unidad en la ranura &lt;node slot&gt; &lt;drive slot&gt;)</strong>: Una unidad no coincide con las capacidades de cifrado con el nodo de almacenamiento en el que está instalado.</p>
+</li>
+<li>
+<p><strong>NodeHardwarFault (tamaño de unidad &lt;drive type&gt; incorrecto &lt;actual size&gt; para la unidad en la ranura &lt;node slot&gt; &lt;drive slot&gt; para este tipo de nodo - &lt;expected size&gt; esperado)</strong>: Un nodo de almacenamiento contiene una unidad con un tamaño incorrecto para este nodo.</p>
+</li>
+<li>
+<p><strong>NodeHardwareFault (unidad no compatible detectada en la ranura &lt;node slot&gt; &lt;drive slot&gt;; las estadísticas de la unidad y la información de estado no estarán disponibles)</strong>: Un nodo de almacenamiento contiene una unidad que no es compatible.</p>
+</li>
+<li>
+<p><strong>NodeHardwarFault (la unidad de la ranura &lt;node slot&gt; &lt;drive slot&gt; debe utilizar la versión de firmware &lt;expected version&gt;, pero utiliza la versión no compatible &lt;actual version&gt;)</strong>: Un nodo de almacenamiento contiene una unidad que ejecuta una versión de firmware no compatible.</p>
+</li>
+<li>
+<p><strong>NodeMaintenanceMode</strong>: Se colocó un nodo en modo de mantenimiento. Este fallo utiliza las siguientes gravedades en función de la urgencia:</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Gravedad</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Advertencia</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indica que el nodo aún está en modo de mantenimiento.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Error</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indica que el modo de mantenimiento no se ha desactivado, lo más probable es que se deba a stabys activos o con errores.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Desactive el modo de mantenimiento una vez que finalice el mantenimiento. Si el fallo del nivel de error persiste, comuníquese con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>NodeOffline</strong>: El software Element no se puede comunicar con el nodo especificado. Compruebe la conectividad de red.</p>
+</li>
+<li>
+<p><strong>NotUsingLACPBondMode</strong>: El modo de enlace LACP no está configurado.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Utilice el enlace LACP al implementar nodos de almacenamiento; los clientes pueden experimentar problemas de rendimiento si LACP no está habilitado y configurado correctamente.</p>
+</div>
+</li>
+<li>
+<p><strong>NtpServerUnreable</strong>: El clúster de almacenamiento no se puede comunicar con los servidores NTP especificados.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Compruebe la configuración del servidor NTP, la red y el firewall.</p>
+</div>
+</li>
+<li>
+<p><strong>NtpTimeNotInSync</strong>: La diferencia entre el tiempo del clúster de almacenamiento y el tiempo del servidor NTP es demasiado grande. El clúster de almacenamiento no puede corregir esta diferencia automáticamente.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Utilice servidores NTP internos a la red en lugar de los valores predeterminados de instalación. Si usa los servidores NTP internos y el problema persiste, comuníquese con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>NvramDeviceStatus</strong>: Un dispositivo NVRAM presenta un error, está fallando o ha fallado. Este fallo tiene las siguientes gravedades:</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Gravedad</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Advertencia</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El hardware ha detectado una advertencia. Esta condición puede ser transitoria, como una advertencia de temperatura. * NvmLifetimeError * nvmLifetimeStatus * energySourceLifetimeStatus * energySourceTemperatureStatus * warningThresholdExceeded</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Error</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El hardware ha detectado un error o estado crítico. El maestro de clústeres intenta quitar la unidad de segmentos de la operación (esto genera un evento de eliminación de la unidad). Si no hay servicios de segmentos secundarios disponibles, no se eliminará la unidad. Errores devueltos además de los errores de nivel de advertencia: * El punto de montaje del dispositivo NVRAM no existe. * La partición del dispositivo NVRAM no existe. * La partición del dispositivo NVRAM existe, pero no está montada.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Crítico</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El hardware ha detectado un error o estado crítico. El maestro de clústeres intenta quitar la unidad de segmentos de la operación (esto genera un evento de eliminación de la unidad). Si no hay servicios de segmentos secundarios disponibles, no se eliminará la unidad. * PersistenceLost * armStatusSaveNArmed * csaveStatusError</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Resolver</strong>: Sustituya cualquier hardware que haya fallado en el nodo. Si esto no se resuelve el problema, comuníquese con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>PowerSupplyError</strong>: Esta falla del clúster indica una de las siguientes condiciones:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>No hay un suministro de alimentación.</p>
+</li>
+<li>
+<p>Se produjo un error de suministro de alimentación.</p>
+</li>
+<li>
+<p>La entrada de un suministro de alimentación es nula o está fuera de rango.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Verifique que todos los nodos reciben alimentación redundante. Comuníquese con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>AprovisionadoSpaceTooFull</strong>: La capacidad general aprovisionada del clúster está demasiado llena.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Agregue más espacio aprovisionado, o elimine y purgue los volúmenes.</p>
+</div>
+</li>
+<li>
+<p><strong>RemoteRepAsyncDelayExceeded</strong>: Se ha excedido el retraso asíncrono configurado para la replicación. Compruebe la conectividad de red entre clústeres.</p>
+</li>
+<li>
+<p><strong>RemoteRepClusterFull</strong>: Los volúmenes tienen en pausa la replicación remota porque el clúster de almacenamiento de destino está demasiado lleno.</p>
+<div class="paragraph">
+<p><strong>Resolver</strong>: Libere espacio en el clúster de almacenamiento de destino.</p>
+</div>
+</li>
+<li>
+<p><strong>RemoteRepSnapshotClusterFull</strong>: Los volúmenes tienen en pausa la replicación remota de instantáneas porque el clúster de almacenamiento de destino está demasiado lleno.</p>
+<div class="paragraph">
+<p><strong>Resolver</strong>: Libere espacio en el clúster de almacenamiento de destino.</p>
+</div>
+</li>
+<li>
+<p><strong>RemoteRepSnapshotsExceedLimit</strong>: Los volúmenes pusieron en pausa la replicación remota de instantáneas porque el volumen del clúster de almacenamiento de destino superó su límite de instantáneas.</p>
+<div class="paragraph">
+<p><strong>Resolver</strong>: Aumente el límite de instantáneas en el clúster de almacenamiento de destino.</p>
+</div>
+</li>
+<li>
+<p><strong>Error de Acción</strong>: Una o más de las actividades programadas se ejecutaron, pero fallaron. La falla se borra si la actividad programada se vuelve a ejecutar, esta vez, correctamente, si la actividad programada se elimina o si la actividad se pone en pausa y luego se reanuda.</p>
+</li>
+<li>
+<p><strong>SensorReadingFailed</strong>: La autoprueba del controlador de administración de la placa base (BMC) ha fallado o un sensor no ha podido comunicarse con la BMC.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Póngase en contacto con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>ServiceNotRunning</strong>: No se está ejecutando un servicio requerido.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Póngase en contacto con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>SliceServiceTooFull</strong>: Un servicio de slice tiene muy poca capacidad aprovisionada asignada.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Añada más capacidad aprovisionada.</p>
+</div>
+</li>
+<li>
+<p><strong>SliceServiceUnhealthy</strong>: El sistema ha detectado que un servicio de cortes no está en buen estado y lo está decomisionando automáticamente.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Gravedad = Advertencia: No se realiza ninguna acción. Este período de aviso caducará en 6 minutos.</p>
+</li>
+<li>
+<p>Gravedad = error: El sistema decomisiona automáticamente los datos y vuelve a replicar los datos en otras unidades en buen estado.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Resolver</strong>: Compruebe si hay problemas de conectividad de red y errores de hardware. Si se han producido errores en componentes de hardware específicos, habrá otros errores. El fallo se borrará cuando se pueda acceder al servicio de cortes o cuando se haya retirado el servicio.</p>
+</div>
+</li>
+<li>
+<p><strong>SshEnabled</strong>: El servicio SSH está habilitado en uno o más nodos del clúster de almacenamiento.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Deshabilite el servicio SSH en los nodos correspondientes o póngase en contacto con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>SslCertificateExpiration</strong>: El certificado SSL asociado con este nodo está a punto de expirar o ha caducado. Este fallo utiliza las siguientes gravedades en función de la urgencia:</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Gravedad</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Advertencia</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El certificado caduca dentro de los 30 días.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Error</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El certificado caduca dentro de los 7 días.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Crítico</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El certificado caduca en un plazo de 3 días o ya ha caducado.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Renueve el certificado SSL. Si es necesario, comuníquese con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>StrandedCapacity</strong>: Un solo nodo representa más de la mitad de la capacidad del cluster de almacenamiento. Para mantener la redundancia de datos, el sistema reduce la capacidad del nodo más grande de manera que parte de su capacidad de bloque se quede sin utilizar (no se utiliza).</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Añada más unidades a los nodos de almacenamiento existentes o agregue nodos de almacenamiento al clúster.</p>
+</div>
+</li>
+<li>
+<p><strong>Sensor de temperatura</strong>: Un sensor de temperatura informa de temperaturas más altas que las normales. Esta falla puede activarse en conjunto con fallas de tipo powerSupplyError o fanSensor.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Compruebe si hay obstrucciones en el flujo de aire cerca del clúster de almacenamiento. Si es necesario, comuníquese con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>Actualización</strong>: Una actualización ha estado en curso durante más de 24 horas.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Reanude la actualización o póngase en contacto con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>Unresponsive Service</strong>: Un servicio ha dejado de responder.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Póngase en contacto con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>VirtualNetworkConfig</strong>: Este fallo del clúster indica una de las siguientes condiciones:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>No hay una interfaz presente.</p>
+</li>
+<li>
+<p>La interfaz tiene un espacio de nombres incorrecto.</p>
+</li>
+<li>
+<p>Hay una máscara de red incorrecta.</p>
+</li>
+<li>
+<p>Hay una dirección IP incorrecta.</p>
+</li>
+<li>
+<p>Una interfaz no está en funcionamiento.</p>
+</li>
+<li>
+<p>Hay una interfaz superflua en un nodo.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Póngase en contacto con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+<li>
+<p><strong>VolumesDegraded</strong>: Los volúmenes secundarios no han terminado de replicarse y sincronizarse. El mensaje se borra al finalizar la sincronización.</p>
+</li>
+<li>
+<p><strong>VolumesOffline</strong>: Uno o más volúmenes del clúster de almacenamiento están sin conexión. El fallo de volumeDegraded también estará presente.</p>
+<div class="paragraph">
+<p><strong>Para resolver</strong>: Póngase en contacto con el soporte de NetApp para obtener ayuda.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="obtenga-más-información">Obtenga más información</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.netapp.com/us-en/hci/index.html" target="_blank" rel="noopener">"Documentación de NetApp HCI"</a></p>
+</li>
+<li>
+<p><a href="https://www.netapp.com/data-storage/solidfire/documentation" target="_blank" rel="noopener">"Página SolidFire y Element Resources"</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+      <div class="n-footer__bottom-left">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/copyright/">© 2023 NetApp, Inc.</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">Términos y condiciones</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">Política de privacidad</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">Política de Cookies</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">Configuración de cookies</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="n-footer__bottom-right">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a target="_self" href="javascript:netapp_mailto()">Enviar comentarios sobre esta página</a>
+            </li>
+          </ul>
+        </div>
+        <div class="n-footer__social-links">
+          <ul class="n-footer__social-link-list">
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-blog" href="https://blog.netapp.com"
+                target="_blank" title="blog" alt="blog">
+                <span class="n-footer__social-link-text">blog</span>
+                <svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+                  <title>blog@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/es-es/vcp/common/svg/sprite.svg#blog"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-community" href="https://community.netapp.com/"
+                target="_blank" title="community" alt="community">
+                <span class="n-footer__social-link-text">community</span>
+                <svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
+                  <title>community@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/es-es/vcp/common/svg/sprite.svg#comments"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netapp"
+                target="_blank" title="twitter" alt="twitter">
+                <span class="n-footer__social-link-text">twitter</span>
+                <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+                  <title>twitter@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/es-es/vcp/common/svg/sprite.svg#twitter"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-facebook" href="https://www.facebook.com/NetApp"
+                target="_blank" title="facebook" alt="facebook">
+                <span class="n-footer__social-link-text">facebook</span>
+                <svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
+                  <title>facebook@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/es-es/vcp/common/svg/sprite.svg#facebook"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-linkedin"
+                href="https://www.linkedin.com/company/netapp" target="_blank" title="linkedin" alt="linkedin">
+                <span class="n-footer__social-link-text">linkedin</span>
+                <svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
+                  <title>linkedin@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/es-es/vcp/common/svg/sprite.svg#linkedin"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-youtube"
+                href="https://www.youtube.com/user/NetAppTV" target="_blank" title="youtube" alt="youtube">
+                <span class="n-footer__social-link-text">youtube</span>
+                <svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+                  <title>youtube@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/es-es/vcp/common/svg/sprite.svg#youtube"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-slideshare"
+                href="https://www.slideshare.net/NetApp" target="_blank" title="slideshare" alt="slideshare">
+                <span class="n-footer__social-link-text">slideshare</span>
+                <svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
+                  <title>slideshare@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/es-es/vcp/common/svg/sprite.svg#slideshare"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/es-es/vcp/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/es-es/vcp/js/prism.js'></script>
+      <script type="text/javascript" src='/es-es/vcp/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/es-es/vcp/js/www-ntap.js'></script>
+    <script src='/es-es/vcp/js/tabbed-blocks.js'></script>
+    <script src='/es-es/vcp/js/sidebar.js'></script>
+  </body></html>
