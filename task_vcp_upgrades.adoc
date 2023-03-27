@@ -14,12 +14,12 @@ keywords: netapp, vcp, vcenter, plugin, element, upgrade
 
 
 [role="lead"]
-Si desea actualizar el plugin de NetApp Element para vCenter Server, siga los pasos que se describen para la instalación. El complemento de vCenter para NetApp Element 5.0 está disponible fuera de las versiones de Element y NetApp HCI como parte de un paquete de servicios de gestión.
+Si desea actualizar el plugin de NetApp Element para vCenter Server, siga los pasos que se describen para la instalación. El complemento de vCenter para NetApp Element 5.1 está disponible fuera de las versiones de Element y NetApp HCI como parte de un paquete de servicios de gestión.
 
 [NOTE]
 ====
 * A partir del plugin de Element para vCenter 5.0, solo se admiten VMware vSphere 8.0 y 7.0.
-* Cuando se actualiza desde el plugin de Element para vCenter 4.x a la versión 5.0, los clústeres ya configurados con el plugin se pierden porque los datos no se pueden copiar de una instancia de vCenter a un plugin remoto. Debe volver a añadir los clústeres al plugin remoto. Esta es una actividad que solo debe hacer una vez al actualizar desde un plugin local a un plugin remoto.
+* Cuando se actualiza del plugin de Element para vCenter 4.x a 5.x, los clústeres ya configurados con el plugin se pierden porque no se pueden copiar los datos de una instancia de vCenter en un plugin remoto. Debe volver a añadir los clústeres al plugin remoto. Esta es una actividad que solo debe hacer una vez al actualizar desde un plugin local a un plugin remoto.
 
 
 ====
@@ -34,7 +34,7 @@ Para actualizar el plugin, siga las instrucciones de la documentación de actual
 
 == Obtenga más información
 
-* https://library.netapp.com/ecm/ecm_download_file/ECMLP2884992["Notas de la versión del plugin de vCenter 5.0"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2885734["Notas de la versión del plugin de vCenter 5.1"^]
 * https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Management_services_for_Element_Software_and_NetApp_HCI/Management_Services_Release_Notes["Notas de la versión de los servicios de gestión y control de cloud híbrido"^]
 * https://docs.netapp.com/us-en/hci/index.html["Documentación de NetApp HCI"^]
 * http://mysupport.netapp.com/hci/resources["Recursos de NetApp HCI"^]

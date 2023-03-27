@@ -16,7 +16,7 @@ keywords: netapp, hci, kubernetes, on premise, cloud services
 [role="lead"]
 Antes de usar el plugin de NetApp Element para VMware vCenter Server para gestionar el almacenamiento de la cabina all-flash de NetApp HCI o SolidFire, debe verificar que el sistema cumpla los requisitos para el uso del plugin.
 
-Para vCenter Server 8.0 y 7.0, puede <<create_vcp_role,Cree el "rol VCP" en vCenter>> En el caso de una cuenta de usuario del plugin de Element y de asignar permisos para registrar o actualizar el plugin de Element para vCenter Server y ejecutar tareas de administración del plugin de Element.
+Para vCenter Server 8.0 y 7.0, puede <<create_vcp_role,Cree el "rol VCP" en vCenter>> En el caso de una cuenta de usuario del plugin de Element y asignar permisos para registrar o actualizar el plugin de Element para vCenter Server y realizar tareas de administración del plugin de Element.
 
 [role="tabbed-block"]
 ====
