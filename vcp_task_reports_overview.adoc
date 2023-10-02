@@ -61,6 +61,20 @@ NOTE: La función de dominios de protección no es compatible con los clústeres
 ** *Capacidad de metadatos*: Indica si hay suficiente capacidad de metadatos para recuperarse de un fallo y mantener una disponibilidad de datos ininterrumpida. Normal (verde) indica que el clúster tiene metadatos suficientes para mantener el nivel de supervisión seleccionado. Full (rojo) indica que el clúster ya no es capaz de aplicar el nivel de supervisión seleccionado y se requiere una acción correctiva.
 
 
+* *Salud del dominio de protección personalizada*: Muestra el estado de estado del dominio de protección personalizado para el clúster cuando se configura un dominio de protección personalizado en el clúster.
++
+Los siguientes datos indican la protección disponible contra el fallo de uno de los dominios de protección personalizados para el clúster.
+
++
+** *Nivel de protección*: Indica el estado general del nivel de protección.
+** *Capacidad de bloque*: Indica el estado actual del nivel de protección del subsistema de servicios de bloque.
++
+También indica el umbral de capacidad total en el que se pierde la resiliencia.
+
+** *Capacidad de metadatos*: Indica el estado actual del nivel de protección del subsistema de servicios de metadatos.
+** *Nodos de ensamble*: Indica el estado actual del nivel de protección del subsistema de miembros del ensamble.
+
+
 * *IOPS aprovisionado*: Un resumen de cómo la tasa de IOPS de volumen se puede sobreaprovisionar en el clúster. Los cálculos de IOPS aprovisionados están determinados por la suma del IOPS mínimo total, el IOPS máximo y la IOPS de ráfaga para todos los volúmenes del clúster dividido por el IOPS máximo calificado para el clúster.
 +
 

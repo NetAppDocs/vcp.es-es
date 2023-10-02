@@ -14,6 +14,16 @@ keywords: netapp, vcp, vcenter, plugin, element, new, whats new
 
 
 [role="lead"]
+El complemento de NetApp Element para vCenter Server 5,2 contiene mejoras de compatibilidad y una mejora en la pantalla personalizada de Protection Domains.
+
+En la versión 5,2, el plugin muestra la información de estado del dominio de protección personalizada cuando se configura un dominio de protección personalizado en un clúster de software de Element. link:vcp_task_reports_overview.html#reporting-overview-page-data["Leer más"].
+
+El complemento de vCenter Element 5,2 está disponible con la versión 2.24.40 de servicios de gestión.
+
+
+
+== Complemento NetApp Element para vCenter Server 5,1
+
 El complemento de NetApp Element para vCenter Server 5.1 ofrece mejoras de seguridad y rendimiento. https://library.netapp.com/ecm/ecm_download_file/ECMLP2885734["Leer más"^].
 
 
