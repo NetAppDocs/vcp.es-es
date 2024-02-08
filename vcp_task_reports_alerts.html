@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head class="at-element-marker">
+  <title>Supervise las alertas del sistema</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Supervise las alertas del sistema" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/es-es/vcp/vcp_task_reports_alerts.html" />
+	<meta property="og:description" content="Las alertas de supervisión, que proporcionan información, advertencias o errores que indican cómo se ejecuta el clúster mediante las páginas Reporting del pl..." />
+  <meta property="og:image" content="https://docs.netapp.com/es-es/vcp/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="Las alertas de supervisión, que proporcionan información, advertencias o errores que indican cómo se ejecuta el clúster mediante las páginas Reporting del pl...">
+  <meta name="keywords" content=" netapp, hci, vcp, vcenter, element, monitor, report, alert, cluster, performance"><!-- Icons -->
+  <link rel="icon" href="/es-es/vcp/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+
+  <!-- Combined CSS -->
+  <link rel="stylesheet" type="text/css" href="/es-es/vcp/css/ie-netappdocs.css">
+
+  
+  <link rel="stylesheet" href="/es-es/vcp/css/ie-landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/es-es/vcp/css/ie-tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel="canonical" href="https://docs.netapp.com/es-es/vcp/vcp_task_reports_alerts.html" />
+  <link rel="alternate" hreflang="x-default" href="https://docs.netapp.com/us-en/vcp/vcp_task_reports_alerts.html" />
+  <link rel="alternate" hreflang="es" href="https://docs.netapp.com/es-es/vcp/vcp_task_reports_alerts.html" />
+  <link rel="alternate" hreflang="en" href="https://docs.netapp.com/us-en/vcp/vcp_task_reports_alerts.html" />
+  <link rel="alternate" hreflang="ja" href="https://docs.netapp.com/ja-jp/vcp/vcp_task_reports_alerts.html" />
+  <link rel="alternate" hreflang="ko" href="https://docs.netapp.com/ko-kr/vcp/vcp_task_reports_alerts.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://docs.netapp.com/zh-cn/vcp/vcp_task_reports_alerts.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://docs.netapp.com/zh-tw/vcp/vcp_task_reports_alerts.html" />
+  <link rel="alternate" hreflang="de" href="https://docs.netapp.com/de-de/vcp/vcp_task_reports_alerts.html" />
+  <link rel="alternate" hreflang="fr" href="https://docs.netapp.com/fr-fr/vcp/vcp_task_reports_alerts.html" />
+  <link rel="alternate" hreflang="it" href="https://docs.netapp.com/it-it/vcp/vcp_task_reports_alerts.html" />
+  <!-- Top level site integrations -->
+<script type="text/javascript" src="https://cdn.cookielaw.org/consent/72570c5c-fe30-465f-b0e0-b77f7fb4ae34/OtAutoBlock.js"></script>
+    <script type="text/javascript" src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" charset="UTF-8" data-document-language="true" data-domain-script="72570c5c-fe30-465f-b0e0-b77f7fb4ae34"></script>
+    <script type="text/javascript">function OptanonWrapper() { }</script>
+    <script type="text/plain" class="optanon-category-C0002" src="https://assets.adobedtm.com/60287eadf1ee/c284da483c83/launch-e9ff3acac59f.min.js"></script>
+    <script class="optanon-category-C0001">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.setAttributeNode(d.createAttribute('data-ot-ignore'));j.setAttribute('class','optanon-category-C0001');j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+'';f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MD73T9M');</script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  
+  <script>
+    $(document).ready(function() {
+      const MASTHEAD_OFFSET = 65;
+      const SECTIONS = $("main h2, main h3");
+      // PAGE NAV - Init
+      if (SECTIONS.length == 0) {
+        // remove if there is no elements
+        /*
+        $("#ie-right-navbar").remove();
+        $("#ie-right-navbar-collapse").remove();
+        */
+      } else {
+        $(".page-nav-title").css('display', 'block');
+        for (var i = 0; i < SECTIONS.length; i++) {
+          var sectionId = $(SECTIONS[i]).attr('id');
+          var sectionName = $(SECTIONS[i]).text();
+          var subClass = $(SECTIONS[i]).is("h3") ? ' page-nav__sublink' : '';
+          $("#page-menu").append('<li class="page-nav-item"><a href="#' + sectionId + '" class="page-nav__link' + subClass + '">' + sectionName + '</a></li>');
+        }
+      }
+    });
+  </script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/es-es/vcp/js/na-search.js'></script><script src='/es-es/vcp/js/ie-clouddocs.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><script>
+    /*
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+      */
+  </script>
+  <script src='/es-es/vcp/js/custom-dropdown.js'></script>
+  <script src='/es-es/vcp/js/FileSaver.min.js'></script>
+  <script src='/es-es/vcp/js/jszip-utils.min.js'></script>
+  <script src='/es-es/vcp/js/jszip.min.js'></script><script src='/es-es/vcp/js/ie-pdf-ux.js'></script></head>
+
+
+  <body class role="document" data-flavor="">
+    <div class="skip-to-main">
+      <a href="#main" >Skip to main content</a>
+    </div><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MD73T9M"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><div id="page" class="">
+      <div id="ie-phone-menu" class=""></div>
+      <div id="ie-content-wrap" class="">
+        <nav id="ie-new-header">
+    <ul>
+        <li id="ie-phone-menu-button">
+            <a href="#">
+                <image id="" src="/es-es/vcp/images/hamburger.svg" alt="menu" />
+            </a>
+        </li>
+
+        <li>
+            <a href="https://www.netapp.com/es/">
+                <image id="ie-header-logo" src="/es-es/vcp/images/netapp_logo.svg" alt="netapp" />
+            </a>
+        </li>
+        <li id="ie-header-docs">
+            <a href="https://www.netapp.com/es/support-and-training/documentation/">Documentos</a>
+        </li>
+
+        <!-- Empty container to push header left with or without lang selector -->
+        <li id="empty-container" style="margin-left: auto">
+        </li>
+        <!-- Start Language Selector --><li id="ie-language-dropdown">
+            <div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+                <div class="custom-dropdown-select custom-dropdown-select-lang">
+                    <img src="/es-es/vcp/images/language_white_24dp.svg" class="n-globe__icon" />
+                    <span class="lang-name">Español</span>
+                    <img src="/es-es/vcp/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown header invisible" />
+                    <img src="/es-es/vcp/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup header" />
+                    </button>
+                </div>
+
+                <ul class="custom-dropdown-menu"><li>
+                        <a href="https://docs.netapp.com/es-es/vcp/vcp_task_reports_alerts.html"
+                            target="_self"><span translate="no" class="notranslate">Español</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/us-en/vcp/vcp_task_reports_alerts.html"
+                            target="_self"><span translate="no" class="notranslate">English</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/ja-jp/vcp/vcp_task_reports_alerts.html"
+                            target="_self"><span translate="no" class="notranslate">日本語</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/ko-kr/vcp/vcp_task_reports_alerts.html"
+                            target="_self"><span translate="no" class="notranslate">한국어</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/zh-cn/vcp/vcp_task_reports_alerts.html"
+                            target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/zh-tw/vcp/vcp_task_reports_alerts.html"
+                            target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/de-de/vcp/vcp_task_reports_alerts.html"
+                            target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/fr-fr/vcp/vcp_task_reports_alerts.html"
+                            target="_self"><span translate="no" class="notranslate">Français</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/it-it/vcp/vcp_task_reports_alerts.html"
+                            target="_self"><span translate="no" class="notranslate">Italiano</span></a>
+                    </li></ul>
+            </div>
+            </li>
+        <!-- End Language Selector -->
+
+
+        <li id="ie-allnetapp">
+            <div id="allnetapp-dropdown" class="custom-dropdown custom-dropdown-allnetapp">
+                <div class="custom-dropdown-select custom-dropdown-select-allnetapp">
+                    <img src="/es-es/vcp/images/apps_white_24dp.svg" alt="" class="allnetapp-icon" />
+                    <span class="allnetapp-name">Todo NetApp</span>
+                    <img src="/es-es/vcp/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown header invisible" />
+                    <img src="/es-es/vcp/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup header" />
+                    </button>
+                </div>
+
+                <ul class="custom-dropdown-menu allnetapp-dropdown">
+                    <li>
+                        <a href="https://bluexp.netapp.com/es/"
+                            target="_self"><span translate="no" class="notranslate">BlueXP</span></a>
+                    </li>
+                    <li>
+                        <a href="https://mysupport.netapp.com/site/"
+                            target="_self"><span translate="no" class="notranslate">Soporte</span></a>
+                    </li>
+                    <li>
+                        <a href="https://kb.netapp.com/"
+                            target="_self"><span translate="no" class="notranslate">Base de conocimientos</span></a>
+                    </li>
+                    <li>
+                        <a href="https://www.netapp.com/es/support-and-training/netapp-learning-services/"
+                            target="_self"><span translate="no" class="notranslate">Formación</span></a>
+                    </li>
+                </ul>
+            </div>
+
+        </li>
+
+    </ul>
+</nav>
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+
+<div id="ie-new-sidebar-collapse" style="display: none">
+    <img id="sidebar-expand" class="ie-searchbox-icon" src="/es-es/vcp/images/double_arrow.svg" alt="" />
+</div>
+<div id="ie-new-sidebar">
+    <div id="ie-product-identity-lockup">
+        <div id="sidebar-collapse" class="">
+            <img src="/es-es/vcp/images/double_arrow.svg" alt="" />
+        </div>
+        <div id="ie-breadcrumb" class="">
+  <ul class="ie-breadcrumb">
+    <li class="">
+      <a href="https://docs.netapp.com">Todos los documentos</a>
+    </li>
+    
+    
+
+    
+  </ul>
+  
+  <div class="ie-product-name" >
+    <!--<a href="/es-es/vcp/">-->
+      VCP
+    <!--</a>-->
+  </div>
+</div>
+
+            
+
+        
+        
+
+<div id="ie-searchbox" class="ie-searchbox-sidebar ">
+    <img class="ie-searchbox-icon" src="/es-es/vcp/images/loupe.svg" alt=""/>
+    <div id="react-search" 
+        data-search-html="/es-es/vcp/search.html" 
+        data-type="widget"
+        data-placeholder="Buscar documentación"
+        data-no-results-found="No se han encontrado resultados para {query}"
+        data-did-you-mean="Busca {suggestion}."
+        data-no-results-found-did-you-mean="No se ha encontrado ningún resultado para {query}. ¿Querías decir {suggestion}?"
+        data-results-found="{hitCount} resultados encontrados"
+        data-error-message="Se ha producido un error. Por favor, inténtalo de nuevo."
+        data-error-reset="Restablecer búsqueda"
+        data-sk-es-pf-indexes="" 
+        data-flavor="">
+    </div>
+</div>
+        
+    </div>
+    <div id="ie-new-toc"><script>
+  let sidebarAccordion = true;
+
+  /* specific css rules for Mac */
+  if(navigator.platform.match('Mac') !== null) {
+    document.body.setAttribute('class', 'OSX');
+  }
+
+</script>
+
+<div id="ie-sidebar-container">
+  <ul id="ie-sidebar-list" ><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Documentación del plugin de NetApp Element para VMware vCenter Server"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/index.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/es-es/vcp/index.html">
+        Documentación del plugin de NetApp Element para VMware vCenter Server
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información general del producto del plugin de NetApp Element para VMware vCenter Server"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/concept_vcp_product_overview.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/es-es/vcp/concept_vcp_product_overview.html">
+        Información general del producto del plugin de NetApp Element para VMware vCenter Server
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notas de la versión"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/vcp/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/vcp/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Notas de la versión</div>-->
+         Notas de la versión
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Novedades del plugin de NetApp Element para VMware vCenter Server"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/rn_whatsnew_vcp.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/rn_whatsnew_vcp.html">
+        Novedades del plugin de NetApp Element para VMware vCenter Server
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información adicional sobre la versión"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/rn_relatedrn_vcp.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/rn_relatedrn_vcp.html">
+        Información adicional sobre la versión
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Conceptos"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/vcp/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/vcp/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Conceptos</div>-->
+         Conceptos
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Plugin de NetApp Element para VMware vCenter Server 5.0 o posterior"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/vcp/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/vcp/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Plugin de NetApp Element para VMware vCenter Server 5.0 o posterior</div>-->
+         Plugin de NetApp Element para VMware vCenter Server 5.0 o posterior
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información general sobre la arquitectura de plugin remoto"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_concept_remote_plugin_architecture.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/vcp/vcp_concept_remote_plugin_architecture.html">
+        Información general sobre la arquitectura de plugin remoto
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Punto de extensión del complemento remoto de NetApp Element"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_concept_remote_plugin_extension_point.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/vcp/vcp_concept_remote_plugin_extension_point.html">
+        Punto de extensión del complemento remoto de NetApp Element
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Plugin de NetApp Element para VMware vCenter Server 4.10 o una versión anterior"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/vcp/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/vcp/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Plugin de NetApp Element para VMware vCenter Server 4.10 o una versión anterior</div>-->
+         Plugin de NetApp Element para VMware vCenter Server 4.10 o una versión anterior
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Punto de extensión NetApp Element Configuration"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_concept_config_extension_point.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/vcp/vcp_concept_config_extension_point.html">
+        Punto de extensión NetApp Element Configuration
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Punto de extensión NetApp Element Management"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_concept_management_extension_point.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/vcp/vcp_concept_management_extension_point.html">
+        Punto de extensión NetApp Element Management
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cuentas de usuario"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_concept_accounts.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_concept_accounts.html">
+        Cuentas de usuario
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Dominios de protección"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_concept_protection_domains.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_concept_protection_domains.html">
+        Dominios de protección
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Linked Mode y el plugin de vCenter"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_concept_linkedmode.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_concept_linkedmode.html">
+        Linked Mode y el plugin de vCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="QoSSIOC"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_concept_qossioc.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_concept_qossioc.html">
+        QoSSIOC
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Volúmenes virtuales (vVols)"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_concept_vvols.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_concept_vvols.html">
+        Volúmenes virtuales (vVols)
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Requisitos previos a la puesta en marcha"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/reference_requirements_vcp.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/es-es/vcp/reference_requirements_vcp.html">
+        Requisitos previos a la puesta en marcha
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Instale y configure el plugin de NetApp Element para vCenter Server"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/vcp/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/vcp/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Instale y configure el plugin de NetApp Element para vCenter Server</div>-->
+         Instale y configure el plugin de NetApp Element para vCenter Server
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Instale y configure el plugin de Element 5.0 y versiones posteriores en vCenter Server 7.0 y versiones posteriores"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_getstarted_5_0.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_getstarted_5_0.html">
+        Instale y configure el plugin de Element 5.0 y versiones posteriores en vCenter Server 7.0 y versiones posteriores
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Instale y configure el plugin de Element versión 4.10 y versiones anteriores"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_getstarted.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_getstarted.html">
+        Instale y configure el plugin de Element versión 4.10 y versiones anteriores
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Actualice el plugin"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/task_vcp_upgrades.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/es-es/vcp/task_vcp_upgrades.html">
+        Actualice el plugin
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestione el almacenamiento con el plugin de vCenter"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/vcp/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/vcp/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Gestione el almacenamiento con el plugin de vCenter</div>-->
+         Gestione el almacenamiento con el plugin de vCenter
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestione clústeres"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_clusters_manage.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_clusters_manage.html">
+        Gestione clústeres
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestionar almacenes de datos"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_datastores_manage.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_datastores_manage.html">
+        Gestionar almacenes de datos
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestione los volúmenes"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_volumes_manage.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_volumes_manage.html">
+        Gestione los volúmenes
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Crear y administrar cuentas de usuario"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_create_manage_user_accounts.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_create_manage_user_accounts.html">
+        Crear y administrar cuentas de usuario
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Permite crear y gestionar grupos de acceso"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_create_manage_access_groups.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_create_manage_access_groups.html">
+        Permite crear y gestionar grupos de acceso
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cree y gestione iniciadores"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_create_manage_initiators.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_create_manage_initiators.html">
+        Cree y gestione iniciadores
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configure y gestione QoSSIOC para volúmenes de Element y almacenes de datos de VMware"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_qossioc.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_qossioc.html">
+        Configure y gestione QoSSIOC para volúmenes de Element y almacenes de datos de VMware
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cree y gestione políticas de calidad de servicio de volúmenes"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_qos_policies.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_qos_policies.html">
+        Cree y gestione políticas de calidad de servicio de volúmenes
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestionar el hardware de los clústeres y las redes virtuales"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/vcp/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/vcp/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Gestionar el hardware de los clústeres y las redes virtuales</div>-->
+         Gestionar el hardware de los clústeres y las redes virtuales
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información general sobre el hardware de los clústeres de gestión y las redes virtuales"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_manage_cluster_overview.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_manage_cluster_overview.html">
+        Información general sobre el hardware de los clústeres de gestión y las redes virtuales
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Añadir y gestionar unidades"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_add_manage_drive.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_add_manage_drive.html">
+        Añadir y gestionar unidades
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Permite añadir y gestionar nodos"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_add_manage_nodes.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_add_manage_nodes.html">
+        Permite añadir y gestionar nodos
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Crear y gestionar redes virtuales"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_create_manage_vlans.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_create_manage_vlans.html">
+        Crear y gestionar redes virtuales
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supervise el rendimiento del sistema"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/vcp/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/vcp/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Supervise el rendimiento del sistema</div>-->
+         Supervise el rendimiento del sistema
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supervise el rendimiento del sistema con las opciones Report"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_reports_intro.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_reports_intro.html">
+        Supervise el rendimiento del sistema con las opciones Report
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supervise el estado general del clúster en la página Overview"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_reports_overview.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_reports_overview.html">
+        Supervise el estado general del clúster en la página Overview
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supervise las alertas del sistema"
+      data-li-level="2" 
+      class=" sidebar-folder   ie-sidebar-selected    "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_reports_alerts.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_reports_alerts.html">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/vcp/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/vcp/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Supervise las alertas del sistema</div>-->
+         Supervise las alertas del sistema
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Lista de alertas del sistema"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_reference_reports_alert_errors.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/vcp/vcp_reference_reports_alert_errors.html">
+        Lista de alertas del sistema
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supervise los registros de eventos para solucionar problemas"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_reports_event_logs.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_reports_event_logs.html">
+        Supervise los registros de eventos para solucionar problemas
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supervisar el rendimiento del volumen"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_reports_volume_performance.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_reports_volume_performance.html">
+        Supervisar el rendimiento del volumen
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supervise las sesiones iSCSI para determinar el estado de la conexión"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_reports_iscsi.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_reports_iscsi.html">
+        Supervise las sesiones iSCSI para determinar el estado de la conexión
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supervise el rendimiento de las máquinas virtuales con eventos QoSSIOC"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_reports_qossioc.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_reports_qossioc.html">
+        Supervise el rendimiento de las máquinas virtuales con eventos QoSSIOC
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Proteja los datos con el plugin de vCenter"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/vcp/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/vcp/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Proteja los datos con el plugin de vCenter</div>-->
+         Proteja los datos con el plugin de vCenter
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Proteja datos con la información general del plugin de vCenter"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_protect_overview.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_protect_overview.html">
+        Proteja datos con la información general del plugin de vCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Permite crear y gestionar copias de Snapshot de volumen"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_protect_snapshots_volume.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_protect_snapshots_volume.html">
+        Permite crear y gestionar copias de Snapshot de volumen
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Permite crear y gestionar copias de Snapshot de grupo"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_protect_snapshots_group.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_protect_snapshots_group.html">
+        Permite crear y gestionar copias de Snapshot de grupo
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Crear programaciones de snapshots"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_protect_snapshots_schedules.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_protect_snapshots_schedules.html">
+        Crear programaciones de snapshots
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Ejecute la replicación remota entre clústeres"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_protect_remote_replication.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/vcp/vcp_task_protect_remote_replication.html">
+        Ejecute la replicación remota entre clústeres
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configure y gestione volúmenes virtuales con el plugin de vCenter"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_task_configure_manage_vvols.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/es-es/vcp/vcp_task_configure_manage_vvols.html">
+        Configure y gestione volúmenes virtuales con el plugin de vCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cancele el registro del plugin"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/task_vcp_unregister.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/es-es/vcp/task_vcp_unregister.html">
+        Cancele el registro del plugin
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Quite el plugin"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/task_vcp_remove.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/es-es/vcp/task_vcp_remove.html">
+        Quite el plugin
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Solucione problemas del plugin"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/vcp_reference_troubleshoot_vcp.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/es-es/vcp/vcp_reference_troubleshoot_vcp.html">
+        Solucione problemas del plugin
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Versiones anteriores de la documentación del plugin de NetApp Element"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/reference_earlier_versions.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/es-es/vcp/reference_earlier_versions.html">
+        Versiones anteriores de la documentación del plugin de NetApp Element
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Avisos legales"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/vcp_task_reports_alerts.html" 
+      dale-entry-url="/legal-notices.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/es-es/vcp/legal-notices.html">
+        Avisos legales
+      </a></li></ul>
+</div>
+<script>
+
+  $(".ie-sidebar-button").click(function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    expandedLI = $('li.ie-sidebar-expand')
+
+    const li = $(this).closest("li");
+
+    const parentsLI = $(li).parents('li');
+
+    expandedLI.map(element => {
+      if (sidebarAccordion && !li.hasClass('ie-sidebar-expand') && jQuery.inArray(expandedLI[element], parentsLI) == -1) {
+        $(expandedLI[element]).toggleClass('ie-sidebar-expand');
+        $(expandedLI[element]).children("ul").animate({ height: 'toggle' }, 400, function () {
+          $(li).children("ul").toggleClass('ie-sidebar-open');
+
+        })
+      }
+
+    })
+
+    $(li).toggleClass('ie-sidebar-expand');
+    $(li).children("ul").animate({ height: 'toggle' }, 400, function () {
+      $(li).children("ul").toggleClass('ie-sidebar-open');
+    })
+  });
+
+
+  
+    $("li.ie-sidebar-selected").parents('ul').toggleClass("ie-sidebar-open");
+    $("li.ie-sidebar-selected").toggleClass("ie-sidebar-expand")
+    $("ul.ie-sidebar-open").parent().toggleClass("ie-sidebar-expand");
+    $("li.ie-sidebar-selected").children('ul').toggleClass("ie-sidebar-open")
+  
+  
+</script>
+    </div>
+</div>
+<script>
+
+    
+    let sidebarScrollTopPosition = 0;
+    $("#ie-new-toc").on("scroll", function () {
+        if (sidebarScrollTopPosition == 0) {
+            $.cookie("sidebarScroll", $("#ie-new-toc").scrollTop(), {
+                path: "/es-es/vcp"
+            });
+        }
+
+        if ($("#ie-new-toc").scrollTop() > 0) {
+            $('#ie-product-identity-lockup').addClass('ie-addShadow');
+        } else {
+            $('#ie-product-identity-lockup').removeClass('ie-addShadow');
+        }
+    });
+
+    $(function () {
+        if ($.cookie("sidebarScroll")) {
+            $("#ie-new-toc").scrollTop($.cookie("sidebarScroll"));
+        }
+    });
+
+    function setSidebarBottom() {
+        const footerGap = PXinViewport($(".n-footer"));
+        document.getElementById("ie-new-sidebar").style.bottom = Math.max(0, footerGap) + "px";
+    }
+
+    window.onscroll = () => {
+        setSidebarBottom();
+    };
+
+    $("#sidebar-collapse").click(function (e) {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        e.preventDefault();
+        const width = $(".ie-content-pane").width();
+        const marginLeft = parseInt($(".ie-content-pane").css('marginLeft'));
+
+        if ($.cookie("sidebarScroll")) {
+            sidebarScrollTopPosition = $.cookie("sidebarScroll");
+        }
+
+        $("#ie-new-sidebar").animate({ width: 'toggle' }, 350, function () {
+            $("#ie-new-sidebar-collapse").show();
+            $("#ie-new-sidebar").removeClass("open")
+            $("#ie-new-sidebar").addClass("close")
+            $("#ie-new-sidebar").removeAttr("style")
+        });
+        $(".ie-content-pane").animate({ width: (width + sidebarWidth), marginLeft: (marginLeft - sidebarWidth) }, 350, function () {
+            resizeContent()
+        })
+
+    });
+    $("#sidebar-expand").click(function (e) {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        e.preventDefault();
+        const width = $(".ie-content-pane").width();
+        const marginLeft = parseInt($(".ie-content-pane").css('marginLeft'));
+
+        $("#ie-new-sidebar").animate({ width: 'toggle' }, 250, function () {
+            $('#ie-new-sidebar').css('display', 'flex');
+            $("#ie-new-sidebar-collapse").hide();
+            $("#ie-new-sidebar").removeClass("close")
+            $("#ie-new-sidebar").addClass("open")
+            setSidebarBottom();
+
+            if (sidebarScrollTopPosition != 0) {
+                $.cookie("sidebarScroll", sidebarScrollTopPosition, {
+                    path: "/es-es/vcp"
+                })
+                $("#ie-new-toc").scrollTop(sidebarScrollTopPosition);
+                sidebarScrollTopPosition = 0;
+            }
+        });
+        $(".ie-content-pane").animate({ width: (width - sidebarWidth), 'marginLeft': (marginLeft + sidebarWidth) }, 250, function () {
+            resizeContent()
+        })
+    });
+    function resizeContent() {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        const rightNavbarVisible =  $("#ie-right-navbar").css('display') && $("#ie-right-navbar").css('display') != 'none';
+        const sidebarVisible = $("#ie-new-sidebar").css('display') != 'none';
+        const rightNavbarWidth = $("#ie-right-navbar").width();
+        const rightNavbarCollapseWidth = $("#ie-right-navbar-collapse").width();
+        const rightNavbarCollapseVisible = $("#ie-right-navbar-collapse").css('display') && $("#ie-right-navbar-collapse").css('display') != 'none';
+        
+        if (rightNavbarVisible && sidebarVisible) {
+            $(".ie-content-pane").width(`calc(100% - ${sidebarWidth + rightNavbarWidth}px)`)
+            $(".ie-content-pane").css('marginLeft', `${sidebarWidth}px`)
+        } else if (sidebarVisible) {
+            $(".ie-content-pane").css('marginLeft', `${sidebarWidth}px`)
+            if (rightNavbarCollapseVisible) {
+                $(".ie-content-pane").width(`calc(100% - ${sidebarWidth + rightNavbarCollapseWidth}px)`)
+            } else {
+                $(".ie-content-pane").width(`calc(100% - ${$("#ie-new-sidebar").width()}px)`)
+            }
+
+        } else if (rightNavbarVisible) {
+            $(".ie-content-pane").css('marginLeft', `${$("#ie-new-sidebar-collapse").width()}px`)
+            $(".ie-content-pane").width(`calc(100% - ${rightNavbarWidth}px)`)
+        } else {
+            $(".ie-content-pane").css('marginLeft', `${$("#ie-new-sidebar-collapse").width()}px`)
+            if (rightNavbarCollapseVisible) {
+                $(".ie-content-pane").width(`calc(100% - ${rightNavbarCollapseWidth}px)`);
+            } else {
+                $(".ie-content-pane").width(`calc(100% - ${$("#ie-new-sidebar-collapse").width()}px) `);
+            }
+            
+        }
+    }
+    $(window).on("resize load", function () {
+        setSidebarBottom();
+        resizeContent()
+    });
+
+
+</script>
+
+<div class="ie-content-pane ie-component-detail-content ie-component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content" id="main">
+      <!-- include utility.html -->
+      <div class="ie-info-disclaimer">
+    <span>
+      <div class="ie-info-disclaimer-container">
+        <div class="ie-info-disclaimer-icon">
+          <img src="/es-es/vcp/images/notification-icons.svg" class="luci-icon" alt="" />
+        </div>
+        <div class="ie-info-disclaimer-content">
+          <span> Se proporciona el idioma español mediante traducción automática para su comodidad. En caso de alguna inconsistencia, el inglés precede al español. </span>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+    </span>
+  </div><div class="ie-component-detail-heading-wrap">
+  <h1 class="ie-component-detail-heading">Supervise las alertas del sistema</h1>
+</div>
+
+<div id="ie-byline">
+  
+<div class="page-details">
+    
+        
+            <time datetime="2023-02-20 22:39:28 +0000">02/20/2023</time>
+        
+    
+    
+        <span>Colaboradores
+        </span>
+    
+    
+</div>
+<div class="page-controls">
+    <div id="contribute-dropdown" class="custom-dropdown custom-dropdown-contrib" >
+        <div class="custom-dropdown-select custom-dropdown-select-contrib">
+        <span class="contrib-name"><img src="/es-es/vcp/images/discuss-sm.svg" alt="" class="github-icon" />Sugerir cambios</span>
+        <img src="/es-es/vcp/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown invisible" />
+        <img src="/es-es/vcp/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup" />
+        </div>
+        <ul class="custom-dropdown-menu suggested-changes-dropdown"><li>
+                <a target="_blank" href="https://github.com/NetAppDocs/vcp.es-es/issues/new?template=new-from-page.yml&page-url=https://docs.netapp.com/es-es/vcp/vcp_task_reports_alerts.html&page-title=Supervise las alertas del sistema" class="page-nav-contribute-link" role="button">Solicitar cambios en el documento</a>
+            </li><li> 
+                <a target="_blank" href="https://github.com/NetAppDocs/vcp/blob/main/vcp_task_reports_alerts.adoc" class="page-nav-contribute-link" role="button">Editar esta página</a>
+            </li><li><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  >Descubre cómo colaborar</a></li>
+        </ul>
+    </div>
+    <div id="pdf-control-container">
+        <div class="n-pdf-header">
+            <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+                <img class="adobe-icon" src="/es-es/vcp/images/pdf-icon.png" alt="" width="16" height="16"/>PDF<img src="/es-es/vcp/images/dropdown-arrow.svg" class="custom-icon" alt="" />
+            </a>
+        </div>
+        <div class="n-pdf-body-container">
+            <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+                    
+                    
+                    
+                    <a target="_blank" class="pdf-download-link" href="/es-es/vcp/pdfs/fullsite-sidebar/Documentación_del_plugin_de_NetApp_Element_para_VMware_vCenter_Server.pdf" >
+                    <img src="/es-es/vcp/images/pdf-icon.png" alt="" width="16" height="16"/>PDF de este sitio de documentos</a>
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/vcp/pdfs/sidebar/Notas_de_la_versión.pdf" 
+            
+          >
+            <img src="/es-es/vcp/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Notas de la versión
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/vcp/pdfs/sidebar/Conceptos.pdf" 
+            
+          >
+            <img src="/es-es/vcp/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Conceptos
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/vcp/pdfs/sidebar/Plugin_de_NetApp_Element_para_VMware_vCenter_Server_5_0_o_posterior.pdf" 
+            
+          >
+            <img src="/es-es/vcp/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Plugin de NetApp Element para VMware vCenter Server 5.0 o posterior
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/vcp/pdfs/sidebar/Plugin_de_NetApp_Element_para_VMware_vCenter_Server_4_10_o_una_versión_anterior.pdf" 
+            
+          >
+            <img src="/es-es/vcp/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Plugin de NetApp Element para VMware vCenter Server 4.10 o una versión anterior
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/vcp/pdfs/sidebar/Instale_y_configure_el_plugin_de_NetApp_Element_para_vCenter_Server.pdf" 
+            
+          >
+            <img src="/es-es/vcp/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Instale y configure el plugin de NetApp Element para vCenter Server
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/vcp/pdfs/sidebar/Gestione_el_almacenamiento_con_el_plugin_de_vCenter.pdf" 
+            
+          >
+            <img src="/es-es/vcp/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Gestione el almacenamiento con el plugin de vCenter
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/vcp/pdfs/sidebar/Gestionar_el_hardware_de_los_clústeres_y_las_redes_virtuales.pdf" 
+            
+          >
+            <img src="/es-es/vcp/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Gestionar el hardware de los clústeres y las redes virtuales
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/vcp/pdfs/sidebar/Supervise_el_rendimiento_del_sistema.pdf" 
+            
+          >
+            <img src="/es-es/vcp/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Supervise el rendimiento del sistema
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/vcp/pdfs/sidebar/Supervise_las_alertas_del_sistema.pdf" 
+            
+          >
+            <img src="/es-es/vcp/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Supervise las alertas del sistema
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/vcp/pdfs/sidebar/Proteja_los_datos_con_el_plugin_de_vCenter.pdf" 
+            
+          >
+            <img src="/es-es/vcp/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Proteja los datos con el plugin de vCenter
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li></ul>
+            <div class="zip-pdf-link-container" style="display: none;">   
+                <a href="#" id="zipPdf">
+                <img src="/es-es/vcp/images/pdf-zip.png" alt="" width="16" height="16"/>
+                <pre>Recopilación de documentos PDF independientes<span class="zip-size"></span></pre>
+                </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+        </div>
+    </div>        
+<script>
+$("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+$("#toggleButtonPdf").on('click', function(e){ 
+    e.stopPropagation();
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+});
+
+//hide is by clicking outside pdfcontainer
+$(document).on('click', function (e) {
+    if ($('#toggleContainerPdf').is(':visible') && !$('.n-pdf-body-container').is(e.target) && !$('.n-pdf-body-container').has(e.target).length)  {
+        
+        $("#toggleContainerPdf").toggle('display');
+        $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+        $("#toggleButtonPdf").removeClass("active");
+    }
+});
+</script>
+<script>
+    function getPdfLocation() {
+        const pdfLocation = window.scrollX + document.querySelector('#pdf-control-container').getBoundingClientRect().left
+        if (pdfLocation < 450) {
+            $(".n-pdf-body-container").addClass("block")
+        } else {
+            $(".n-pdf-body-container").removeClass("block")
+        }
+    
+    }
+    $( window ).on( "resize", function() {
+        getPdfLocation()
+} );
+</script>
+<script>
+    const pdfButtonWidth =  $(".n-pdf-header").width();
+    const pdfMenuWidth = $(".n-pdf-body-container").width();
+    $(".n-pdf-body-container").css('margin-left', `calc(${pdfButtonWidth - pdfMenuWidth}px)`);
+</script>
+</div>
+
+    
+
+</div>
+
+
+
+
+<div class="content-to-index">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>Puede supervisar las alertas, que son información, advertencias o errores que indican el funcionamiento del clúster.</p>
+</div>
+<div class="paragraph">
+<p>Las alertas son fallas o errores del clúster, que se informan cuando se producen. La mayoría de errores se resuelven automáticamente por sí mismos; sin embargo, puede que algunos requieran intervención manual. El sistema informa de códigos de error de alertas con cada alerta en la página Alerts. los códigos de error ayudan a determinar en qué componente del sistema se generó la alerta y por qué se generó. Consulte <a href="vcp_reference_reports_alert_errors.html">"Lista de alertas del sistema"</a> para obtener descripciones y pasos de resolución.</p>
+</div>
+<div class="paragraph">
+<p>Después de resolver el problema, el sistema se sondea a sí mismo e identifica el problema como resuelto. Luego, toda la información sobre la alerta, incluida la fecha en la que se solucionó, se traslada a la vista Resolved.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>En el complemento de vCenter, abra la pestaña <strong>Management</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A partir del complemento de vCenter para Element 5.0, seleccione <strong>NetApp Element Remote Plugin &gt; Management &gt; Management</strong>.</p>
+</li>
+<li>
+<p>Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione <strong>Gestión de NetApp Element &gt; Gestión</strong>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Seleccione <strong>Informes</strong> &gt; <strong>Alertas</strong>.</p>
+</li>
+<li>
+<p>Supervise la siguiente información de alertas del clúster:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>ID</strong>: ID exclusivo para una alerta de clúster.</p>
+</li>
+<li>
+<p><strong>Gravedad</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Advertencia</strong>: Un problema menor que podría requerir atención pronto. Las actualizaciones del sistema todavía se permiten en este nivel de gravedad.</p>
+</li>
+<li>
+<p><strong>Error</strong>: Un fallo que puede causar la degradación del rendimiento o la pérdida de alta disponibilidad (ha). En general, los errores no deben afectar el servicio de otro modo.</p>
+</li>
+<li>
+<p><strong>Crítico</strong>: Un fallo grave que afecta al servicio. El sistema no es capaz de atender las solicitudes de I/o de la API o el cliente. El funcionamiento en este estado podría provocar la pérdida potencial de datos.</p>
+</li>
+<li>
+<p><strong>BestPractice</strong>: No se utiliza una práctica recomendada de configuración del sistema.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Tipo</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Nodo</strong>: Fallo que afecta a un nodo entero.</p>
+</li>
+<li>
+<p><strong>Unidad</strong>: Fallo que afecta a una unidad individual.</p>
+</li>
+<li>
+<p><strong>Cluster</strong>: Fallo que afecta a todo el cluster.</p>
+</li>
+<li>
+<p><strong>Service</strong>: Fallo que afecta a un servicio del cluster.</p>
+</li>
+<li>
+<p><strong>VOLUME</strong>: Fallo que afecta a un volumen del grupo.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Node</strong>: ID de nodo para el nodo al que hace referencia este fallo. Se incluye para los errores de nodo y de unidad; de lo contrario se establece como - (guion).</p>
+</li>
+<li>
+<p><strong>ID de unidad</strong>: ID de unidad de la unidad a la que hace referencia este error. Se incluye para los errores drive; de lo contrario se establece como - (guion).</p>
+</li>
+<li>
+<p><strong>Código de error</strong>: Código descriptivo que indica cuál fue la causa del error.</p>
+</li>
+<li>
+<p><strong>Detalles</strong>: Descripción detallada del fallo.</p>
+</li>
+<li>
+<p><strong>Time</strong>: Este encabezado sólo está visible en la vista Active filter. La fecha y la hora en la que se registró el error.</p>
+</li>
+<li>
+<p><strong>Fecha de resolución</strong>: Este encabezado sólo está visible en la vista filtro resuelto. La fecha y la hora en la que se resolvió el error.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Para validar que el problema se ha resuelto, buscarlo en la vista solucionado.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="obtenga-más-información">Obtenga más información</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.netapp.com/us-en/hci/index.html" target="_blank" rel="noopener">"Documentación de NetApp HCI"</a></p>
+</li>
+<li>
+<p><a href="https://www.netapp.com/data-storage/solidfire/documentation" target="_blank" rel="noopener">"Página SolidFire y Element Resources"</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  
+  <!-- Start Page Toolbar -->
+<div id="ie-right-navbar-collapse" class="close">
+  <img id="navbar-expand" class="ie-searchbox-icon" src="/es-es/vcp/images/double_arrow.svg" alt="" />
+</div>
+<div id="ie-right-navbar" class="open">
+  <div id="right-navbar-collapse">
+    <img src="/es-es/vcp/images/double_arrow.svg" alt="" />
+  </div>
+  <div class="page-nav-container">
+    <nav class="page-nav-fixed">
+      <div class="page-nav-title">En esta página</div>
+      <div class="page-nav-links">
+        <ul class="page-nav-inner" id="page-menu"></ul>
+      </div>
+    </nav>
+  </div>
+</div>
+
+
+<script>
+  resizeContent();
+  function setRightBarHeight() {
+    var h = 0;
+
+    // header 1
+    h += PXinViewport($('.n-footer'));
+    h += PXinViewport($('#ie-new-header'));
+
+    if ($('#ie-right-navbar').length) {
+      $('#ie-right-navbar').css({ height: `calc(100vh - ${h}px)` });
+    }
+    if ($('.page-nav-links').length) {
+      h += 98;
+      $('.page-nav-links').css({ height: `calc(100vh - ${h}px)` });
+    }
+  }
+
+  $(document).ready(function () {
+    // PAGE NAV - Click
+    const MASTHEAD_OFFSET = 65;
+    const SECTIONS = $("main h2, main h3");
+    let calculateActiveSection = false;
+    setTimeout(() => {
+      calculateActiveSection = true;
+    }, 100)
+
+    $(".page-nav__link").click(function (event) {
+      calculateActiveSection = false;
+      $(".page-nav__link").removeClass('page-nav__link--active');
+      var target = $(event.target);
+      target.addClass('page-nav__link--active');
+      location.hash = event.target.hash;
+      setTimeout(() => {
+        calculateActiveSection = true;
+      }, 100)
+
+    });
+
+    // PAGE NAV - Scroll
+    $(window).on('resize scroll', function () {
+      if (calculateActiveSection) {
+        var activeSection = getActiveSection(SECTIONS, MASTHEAD_OFFSET);
+        if (activeSection) {
+          var activeHref = $(activeSection).attr('id');
+          $(".page-nav__link").removeClass('page-nav__link--active');
+          $("#page-menu a[href=#" + activeHref + "]").addClass('page-nav__link--active');
+          if (location.hash != "#" + activeHref) {
+            if (history.replaceState) {
+              history.replaceState(null, null, "#" + activeHref);
+            }
+          }
+        }
+      }
+    });
+
+    $(".n-pdf-button").click(function () {
+      $(this).toggleClass("active");
+    });
+
+    $.fn.isVisibleAndInViewport = function () {
+      var elementTop = $(this).offset().top;
+      var elementBottom = elementTop + $(this).outerHeight();
+
+      var viewportTop = $(window).scrollTop();
+      var viewportBottom = viewportTop + $(window).height();
+
+      return elementBottom > viewportTop && elementTop < viewportBottom && $(this).is(":visible");
+    };
+
+
+    $(window).on('resize scroll', function () {
+      setRightBarHeight();
+    });
+
+    $(window).trigger('resize');
+
+
+  });
+
+  $("#right-navbar-collapse").click(function (e) {
+    const rightNavbarWidth = $("#ie-right-navbar").width() - $("#ie-right-navbar-collapse").width();
+    e.preventDefault();
+    const width = $(".ie-content-pane").width();
+
+    $("#ie-right-navbar").animate({ width: 'toggle' }, 350, function () {
+      $("#ie-right-navbar-collapse").removeClass("close")
+      $("#ie-right-navbar-collapse").addClass("open")
+      $("#ie-right-navbar").removeClass("open")
+      $("#ie-right-navbar").addClass("close")
+    });
+    $(".ie-content-pane").animate({ width: (width + rightNavbarWidth) }, 350, function () {
+      resizeContent()
+      setSidebarBottom();
+    })
+
+  });
+  $("#navbar-expand").click(function (e) {
+    const rightNavbarWidth = $("#ie-right-navbar").width() - $("#ie-right-navbar-collapse").width();
+    e.preventDefault();
+    const width = $(".ie-content-pane").width();
+    $("#ie-right-navbar").animate({ width: 'toggle' }, 250, function () {
+      $("#ie-right-navbar-collapse").removeClass("open")
+      $("#ie-right-navbar-collapse").addClass("close")
+      $("#ie-right-navbar").removeClass("close")
+      $("#ie-right-navbar").addClass("open")
+      setRightBarHeight();
+      setSidebarBottom();
+    });
+    $(".ie-content-pane").animate({ width: (width - rightNavbarWidth) }, 250, function () {
+      resizeContent()
+    })
+  });
+
+  function navbarResize() {
+    const rightNavbarResized = $("#ie-right-navbar-collapse").hasClass('resized');
+    if (window.innerWidth < 1024) {
+      $("#ie-right-navbar").removeClass("open")
+      $("#ie-right-navbar").addClass("close")
+      $("#ie-right-navbar").removeAttr("style")
+      $("#ie-right-navbar-collapse").removeClass("close")
+      $("#ie-right-navbar-collapse").addClass("open")
+      $("#ie-right-navbar-collapse").addClass("resized")
+    } else {
+      if (rightNavbarResized) {
+        $('#ie-right-navbar').removeClass('close');
+        $('#ie-right-navbar').addClass('open');
+        $("#ie-right-navbar-collapse").removeClass("resized")
+        $("#ie-right-navbar-collapse").removeClass("open")
+        $("#ie-right-navbar-collapse").addClass("close")
+      }
+    }
+    resizeContent()
+  }
+  navbarResize();
+  $(window).on('resize load', function () {
+    navbarResize()
+  });
+
+  function getActiveSection(sections, offset) {
+    var scrollPosition = $(window).scrollTop() + offset + 5;
+    var activeSection;
+    for (var i = 0; i < sections.length; i++) {
+      var el = $(sections[i]);
+      var activePosition = el.offset().top;
+      if (activePosition > scrollPosition) {
+        break;
+      }
+
+      activeSection = sections[i];
+    }
+
+    return activeSection;
+  }
+
+  $("a[href*=#]:not([href=#])").click(function () {
+    setTimeout(() => {
+      $(window).trigger('scroll');
+    }, 105)
+  })
+
+  const hashOnLoad = location.href.split("#")[1];
+  setTimeout(function () {
+    if (hashOnLoad) {
+      $(".page-nav__link").removeClass('page-nav__link--active');
+      $("#page-menu a[href=#" + hashOnLoad + "]").addClass('page-nav__link--active');
+    }
+  }, 100)
+
+</script>
+
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+        <div class="n-footer__left">
+          <li class="n-footer__copyright-link">
+                    <a href="https://www.netapp.com/company/legal/copyright/">© 2024 NetApp, Inc.</a>
+          </li>
+        </div>
+        <div class="n-footer__center">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">Condiciones de uso</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">Política de privacidad</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">Política de cookies</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">Configuración de cookies</a>
+            </li>
+          </ul>
+       </div>
+        <div class="n-footer__right">
+              <li class="n-footer__copyright-link">
+                <a target="_self" href="javascript:netapp_mailto()">Enviar comentarios sobre esta página</a>
+              </li>
+        </div>
+     </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/es-es/vcp/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/es-es/vcp/js/prism.js'></script>
+      <script type="text/javascript" src='/es-es/vcp/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/es-es/vcp/js/ie-tabbed-blocks.js'></script>
+    <script src='/es-es/vcp/js/ie-sidebar.js'></script>
+  </body>
+
+</html>
