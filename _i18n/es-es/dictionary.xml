@@ -1123,10 +1123,8 @@
   <block id="e6372cec26f9b562c7a80adfddcc1b96" category="admonition">Utilice un nombre único para cada almacén de datos en un centro de datos. Para varios entornos de clústeres o vCenter Server, utilice prácticas recomendadas de nomenclatura descriptiva.</block>
   <block id="9dbdab54470930bcd90fc6a8b9dacf15" category="list-text">Seleccione uno o más hosts requeridos para el almacén de datos.</block>
   <block id="ff51ebefd280ca27ec34709c2afb8006" category="admonition">Debe haber al menos un host conectado para poder crear un nuevo almacén de datos. Si el host tiene varios iniciadores, elija uno solo o elija el host para seleccionar todos los iniciadores. Si se usa vCenter Linked Mode, solo pueden seleccionarse los hosts disponibles en la instancia de vCenter Server a la cual se asigna el clúster.</block>
-  <block id="bacf21a423bfde2c1eb26fc08d7bdc62" category="list-text">En el panel *Configurar volumen*, seleccione un volumen existente y continúe con el paso siguiente, o cree un volumen nuevo para el nuevo almacén de datos:</block>
   <block id="b8a1cad4a50c9260122967b830aa2f1e" category="inline-link">Montar una copia de almacén de datos VMFS</block>
   <block id="d79c3c87976b8fd24486c760b99214ec" category="inline-link">Gestión de almacenes de datos VMFS duplicados</block>
-  <block id="0f030e88335aefb9eac88487443396e2" category="admonition">Si selecciona un volumen existente para crear un almacén de datos nuevo, se perderán los datos existentes. Para ver los volúmenes de VMFS existentes, consulte la documentación de VMware acerca de<block ref="be550d2037a470ce38c4e9b1205adbd3" category="inline-link-rx"></block> y..<block ref="e78925c5281376a20450a24207e06cd4" category="inline-link-rx"></block>.</block>
   <block id="9b4855f94b52191a1a75d475396f12a1" category="list-text">Introduzca un nombre para el volumen que respalda al almacén de datos.</block>
   <block id="f344eae662ec1ec943e20eea1abbf748" category="list-text">Seleccione una cuenta de usuario en la lista de cuentas.</block>
   <block id="f35c2266c9134e65354b7bac8eb01f5a" category="list-text">Introduzca el tamaño total del volumen que desea crear.</block>
@@ -1315,7 +1313,6 @@
   <block id="87e51067c2a7529e01c8fa57d7d29919" category="paragraph">Para usar el plugin de Element vCenter, se deben usar VMware vSphere 8.0 y 7.0, incluidas vCenter y ESXi con adaptador de software iSCSI y redes iSCSI configuradas.</block>
   <block id="3903fd261f224ad8af888f893eb71a5e" category="paragraph-title">Versiones de VMware vSphere compatibles con el plugin</block>
   <block id="39bb4a890cda10e989012ed844843a1a" category="paragraph">El plugin admite las siguientes versiones principales del software VMware:</block>
-  <block id="9cf493ed2f9140046fab3919844fdd27" category="list-text">VSphere 7.0 y 7.0 Update 1, 2 y 3, incluidos vCenter Server, ESXi y almacenes de datos de VMFS5 y VMFS6</block>
   <block id="92a2b5cb9c6906035c2864fa225e1940" category="inline-link">artículo</block>
   <block id="1400ae8c17045a12d78fd12af11a1d4c" category="admonition">VMware vSphere 6.5 y 6.7 alcanzaron el estado de fin de soporte el 15 de octubre de 2022. A partir del plugin de Element 5.0, vSphere 6.5 y 6.7 ya no son compatibles. Para obtener más información, consulte este tema<block ref="6a2f70d2ba0033763d7682575dc0f9df" category="inline-link-rx"></block>.</block>
   <block id="f4bbb6f9fa6c5749dac1df4f2bf8df3e" category="paragraph">Compruebe que el sistema cumpla los requisitos para usar el plugin de vCenter versión 4.10 o una versión anterior de Element.</block>
@@ -2826,16 +2823,11 @@
   <block id="9055d5b4f435ab7f0fd544794b6cd19f" category="list-text">*Nodos de ensamble*: Indica el estado actual del nivel de protección del subsistema de miembros del ensamble.</block>
   <block id="939f531b35412529043c2c302552fa24" category="list-text"><block ref="939f531b35412529043c2c302552fa24" category="inline-link-rx"></block></block>
   <block id="ce397f79b5032c3e327db3efe5a6048a" category="inline-link">Notas de la versión del plugin de vCenter 5,2</block>
-  <block id="4718467fa890cd0dcf159b3d461cedbe" category="list-text"><block ref="6bd87cf3d55c2ead3ab585e965bea4db" category="inline-link-rx"></block> _NEW_</block>
-  <block id="0d8e7da83905e55b509122516259e079" category="paragraph">Si desea actualizar el plugin de NetApp Element para vCenter Server, siga los pasos que se describen para la instalación. El complemento NetApp Element vCenter 5,2 está disponible fuera de las versiones de Element y NetApp HCI como parte de un paquete de servicios de gestión.</block>
   <block id="6bd87cf3d55c2ead3ab585e965bea4db" category="list-text"><block ref="6bd87cf3d55c2ead3ab585e965bea4db" category="inline-link-rx"></block></block>
   <block id="ce4da9d1400f05b36779b0eb51082347" category="inline-link">Obtenga más información sobre los dominios de protección personalizados</block>
   <block id="c671ce05a947b4fc3538276dc92df5bc" category="paragraph"><block ref="94416f01b8f87d5b898c4987d363cee6" category="inline-link-rx"></block>.</block>
-  <block id="93fa53865774995b6cd95dfc1939095f" category="list-text">VSphere 8,0 Update 1, que incluye vCenter Server, ESXi y almacenes de datos VMFS5 y VMFS6</block>
   <block id="faf6c38631911f7840c3498b4ec9f746" category="inline-link-macro">Aviso para servicios de gestión 2.24.40 (complemento NetApp Element para VMware vCenter Server 5,2.12)</block>
   <block id="25ca5b0e8a707ce2e66aeb1f6f90e710" category="list-text"><block ref="25ca5b0e8a707ce2e66aeb1f6f90e710" category="inline-link-macro-rx"></block></block>
-  <block id="fb7ee1da3ef0eafb228b5df1bc76e51a" category="paragraph">También hay documentación disponible para versiones anteriores a la versión 5,2 del plugin de NetApp Element para VMware vCenter Server.</block>
-  <block id="514f715e57edd4343e805d5f5384b20e" category="admonition">Este <block ref="f85d5f4f47d1b49f55d365d260fa53d2" category="inline-link-macro-rx"></block> Para el plugin de vCenter 5,2 de Element también incluye las versiones 5,1, 5,0, 4,10, 4,9, 4,8, 4,7 y 4,6.</block>
   <block id="43ff194f410f3e93a8680bef5ba51e50" category="cell">5,1</block>
   <block id="8ef365dbc309c214b67cabb8e4667395" category="cell"><block ref="8ef365dbc309c214b67cabb8e4667395" category="inline-link-rx"></block></block>
   <block id="f8d3d7b8669323aed37a5ab85af833f2" category="inline-link">2.23.64</block>
@@ -2846,4 +2838,35 @@
   <block id="910e8449099d39f06d7f2cd8d6feea1c" category="section-title">Complemento NetApp Element para vCenter Server 5,1</block>
   <block id="6b51db420393cbff0d9f09dfeb229ecb" category="sidebar">Novedades en NetApp HCI</block>
   <block id="bf2765efb2720c4592beeec5c6bf386c" category="sidebar">El plugin de NetApp Element para VMware vCenter Server ofrece un plugin a la interfaz de VMware vSphere para que se puedan gestionar y supervisar los clústeres de almacenamiento que ejecutan el software NetApp Element. Este sitio de documentación se puede usar para obtener información sobre el plugin y usarlo. Este sitio de documentación dirige el plugin remoto de Element para vCenter 5,0 y versiones posteriores, y el plugin de Element para vCenter 4,6 a 4,10 local.</block>
+  <block id="d3c4a89052a32dd9783dd119f30d6d47" category="inline-link">Notas de la versión del plugin de vCenter 5,3</block>
+  <block id="0c21440ced3ddae10d1eea32870fdf02" category="list-text"><block ref="ce90fd614158a5c7e0a42a5908fa1cd7" category="inline-link-rx"></block> _NEW_</block>
+  <block id="724cde13f8f34ec9a75aa3a5949a7bae" category="paragraph">También hay documentación disponible para versiones anteriores a la versión 5,3 del plugin de NetApp Element para VMware vCenter Server.</block>
+  <block id="b91ca928498ebf0173fb7e3d48992a66" category="admonition">Este <block ref="f85d5f4f47d1b49f55d365d260fa53d2" category="inline-link-macro-rx"></block> Para el plugin de vCenter 5,3 de Element también incluye las versiones 5,2, 5,1, 5,0, 4,10, 4,9, 4,8, 4,7 y 4,6.</block>
+  <block id="d3fc3e6e42d7ebd71ce2e5001c965277" category="cell">5,2</block>
+  <block id="a87975cd874f3995aa0f5b8e9914d6ac" category="cell"><block ref="a87975cd874f3995aa0f5b8e9914d6ac" category="inline-link-rx"></block></block>
+  <block id="1b96174d42a2f1a016196aced05ce205" category="inline-link">2.24.40</block>
+  <block id="06ee06aae7e4ab0cc69854ffbaf61edf" category="cell"><block ref="06ee06aae7e4ab0cc69854ffbaf61edf" category="inline-link-rx"></block></block>
+  <block id="b735801c9fa7b1a5f19bea246684bd80" category="list-text">VSphere 8,0 Update 1 y 2, incluidos vCenter Server, ESXi y almacenes de datos VMFS5 y VMFS6</block>
+  <block id="9440aa5daecc4e454dc1c5f4c3914782" category="list-text">VSphere 7,0 y 7,0 Update 1, 2 y 3, incluidos vCenter Server, ESXi y almacenes de datos de VMFS5 y VMFS6</block>
+  <block id="d80d65153da9f647c1ae66ee2e9b710f" category="list-text">En el panel *Configure Volume*, seleccione un volumen existente o cree un nuevo volumen para el nuevo almacén de datos:</block>
+  <block id="b0593ca7b0e91ef1a450ba78bba4194b" category="open-title">Seleccione el volumen existente</block>
+  <block id="a97aaeb15fa07b573c01cd843d650936" category="paragraph">Si selecciona un volumen existente, debe cumplir con los siguientes requisitos previos:</block>
+  <block id="c7857ac5cc7266a638970bba9e2b2004" category="list-text">Para usar un grupo de acceso de volúmenes, realice lo siguiente:</block>
+  <block id="380d0774a372417aac38043e2915ac37" category="list-text">Cree un nuevo volumen con 512e habilitado.</block>
+  <block id="77960d964e75337a6bb83aef1ceb795a" category="list-text">Añada el volumen a un grupo de acceso que contiene uno o varios iniciadores de host de destino.</block>
+  <block id="8b9144d3ca30a3b9d4bb0cb90305f7b2" category="list-text">Para utilizar CHAP:</block>
+  <block id="d239fbec99786f06b158cd7eedf51a08" category="list-text">Compruebe que el CHAP se haya configurado para cada adaptador iSCSI de host de destino.</block>
+  <block id="36a821057cd0ff678a617d89d48fbc98" category="list-text">Cree un volumen nuevo con 512e habilitado mediante una de las siguientes opciones:</block>
+  <block id="f3c1df40f5b3b7b499caddeebcf7577e" category="list-text">Utilice una cuenta con la configuración de CHAP adecuada para cada host de destino.</block>
+  <block id="13360f9beb5e70b1a3911ee48b55a553" category="list-text">Cree una cuenta y configure los secretos de destino e iniciador.</block>
+  <block id="9314e5acbbfd0a4b95d982565586c95f" category="list-text">Vea los detalles del volumen.</block>
+  <block id="0fae033b7f8a2552a2db93253ae48448" category="list-text">Añada el IQN de volumen a cada tabla de detección estática del adaptador iSCSI de host de destino.</block>
+  <block id="ce8c852278bf664e34483c6a3fbd4194" category="open-title">Cree un volumen nuevo</block>
+  <block id="976b368b923346c8ea4ccc71e72749f5" category="inline-link-macro">Aviso para servicios de gestión 2.25.42 (complemento NetApp Element para VMware vCenter Server 5,3.9)</block>
+  <block id="a2263b02c6e08e0a4fcf66ab7402c155" category="list-text"><block ref="a2263b02c6e08e0a4fcf66ab7402c155" category="inline-link-macro-rx"></block></block>
+  <block id="4dc24cec9c06f3bd0c6f458b16afede8" category="paragraph">El complemento NetApp Element para vCenter Server 5,3 proporciona mejoras de seguridad y rendimiento.<block ref="ca5ac7a1ab671f72eb64321851616ed9" category="inline-link-rx"></block>.</block>
+  <block id="04f2e4cbd56c4588624b04a1aa9d7bf7" category="paragraph">El complemento de vCenter Element 5,3 está disponible con la versión 2.25.42 de servicios de gestión.</block>
+  <block id="7d85b43ddb7107e1d89d5c5b6d8d7f2a" category="section-title">Complemento NetApp Element para vCenter Server 5,2</block>
+  <block id="85cde91596c6febafca64baa345a0163" category="paragraph">Si desea actualizar el plugin de NetApp Element para vCenter Server, siga los pasos que se describen para la instalación. El complemento NetApp Element vCenter 5,3 está disponible fuera de las versiones de Element y NetApp HCI como parte de un paquete de servicios de gestión.</block>
+  <block id="ce90fd614158a5c7e0a42a5908fa1cd7" category="list-text"><block ref="ce90fd614158a5c7e0a42a5908fa1cd7" category="inline-link-rx"></block></block>
 </blocks>

@@ -86,12 +86,38 @@ TIP: Utilice un nombre único para cada almacén de datos en un centro de datos.
 NOTE: Debe haber al menos un host conectado para poder crear un nuevo almacén de datos. Si el host tiene varios iniciadores, elija uno solo o elija el host para seleccionar todos los iniciadores. Si se usa vCenter Linked Mode, solo pueden seleccionarse los hosts disponibles en la instancia de vCenter Server a la cual se asigna el clúster.
 
 . Seleccione *Siguiente*.
-. En el panel *Configurar volumen*, seleccione un volumen existente y continúe con el paso siguiente, o cree un volumen nuevo para el nuevo almacén de datos:
+. En el panel *Configure Volume*, seleccione un volumen existente o cree un nuevo volumen para el nuevo almacén de datos:
 +
+[role="tabbed-block"]
+====
+.Seleccione el volumen existente
+--
+Si selecciona un volumen existente, debe cumplir con los siguientes requisitos previos:
 
-NOTE: Si selecciona un volumen existente para crear un almacén de datos nuevo, se perderán los datos existentes. Para ver los volúmenes de VMFS existentes, consulte la documentación de VMware acerca de https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.vsphere.storage.doc/GUID-EEFEB765-A41F-4B6D-917C-BB9ABB80FC80.html["Montar una copia de almacén de datos VMFS"^] y.. https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.vsphere.storage.doc/GUID-EBAB0D5A-3C77-4A9B-9884-3D4AD69E28DC.html["Gestión de almacenes de datos VMFS duplicados"^].
-
+** Para usar un grupo de acceso de volúmenes, realice lo siguiente:
 +
+... Cree un nuevo volumen con 512e habilitado.
+... Añada el volumen a un grupo de acceso que contiene uno o varios iniciadores de host de destino.
+
+
+** Para utilizar CHAP:
++
+... Compruebe que el CHAP se haya configurado para cada adaptador iSCSI de host de destino.
+... Cree un volumen nuevo con 512e habilitado mediante una de las siguientes opciones:
++
+**** Utilice una cuenta con la configuración de CHAP adecuada para cada host de destino.
+**** Cree una cuenta y configure los secretos de destino e iniciador.
+
+
+... Vea los detalles del volumen.
+... Añada el IQN de volumen a cada tabla de detección estática del adaptador iSCSI de host de destino.
+
+
+
+
+--
+.Cree un volumen nuevo
+--
 .. Introduzca un nombre para el volumen que respalda al almacén de datos.
 .. Seleccione una cuenta de usuario en la lista de cuentas.
 .. Introduzca el tamaño total del volumen que desea crear.
@@ -118,6 +144,8 @@ TIP: Los volúmenes que tengan un valor de IOPS máximo o de ráfaga superior a 
 
 
 
+--
+====
 . Seleccione *Siguiente*.
 . Configure el tipo de autorización para el acceso al host seleccionando una de las siguientes opciones:
 +
