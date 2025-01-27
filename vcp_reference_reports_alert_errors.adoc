@@ -101,10 +101,10 @@ Se detectó que un servicio de bloques está en mal estado:
 ** Gravedad = Advertencia: No se realiza ninguna acción. Este período de advertencia caducará en cTimeUntilBSIsKilledMSec=330000 milisegundos.
 ** Gravedad = error: El sistema decomisiona automáticamente los datos y vuelve a replicar los datos en otras unidades en buen estado.
 ** Severidad = crítico: Hay servicios de bloque con errores en varios nodos mayores o iguales al número de replicación (2 para Double Helix). Los datos no están disponibles y la sincronización de bandejas no finalizará.
-
-
 +
 Compruebe si existen problemas de conectividad de red y errores de hardware. Si se han producido errores en componentes de hardware específicos, habrá otros errores. El fallo se borrará cuando se pueda acceder al servicio de bloqueo o cuando se haya retirado el servicio.
+
+
 
 * *BmcSelfTestFailed*
 +
@@ -208,12 +208,9 @@ El clúster devuelve esta falla cuando una o más unidades han fallado, lo cual 
 ** No se puede acceder al servicio maestro del nodo (todas las unidades del nodo se consideran ausentes o con errores).
 ** La unidad está bloqueada y no puede adquirirse la clave de autenticación de la unidad.
 ** La unidad se bloqueó y la operación de desbloqueo falla.
-
-
 +
 Para resolver este problema:
 
-+
 ** Compruebe la conectividad de red del nodo.
 ** Sustituya la unidad.
 ** Asegúrese de que la clave de autenticación esté disponible.
@@ -237,10 +234,10 @@ La vida útil restante de una unidad cayó por debajo del umbral permitido, pero
 +
 ** Unidad con serie: <serial number> en ranura: <node slot> <drive slot> tiene niveles de desgaste críticos.
 ** Unidad con serie: <serial number> en ranura: <node slot> <drive slot> tiene bajas reservas de desgaste.
-
-
 +
 Para resolver esta falla, reemplace la unidad cuanto antes.
+
+
 
 * *DuplicateClusterMasterCandidates*
 +

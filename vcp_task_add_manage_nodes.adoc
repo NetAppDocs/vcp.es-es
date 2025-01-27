@@ -109,9 +109,6 @@ Para reiniciar el clúster, puede seleccionar todos los nodos del clúster y eje
 
 IMPORTANT: Este método reinicia todos los servicios de red en un nodo, lo que produce una pérdida temporal de conectividad de red.
 
-
-NOTE: Esta función no está disponible en los clústeres de SDS empresarial de SolidFire.
-
 .Pasos
 . En vSphere Web Client, abra la pestaña *Cluster*:
 +
@@ -141,10 +138,6 @@ Es posible apagar uno o más nodos activos en un clúster mediante el punto de e
 
 .Lo que necesitará
 Detuvo las operaciones de I/o y desconectó todas las sesiones iSCSI si el objetivo es reiniciar más de un nodo a la vez.
-
-.Acerca de esta tarea
-
-NOTE: Esta función no está disponible en los clústeres de SDS empresarial de SolidFire.
 
 .Pasos
 . En vSphere Web Client, abra la pestaña *Cluster*:

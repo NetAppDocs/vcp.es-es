@@ -165,9 +165,6 @@ Si estableció un grupo de Linked Mode y desea reasignar un clúster a otra inst
 
 Es posible habilitar manualmente la funcionalidad de cifrado EN reposo (EAR) mediante el punto de extensión del plugin.
 
-
-NOTE: Esta función no está disponible en los clústeres de SDS empresarial de SolidFire.
-
 .Pasos
 . En vSphere Web Client, abra la pestaña *Clusters*:
 +
@@ -206,9 +203,6 @@ Es posible deshabilitar manualmente la funcionalidad EAR mediante el punto de ex
 
 Es posible habilitar manualmente una sesión Secure Shell (SSH) mediante el punto de extensión de plugin. Al habilitar SSH, los ingenieros de soporte técnico de NetApp pueden acceder a los nodos de almacenamiento para solucionar problemas durante el plazo que usted determine.
 
-
-NOTE: Esta función no está disponible en los clústeres de SDS empresarial de SolidFire.
-
 .Pasos
 . En vSphere Web Client, abra la pestaña *Clusters*:
 +
@@ -232,9 +226,6 @@ NOTE: Para continuar, debe introducir un valor.
 == Cambie el límite de tiempo de SSH
 
 Puede introducir una nueva duración para una sesión SSH.
-
-
-NOTE: Esta función no está disponible en los clústeres de SDS empresarial de SolidFire.
 
 .Pasos
 . En vSphere Web Client, abra la pestaña *Clusters*:
@@ -262,9 +253,6 @@ NOTE: Para continuar, debe introducir un valor.
 == Deshabilite SSH
 
 Es posible deshabilitar manualmente el acceso de SSH a los nodos en el clúster de almacenamiento mediante el punto de extensión del plugin.
-
-
-NOTE: Esta función no está disponible en los clústeres de SDS empresarial de SolidFire.
 
 .Pasos
 . En vSphere Web Client, abra la pestaña *Clusters*:
@@ -319,9 +307,6 @@ Es posible apagar manualmente todos los nodos activos en un clúster de almacena
 
 Si desea link:vcp_task_add_manage_nodes.html#restart-a-node["reiniciar"] En lugar de apagar el clúster, puede seleccionar todos los nodos de la página Cluster en el punto de extensión NetApp Element Management y ejecutar un reinicio.
 
-
-NOTE: Esta función no está disponible en los clústeres de SDS empresarial de SolidFire.
-
 .Lo que necesitará
 Debe haber interrumpido la I/o y desconectado todas las sesiones iSCSI.
 
@@ -349,9 +334,6 @@ En las páginas Getting Started y Cluster se proporcionan otros enlaces adiciona
 * A partir del complemento de vCenter para Element 5.0, seleccione NetApp Element Remote Plugin > Management.
 * Para el plugin de Element vCenter versión 4.10 y versiones anteriores, seleccione el punto de extensión NetApp Element Management.
 
-
-
-NOTE: Esta función no está disponible en los clústeres de SDS empresarial de SolidFire.
 
 .Pasos
 . En vSphere Web Client, abra la pestaña *Clusters*:
