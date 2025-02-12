@@ -578,7 +578,6 @@
   <block id="eacfad1499ca901255b178282af10724" category="paragraph">Detuvo las operaciones de I/o y desconectó todas las sesiones iSCSI si el objetivo es reiniciar más de un nodo a la vez.</block>
   <block id="056633f97280a78a0b53f18470ad585a" category="paragraph">Para reiniciar el clúster, puede seleccionar todos los nodos del clúster y ejecutar un reinicio.</block>
   <block id="d98cefed931537819de0b2f9849667b3" category="admonition">Este método reinicia todos los servicios de red en un nodo, lo que produce una pérdida temporal de conectividad de red.</block>
-  <block id="54901669f6ee1692cfa5c4342dec9cf6" category="admonition">Esta función no está disponible en los clústeres de SDS empresarial de SolidFire.</block>
   <block id="d12b0c2106484859adaa58fb0301d427" category="list-text">En la vista *Active*, active la casilla de verificación de cada nodo que desee reiniciar.</block>
   <block id="2ea9d7e19b043d5cc28569d3750b300c" category="list-text">Haga clic en *acciones*.</block>
   <block id="f07022f87adadf12f55f40e181ebf796" category="list-text">Seleccione *Reiniciar*.</block>
@@ -2880,4 +2879,6 @@
   <block id="7cf6790535f5cb85bde6ce82d5227fce" category="section-title">Complemento NetApp Element para vCenter Server 5,3</block>
   <block id="e6282772fca5835069b1c98cf6db2c43" category="paragraph">Si desea actualizar el plugin de NetApp Element para vCenter Server, siga los pasos que se describen para la instalación. El complemento NetApp Element vCenter 5,4 está disponible fuera de las versiones de Element y NetApp HCI como parte de un paquete de servicios de gestión.</block>
   <block id="912995e99772bb097b2c7b32940725bb" category="list-text"><block ref="912995e99772bb097b2c7b32940725bb" category="inline-link-rx"></block></block>
+  <block id="6db7dd4182be7a1979ad403111fa8618" category="inline-link">Notas de la versión del software NetApp Element 12.8</block>
+  <block id="7d776811219f8ebb17adecaa976bd578" category="list-text"><block ref="53e04163346326834efd61306c0800b5" category="inline-link-rx"></block> _NUEVO_</block>
 </blocks>
